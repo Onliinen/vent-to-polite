@@ -1,5 +1,5 @@
 /**
- * VentToPolite - 核心互動、雙語切換 (i18n) 與雙引擎邏輯
+ * VentToPolite - 核心互動、雙語切換 (i18n) 與精準語意雙引擎邏輯
  */
 
 const UI_STRINGS = {
@@ -82,7 +82,6 @@ const UI_STRINGS = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 當前語言與狀態
   let currentLang = localStorage.getItem("vent_lang") || "zh-TW";
   let currentCategory = "friends";
   let currentTactics = [];
@@ -132,13 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (apiEndpointInput) apiEndpointInput.value = localStorage.getItem("vent_api_endpoint") || "https://api.openai.com/v1";
   if (apiModelInput) apiModelInput.value = localStorage.getItem("vent_api_model") || "gpt-4o-mini";
 
-  // 更新所有 UI 字串
+  // 切換語言
   function applyLanguage(lang) {
     currentLang = lang;
     localStorage.setItem("vent_lang", lang);
     const strings = UI_STRINGS[lang];
 
-    // 更新各項文字
     langLabel.textContent = strings.langBtn;
     document.getElementById("brandBadge").textContent = strings.brandBadge;
     document.getElementById("navSettingsLabel").textContent = strings.navSettingsLabel;
@@ -170,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("footerMainText").textContent = strings.footerMainText;
     document.getElementById("footerSubText").textContent = strings.footerSubText;
 
-    // 更新分類標籤名稱
     const langCategories = PRESET_CATEGORIES[lang];
     categoryTabs.forEach(tab => {
       const catKey = tab.dataset.cat;
@@ -182,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderPresetChips();
 
-    // 如果目前有已選中的 preset，自動刷新該 preset 的雙語內容
     if (activePresetId) {
       const currentCatData = PRESET_CATEGORIES[currentLang][currentCategory];
       if (currentCatData && currentCatData.items) {
@@ -196,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 渲染情境藥丸 (Presets)
   function renderPresetChips() {
     presetChipsContainer.innerHTML = "";
     const catData = PRESET_CATEGORIES[currentLang][currentCategory];
@@ -217,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 分類切換
   function switchCategory(catId) {
     currentCategory = catId;
     activePresetId = null;
@@ -227,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPresetChips();
   }
 
-  // 即時怒氣計計算 (Rage Meter)
   function calculateRageLevel(text) {
     if (!text.trim()) return 0;
     let score = 42;
@@ -235,9 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const angryWords = [
       "氣死", "煩死", "遲到", "甩鍋", "憑什麼", "垃圾", "有病", "搞屁", "裝死", 
       "滾", "到底", "有事嗎", "藉口", "誇張", "不要臉", "擺爛", "火大", "受夠",
-      "靠", "乾", "北七", "傻眼", "扯",
+      "靠", "乾", "北七", "傻眼", "扯", "髒話", "粗話",
       "furious", "pissed", "late", "slacking", "hate", "idiot", "lazy", "ridiculous", 
-      "annoying", "waste", "garbage", "sick of", "enough", "freeloader", "ghosted"
+      "annoying", "waste", "garbage", "sick of", "enough", "freeloader", "ghosted", "bad words", "swear"
     ];
 
     angryWords.forEach(w => {
@@ -276,7 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateRageMeter(e.target.value);
   });
 
-  // 套用結果
   function applyPresetResult(presetItem) {
     roastTag.textContent = presetItem.roast.tagTitle;
     roastStars.textContent = presetItem.roast.stars;
@@ -293,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
     resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
-  // 渲染策略切換 Tab
   function renderTacticsTabs() {
     tacticsTabs.innerHTML = "";
     currentTactics.forEach((tactic, idx) => {
@@ -316,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
     messageText.textContent = current.text;
   }
 
-  // 複製按鈕
   btnCopy.addEventListener("click", () => {
     const textToCopy = messageText.textContent;
     if (!textToCopy) return;
@@ -336,7 +326,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2500);
   }
 
-  // 生成按鈕事件
   btnGenerate.addEventListener("click", async () => {
     const text = rantInput.value.trim();
     if (!text) {
@@ -365,10 +354,162 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 智慧離線引擎
+  /**
+   * 智慧語意離線引擎：依據使用者實際輸入的問題類型，進行情境分類與客製化應對
+   * 徹底杜絕非工作情境卻給出工作 Milestone 答案的 bug！
+   */
   async function generateOfflineIntelligent(text) {
-    await new Promise(r => setTimeout(r, 650));
+    await new Promise(r => setTimeout(r, 600));
 
+    const lower = text.toLowerCase();
+    const isEn = currentLang === "en";
+
+    // 1. 語言與口頭習慣摩擦 (Verbal Habits, Swearing, Bad words, Rude remarks)
+    const isVerbalConflict = [
+      "bad words", "swear", "swearing", "curse", "cursing", "vulgar", "rude", 
+      "insult", "foul", "offensive words", "saying bad", "said bad", "harsh words",
+      "髒話", "粗話", "粗口", "難聽", "沒禮貌", "說話難聽", "嘴臭", "罵人", "口出惡言"
+    ].some(k => lower.includes(k));
+
+    if (isVerbalConflict) {
+      const match = PRESET_CATEGORIES[currentLang].friends.items.find(i => i.id === "friend_bad_words");
+      if (match) {
+        activePresetId = match.id;
+        applyPresetResult(match);
+        showToast(UI_STRINGS[currentLang].toastDone);
+        return;
+      }
+    }
+
+    // 2. 借錢與金錢糾紛 (Money, Borrowing, Splitting bills, Unpaid debts)
+    const isMoneyConflict = [
+      "money", "borrow", "pay back", "owe", "split", "bill", "cheap", "lend", "debt",
+      "借錢", "還錢", "分帳", "欠錢", "催討", "不給錢", "討錢"
+    ].some(k => lower.includes(k));
+
+    if (isMoneyConflict) {
+      activePresetId = null;
+      const moneyResult = {
+        roast: {
+          tagTitle: isEn ? "Selective Amnesia Debt Collector" : "暫時性失憶理財大師",
+          stars: "★★★★☆",
+          comment: isEn 
+            ? "When borrowing, their memory was razor-sharp and instant. When it's time to pay back, they develop sudden, clinical-grade neurological amnesia. They treat your generosity like a zero-interest grant from a philanthropic foundation."
+            : "借錢的時候秒回又誠懇，到了要還錢的時候直接觸發『選擇性暫時失憶症』。他把你的好心當成無息天使投資基金，裝傻的演技比奧斯卡影帝還要逼真。",
+          comfortTip: isEn
+            ? "Money lent without clear boundaries is tuition paid for human nature. Let's ask for it back with maximum composure."
+            : "錢要得回來是你的本事，不用覺得自己不好意思。欠錢的人都沒在臉紅了，討錢的人更不用心虛！"
+        },
+        diplomacy: {
+          tactics: [
+            {
+              type: isEn ? "Casual Sync" : "輕鬆對帳型",
+              tag: isEn ? "Routine Framing・Zero Awkwardness" : "日常對帳・不傷面子",
+              text: isEn
+                ? "Hey! Just balancing my weekly expenses today—did that [amount / meal bill] from earlier go through on your end? Let me know so I can check it off my list haha!"
+                : "哈囉！我剛好在整理這週的記帳明細～之前那個 [金額/餐費] 不知道你轉了沒？再麻煩你有空確認一下，我好把帳結清，謝啦！"
+            },
+            {
+              type: isEn ? "Direct Boundary" : "溫和直白型",
+              tag: isEn ? "Clear Timeline" : "清晰時間・表明需求",
+              text: isEn
+                ? "Hey! Gentle ping regarding the [amount] from earlier. I've got a couple of upcoming bills to clear, so whenever you have a minute today, could you shoot that over? Appreciate it!"
+                : "嗨！溫馨提醒一下之前那筆 [金額]，因為我今天剛好要繳一些卡費/開銷，方便的話再麻煩你今天抽空轉給我喔，感謝！"
+            },
+            {
+              type: isEn ? "Firm Standard" : "明確底線型",
+              tag: isEn ? "Professional & Direct" : "公事公辦・堅定表明",
+              text: isEn
+                ? "Hey, I need to finalize my accounts today. Please send over your share of [the bill] by tonight so we're all squared up. Thanks!"
+                : "嗨，我需要今天把之前代墊的帳目結清。麻煩你今天晚上前把你的那份款項轉過來喔，帳戶是 [帳號]，感謝配合！"
+            }
+          ],
+          insight: isEn
+            ? "Financial awkwardness grows exponentially with delay. Framing the reminder under 'routine weekly budgeting' or 'settling bills' depersonalizes the request, removing confrontation while making evasion impossible."
+            : "討錢的尷尬會隨時間成倍增加。將催討包裝成『例行性對帳』或『今天要付其他帳單』，將焦點轉移到客觀事實上，對方就找不到藉口推託。"
+        }
+      };
+
+      roastTag.textContent = moneyResult.roast.tagTitle;
+      roastStars.textContent = moneyResult.roast.stars;
+      roastContent.textContent = moneyResult.roast.comment;
+      comfortContent.textContent = moneyResult.roast.comfortTip;
+      currentTactics = moneyResult.diplomacy.tactics;
+      insightContent.textContent = moneyResult.diplomacy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
+
+    // 3. 已讀不回與訊息冷暴力 (Ghosting, Left on read, Ignored messages)
+    const isGhostingConflict = [
+      "ghost", "ghosting", "read", "reply", "ignore", "text back", "message",
+      "已讀", "不回", "不理", "人間蒸發", "回很慢", "不看訊息"
+    ].some(k => lower.includes(k));
+
+    if (isGhostingConflict) {
+      activePresetId = null;
+      const ghostResult = {
+        roast: {
+          tagTitle: isEn ? "Digital Bunker Hermit" : "數位掩體隱身大師",
+          stars: "★★★★☆",
+          comment: isEn
+            ? "They check social media 800 times an hour, but their fingers magically seize up whenever it comes to replying to your message. It's like your chat window contains a digital Bermuda Triangle."
+            : "他看限時動態一小時刷八百次，但在回覆你訊息的那一秒，他的手指宛如遭遇了某種神祕的全身癱瘓。他不是沒看到，他只是在玩『看誰先忍不住再密一次』的心理戰。",
+          comfortTip: isEn
+            ? "Don't double-text with anxiety. Give a clear deadline or let their silence be your answer."
+            : "不要焦慮地連環奪命連環傳。設下明確時限，或者乾脆讓他的沉默成為你的答案。"
+        },
+        diplomacy: {
+          tactics: [
+            {
+              type: isEn ? "Playful Nudge" : "幽默破冰型",
+              tag: isEn ? "Lighthearted Tease" : "化解尷尬・開玩笑喚醒",
+              text: isEn
+                ? "Sending a search-and-rescue team to your inbox! Did your phone fall into a black hole haha? Ping me when you resurface!"
+                : "逼逼！正在向你的收件匣發送搜救小隊～你的手機是不是掉進百慕達三角洲了哈哈？浮出水面的時候記得敲我一下喔！"
+            },
+            {
+              type: isEn ? "Gentle Check-in" : "溫和確認型",
+              tag: isEn ? "No Pressure Inquiry" : "體貼詢問・給足台階",
+              text: isEn
+                ? "Hey, totally understand if you're swamped right now. Just wanted to make sure you saw my note regarding [Topic] when you get a breathing moment!"
+                : "嗨，理解你最近手頭事情可能比較多～只是想確認一下你有沒有看到之前提的 [事情]，等你喘口氣有空再回我就好！"
+            },
+            {
+              type: isEn ? "Deadline Decision" : "時限自保型",
+              tag: isEn ? "Action-Driven Boundary" : "設下期限・拿回主動權",
+              text: isEn
+                ? "Hey! I need to lock down plans on this by [Time today]. If I don't hear from you by then, I'll go ahead with alternative arrangements. Hope all is well!"
+                : "哈囉！因為這件事我需要在 [時間點] 前做決定。如果那時還沒收到你的回覆，我就先按照備用方案往下安排囉，祝你今天順利！"
+            }
+          ],
+          insight: isEn
+            ? "Calling out ghosting with anger makes people withdraw further. Providing a binary action with a soft deadline ('If I don't hear back by X, I'll proceed with Y') removes their delay advantage and forces a resolution."
+            : "指責對方『為什麼已讀不回』只會讓他更想逃避。給出一個『如果不回我就直接往下做』的明確期限，能瞬間打破被動局面，拿回主控權。"
+        }
+      };
+
+      roastTag.textContent = ghostResult.roast.tagTitle;
+      roastStars.textContent = ghostResult.roast.stars;
+      roastContent.textContent = ghostResult.roast.comment;
+      comfortContent.textContent = ghostResult.roast.comfortTip;
+      currentTactics = ghostResult.diplomacy.tactics;
+      insightContent.textContent = ghostResult.diplomacy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
+
+    // 4. 比對其他預設案例 (遲到、隨便、急件、甩鍋、組員、加簽、洗碗)
     const currentPresets = [
       ...PRESET_CATEGORIES[currentLang].friends.items,
       ...PRESET_CATEGORIES[currentLang].workplace.items,
@@ -377,10 +518,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let matchedItem = null;
-    const lower = text.toLowerCase();
-
     for (const item of currentPresets) {
-      if ((lower.includes("遲到") || lower.includes("late")) && item.id === "friend_late") { matchedItem = item; break; }
+      if ((lower.includes("遲到") || lower.includes("late") || lower.includes("wait")) && item.id === "friend_late") { matchedItem = item; break; }
       if ((lower.includes("隨便") || lower.includes("吃什麼") || lower.includes("anything") || lower.includes("eat")) && item.id === "friend_any") { matchedItem = item; break; }
       if ((lower.includes("下班") || lower.includes("急件") || lower.includes("urgent") || lower.includes("weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
       if ((lower.includes("甩鍋") || lower.includes("責任") || lower.includes("bus") || lower.includes("blame")) && item.id === "work_blame") { matchedItem = item; break; }
@@ -392,87 +531,105 @@ document.addEventListener("DOMContentLoaded", () => {
     if (matchedItem) {
       activePresetId = matchedItem.id;
       applyPresetResult(matchedItem);
-    } else {
-      activePresetId = null;
-      const isEn = currentLang === "en";
-      const customResult = {
-        roast: {
-          tagTitle: isEn ? "High-Absurdity Certified" : "高能荒謬事件認證",
-          stars: "★★★★☆",
-          comment: isEn 
-            ? "What this person did violates fundamental common sense. Your blood pressure spike is a completely valid physiological survival reflex! Someone else's carelessness should never become your punishment."
-            : "對方這個舉動已經超出了常人的理解範疇。你的血壓升高完全是合理的生理防衛機制！這種情況擺明了是把問題丟給有責任感的人承擔，別人的隨意不該成為懲罰你的藉口。",
-          comfortTip: isEn
-            ? "Take a deep breath for 3 seconds. The problem is with them, not you. Let's pass the hot potato right back with maximum elegance."
-            : "先深呼吸三秒鐘。問題在他不在你，我們用最體面的方式把皮球踢回去。"
-        },
-        diplomacy: {
-          tactics: [
-            {
-              type: isEn ? "Playful Tease" : "幽默調侃型",
-              tag: isEn ? "Soft Reminder" : "軟性提醒・保留面子",
-              text: isEn
-                ? "Hey! Quick check on what we talked about earlier—looks like things are a bit paused on your end. Could you push it forward today so we don't end up pulling an all-nighter together haha!"
-                : "哈囉！關於剛才提到的事情，我這邊看進度稍微卡住了～再麻煩你今天抽空幫忙推進一下，免得我們最後要一起加班/趕工抱佛腳哈哈！"
-            },
-            {
-              type: isEn ? "Clear Boundary" : "清晰邊界型",
-              tag: isEn ? "Firm & Polite" : "明確界線・保護自己",
-              text: isEn
-                ? "Hey, totally understand everyone's plates are full. That said, to ensure the quality of upcoming milestones, if this isn't aligned by [Agreed Time], I will move forward with our currently confirmed scope. Thanks for understanding!"
-                : "嗨，理解大家手頭上事情都多。不過考量到後續里程碑的交付品質，如果這部分未能在 [約定時間] 前對齊，我會先以目前已確認的版本往下推進，謝謝配合！"
-            },
-            {
-              type: isEn ? "Executive Diplomat" : "體面商務型",
-              tag: isEn ? "Objective & Bulletproof" : "專業客觀・無懈可擊",
-              text: isEn
-                ? "Hello, to ensure team alignment and protect deliverable standards, kindly confirm the latest progress by today. If any coordination is required, please feel free to raise it—appreciate your support!"
-                : "您好，為確保雙方進度同步並維護成果品質，煩請協助於今日確認最新進展。若有需協調之處，隨時歡迎提出討論，感謝您的協助！"
-            }
-          ],
-          insight: isEn
-            ? "When dealing with difficult communicators, never fight back with anger. Strip away emotional accusations and anchor your response to objective timelines and quality standards. This leaves you unassailable while preventing you from appearing reactive."
-            : "面對難以溝通的對象，最忌諱以憤怒回應。將情緒剝離，用客觀的時間點（何時交付）、流程限制（為了確保品質）來推動對方，既站得住腳，也不會給人情緒化的印象。"
-        }
-      };
-
-      roastTag.textContent = customResult.roast.tagTitle;
-      roastStars.textContent = customResult.roast.stars;
-      roastContent.textContent = customResult.roast.comment;
-      comfortContent.textContent = customResult.roast.comfortTip;
-
-      currentTactics = customResult.diplomacy.tactics;
-      insightContent.textContent = customResult.diplomacy.insight;
-      currentTacticIndex = 0;
-      renderTacticsTabs();
-
-      placeholderState.style.display = "none";
-      resultsContainer.style.display = "grid";
-      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
     }
 
+    // 5. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
+    // 徹底移除不相干的職場里程碑 (milestones) 詞彙！
+    activePresetId = null;
+    const universalResult = {
+      roast: {
+        tagTitle: isEn ? "Absurd Boundary Violation" : "人際界線越界認證",
+        stars: "★★★★☆",
+        comment: isEn 
+          ? "What this person did is a textbook display of zero emotional intelligence. Your frustration is completely justified! Someone else's lack of self-awareness should never become your personal burden."
+          : "對方這個舉動真的是標準的『毫無同理心與自覺』。你的生氣完全合情合理！別人的白目不該成為懲罰你的枷鎖，這口悶氣我們絕不自己吞。",
+        comfortTip: isEn
+          ? "Take a deep breath for 3 seconds. The issue lies squarely with their behavior, not your patience. Let's set the boundary cleanly."
+          : "先深呼吸三秒鐘。問題在他不在你，我們用最得體、最無懈可擊的方式把界線劃分清楚。"
+      },
+      diplomacy: {
+        tactics: [
+          {
+            type: isEn ? "Playful Deflection" : "幽默調侃型",
+            tag: isEn ? "Diffuses Tension・Maintains Face" : "軟性提醒・保留面子",
+            text: isEn
+              ? "Hey! About what happened earlier—my brain did a little triple-take haha. Can we hit the reset button and find a smoother way for both of us to handle this?"
+              : "哈囉！關於剛才那件事，我的腦袋差點當機哈哈～想說我們彼此退一步，找個兩邊相處都舒服的方式，你覺得呢？"
+          },
+          {
+            type: isEn ? "Honest Boundary" : "真誠表達型",
+            tag: isEn ? "Express Discomfort Directly" : "表達感受・建立界線",
+            text: isEn
+              ? "Hey, I've been reflecting on our interaction, and to be open, it left me feeling a bit uncomfortable. I value our relationship, so I wanted to share my thoughts honestly rather than keeping it to myself."
+              : "嗨，稍微沈澱了一下剛才的事，老實說當下的情況讓我覺得有點不太舒服。因為我很在乎我們之間的相處，所以想坦誠跟你分享我的感受，也聽聽你的想法！"
+          },
+          {
+            type: isEn ? "Firm Standard" : "明確原則型",
+            tag: isEn ? "Mutual Respect Ground Rule" : "互相尊重・確立原則",
+            text: isEn
+              ? "I think mutual respect is essential for us to communicate well. Here is where I stand on this, and I hope we can find common ground so neither of us feels frustrated moving forward."
+              : "我覺得彼此互相尊重、有話好說是長久相處的基礎。在這件事情上我的原則比較明確，希望能跟你取得共識，避免以後雙方都覺得委屈或產生誤解。"
+          }
+        ],
+        insight: isEn
+          ? "When resolving awkward interpersonal conflicts, use 'I-statements' (how the situation made you feel) rather than 'You-statements' (accusing their character). Expressing your standard with calm composure leaves zero room for toxic drama while making your boundary respected."
+          : "處理人際摩擦時，切記使用『我字開頭』（表達自己的真實感受），而不是『你字開頭』（指責對方的品格）。聚焦在感受與長遠關係，能最大程度降低對方的防衛心，同時讓界線清晰有效。"
+      }
+    };
+
+    roastTag.textContent = universalResult.roast.tagTitle;
+    roastStars.textContent = universalResult.roast.stars;
+    roastContent.textContent = universalResult.roast.comment;
+    comfortContent.textContent = universalResult.roast.comfortTip;
+
+    currentTactics = universalResult.diplomacy.tactics;
+    insightContent.textContent = universalResult.diplomacy.insight;
+    currentTacticIndex = 0;
+    renderTacticsTabs();
+
+    placeholderState.style.display = "none";
+    resultsContainer.style.display = "grid";
+    resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
     showToast(UI_STRINGS[currentLang].toastDone);
   }
 
-  // 即時呼叫 LLM
+  // 即時呼叫 LLM (針對問題 100% 精準對齊)
   async function callLiveLLM(rantText, apiKey) {
     const endpoint = localStorage.getItem("vent_api_endpoint") || "https://api.openai.com/v1";
     const model = localStorage.getItem("vent_api_model") || "gpt-4o-mini";
     const isEn = currentLang === "en";
 
     const systemPrompt = isEn 
-      ? `You are a dual AI persona: a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine).
-The user provides their raw, unfiltered, angry thoughts.
-You must return a valid JSON object with:
-1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity), comfortTip (1 practical de-escalation tip) }.
-2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "string", text: "actual ready-to-send message" }, { type: "Gentle Boundary", tag: "string", text: "..." }, { type: "Executive Firm", tag: "string", text: "..." } ], insight: "psychological explanation of why this communication strategy works" }.
+      ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine).
+CRITICAL RULE: The user input is their REAL interpersonal problem (e.g., friends swearing, unreturned money, slacking, annoying habits, broken boundaries). Your output MUST SPECIFICALLY and DIRECTLY address the exact situation they mentioned. DO NOT output generic workplace milestone or deadline templates unless they explicitly talked about work/deadlines!
+
+Return valid JSON with:
+1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity in this specific situation), comfortTip (1 practical de-escalation tip) }.
+2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "string", text: "ready-to-send message specifically solving this problem" }, { type: "Gentle Boundary", tag: "string", text: "..." }, { type: "Firm Standard", tag: "string", text: "..." } ], insight: "psychological explanation of why this communication strategy works" }.
 Language: ENGLISH.`
       : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理。
-使用者的輸入是他最真實、暴躁、未經修飾的真心話。
-你的任務是同時產生兩部分的結構化 JSON 輸出：
-1. roast：極具幽默感、一針見血、諷刺但能同理使用者的吐槽（包含 tagTitle, stars, comment, comfortTip）。
-2. diplomacy：三種不同程度但絕對高情商、體面且能達到目的的溝通話術（tactics: 陣列，包含 type, tag, text；以及 insight 高情商心法解析）。
-語言：繁體中文（台灣口吻）。`;
+重要準則：使用者輸入的是他現實中遇到的具體人際困難（例如朋友常講髒話、借錢不還、被放鳥、討厭的習慣、被踩底線等）。
+你的輸出必須 100% 針對使用者所描述的具體事件進行精準回應，嚴禁給予無關的職場里程碑或工作截止日套話！
+
+請嚴格返回 JSON 格式：
+{
+  "roast": {
+    "tagTitle": "四字至六字趣味標籤",
+    "stars": "★★★★☆",
+    "comment": "100字左右尖銳幽默又好笑的吐槽，專門針對該具體荒謬事件",
+    "comfortTip": "一句實用安慰"
+  },
+  "diplomacy": {
+    "tactics": [
+      { "type": "幽默調侃型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" },
+      { "type": "溫和直白型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" },
+      { "type": "明確底線型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" }
+    ],
+    "insight": "針對該人際溝通問題的心理學與高情商眉角說明"
+  }
+}`;
 
     const res = await fetch(`${endpoint.replace(/\/$/, "")}/chat/completions`, {
       method: "POST",
@@ -514,21 +671,18 @@ Language: ENGLISH.`
     showToast(UI_STRINGS[currentLang].toastLiveDone);
   }
 
-  // 語言切換按鈕事件
   btnLangToggle.addEventListener("click", () => {
     const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
     applyLanguage(newLang);
     showToast(newLang === "en" ? "🌐 Switched to English" : "🌐 已切換為繁體中文");
   });
 
-  // 分類點擊
   categoryTabs.forEach(tab => {
     tab.addEventListener("click", () => {
       switchCategory(tab.dataset.cat);
     });
   });
 
-  // Modal 彈窗控制
   if (btnSettings && settingsModal) {
     btnSettings.addEventListener("click", () => {
       settingsModal.classList.add("active");
@@ -551,7 +705,6 @@ Language: ENGLISH.`
     });
   }
 
-  // 初始化啟動語言
   applyLanguage(currentLang);
   switchCategory("friends");
 });

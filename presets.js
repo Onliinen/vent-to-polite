@@ -76,6 +76,39 @@ const PRESET_CATEGORIES = {
             ],
             insight: "面對選擇障礙的朋友，詢問『你想吃什麼』只會加劇他的焦慮。直接將問題縮小為『封閉式二選一』或乾脆展現自信帶路，通常對方反而會鬆一口氣。"
           }
+        },
+        {
+          id: "friend_bad_words",
+          title: "朋友常講髒話/說話難聽",
+          tag: "語言習慣摩擦",
+          rant: "朋友講話三句不離髒話，動不動就罵難聽的字眼，我覺得超煩超不舒服，想叫他閉嘴但又怕被說開不起玩笑！",
+          rageLevel: 80,
+          roast: {
+            tagTitle: "粗口詞彙超標警報",
+            stars: "★★★★☆",
+            comment: "他的日常辭彙庫大概是從限制級黑幫電影裡批發來的。說話不加兩句髒話好像舌頭會抽筋一樣，把沒禮貌當隨性、把粗口當語助詞，聽得人耳根子都發麻。他可能以為這樣很接地氣，其實聽起來像音響接觸不良在漏電。",
+            comfortTip: "你是他的朋友，不是他的訓導主任。你有絕對的權利保護自己的耳朵不被噪音污染。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "幽默調侃型",
+                tag: "開玩笑制止・不傷感情",
+                text: "兄弟，你今天的粗口濃度有點超標囉！稍微收斂一點，不然我的耳朵要開始向你收精神撫慰金了哈哈～"
+              },
+              {
+                type: "溫和直白型",
+                tag: "表達感受・建立界線",
+                text: "老實說，常常聽那些重話和髒話其實蠻讓人消耗精力的。我很喜歡跟你聊天，但髒話少一點我們相處起來會更舒服、更放鬆！"
+              },
+              {
+                type: "明確底線型",
+                tag: "互相尊重・確立原則",
+                text: "我很重視我們的交情，但我個人真的不習慣一直聽到髒話或攻擊性的用詞。我們聊天互相尊重一下，好嗎？"
+              }
+            ],
+            insight: "習慣講粗口的人通常是無意識的語病，或自以為這樣顯得很率性。不要用道德制高點指責他（『你很沒教養』），而是用自己的主觀感受（『聽久了很消耗我的精力』）劃定界線，對方最不容易惱羞成怒。"
+          }
         }
       ]
     },
@@ -335,6 +368,39 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Asking an indecisive friend 'What do you feel like?' increases their choice anxiety. Constraining the options into a forced binary choice or taking cheerful initiative relieves their mental load."
+          }
+        },
+        {
+          id: "friend_bad_words",
+          title: "Friends Constantly Swearing / Harsh Talk",
+          tag: "Verbal Friction",
+          rant: "My friends always said bad words, I felt annoying. Every conversation is full of vulgar language and I'm tired of hearing it!",
+          rageLevel: 80,
+          roast: {
+            tagTitle: "Uncensored Broadcast Malfunction",
+            stars: "★★★★☆",
+            comment: "Their mouth seems to be running on an R-rated cable channel with zero parental controls. It's as if they think sprinkling profanity into every sentence adds seasoning, when in reality it just sounds like verbal pollution and electrical static.",
+            comfortTip: "You're their friend, not their kindergarten teacher. You have every right to protect your mental peace from acoustic trash."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Playful Tease",
+                tag: "Lighthearted・No Hard Feelings",
+                text: "Bro, your vocabulary is sounding like an uncut mafia movie today! Tone down the R-rated filter before my ears start charging you an emotional distress fee haha."
+              },
+              {
+                type: "Gentle Boundary",
+                tag: "Focus on Personal Feeling",
+                text: "Hey, honestly it gets kind of draining when every conversation has harsh words in it. I really enjoy hanging out with you, but can we dial back the swearing? It'd make chatting way more fun for me!"
+              },
+              {
+                type: "Firm Standard",
+                tag: "Mutual Respect",
+                text: "I value our friendship, but I really dislike being around constant cursing and negative phrasing. Let's keep things respectful so we can both have a good time, deal?"
+              }
+            ],
+            insight: "Chronic swearing is usually an unconscious habit or an attempt to sound casual. Rather than a moral lecture ('You're rude'), stating personal sensory discomfort ('It drains my energy') shifts the boundary without putting them on the defensive."
           }
         }
       ]
