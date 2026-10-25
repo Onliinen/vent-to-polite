@@ -326,6 +326,11 @@ const PRESET_CATEGORIES = {
                 type: "旁聽證明型",
                 tag: "展現決心",
                 text: "教授您好，理解您的課程加簽人數非常嚴格。若目前名額已滿，我非常希望能申請前兩週旁聽，若兩週後有同學退選且我的隨堂表現能讓您認可，再懇請教授考慮加簽機會，非常感謝您的時間！"
+              },
+              {
+                type: "優雅備援型",
+                tag: "保留機會・體面退場",
+                text: "教授您好，完全理解本學期名額已滿、政策難以變動。若方便的話，能否將我列為候補第一位？一旦有同學退選，我會在第一時間完成加簽手續。也想請教您下學期的開課時段或替代課程，我會提前完成先修準備，謝謝教授！"
               }
             ],
             insight: "寫給教授的求生信關鍵在於『打消疑慮』與『降低負擔』。主動承認先修課不足但提出補救方案（如預習教材、願接受旁聽考驗），遠比單純哭訴『會延畢』更具說服力。"
@@ -410,7 +415,7 @@ const PRESET_CATEGORIES = {
           id: "daily_family",
           title: "爸媽施壓催婚又愛管東管西",
           tag: "人生代駕司機",
-          rant: "選科系要管、工作要管，現在連結婚都要催！每次講沒兩句就說『我都是為你好』，我是你小孩不是你的人生代辦專案吧？壓力真的好大，到底要怎麼溝通才不會吵起來？",
+          rant: "選科系要管、工作要管，現在連結婚都要催！每次講沒兩句就說『我都是為你好』，我是你小孩，不是你的人生專案吧？壓力真的好大，到底要怎麼溝通才不會吵起來？",
           rageLevel: 85,
           roast: {
             tagTitle: "人生代駕司機",
@@ -440,7 +445,7 @@ const PRESET_CATEGORIES = {
           },
           thinkingLens: {
             secondOrder: {
-              firstOrder: "眼前反應：你用計畫而不是防禦來回應，這個話題就抓不住餐桌了。",
+              firstOrder: "眼前反應：你用計畫而不是防禦來回應，飯桌氣氛就不會被這個話題綁架。",
               secondOrder: "長遠效應：他們不再把你當需要管理的小孩，而是會主動匯報的大人。"
             },
             preMortem: {
@@ -462,7 +467,7 @@ const PRESET_CATEGORIES = {
             tagTitle: "戀愛觀光客",
             stars: "★★★★☆",
             comment: "他把戀愛當成觀光行程——收集體驗、狂拍美照，就是從不簽長期租約。你卻在那邊狂刷新聊天視窗，像它欠你利息一樣。感情值得有個目的地，不是無限轉機。",
-            comfortTip: "你談判不了化學反應，但你談判得了清楚。問一個誠實的問題；無論答案是什麼，至少你不用繼續在腦袋裡付房租。"
+            comfortTip: "你談判不了化學反應，但可以把話問清楚。問一個誠實的問題；無論答案是什麼，至少你不用繼續在腦袋裡付房租。"
           },
           diplomacy: {
             tactics: [
@@ -474,7 +479,7 @@ const PRESET_CATEGORIES = {
               {
                 type: "真誠溫柔型",
                 tag: "分享感受・邀請回應",
-                text: "嗨，我很享受跟你相處的過程，也喜歡我們現在的狀態。想聽聽你對我們的感覺是什麼——完全沒壓力，我單純很好奇你心裡的模樣。"
+                text: "嗨，我很享受跟你相處的過程，也喜歡我們現在的狀態。想聽聽你對我們的感覺是什麼——完全沒壓力，我單純很好奇你真實的想法。"
               },
               {
                 type: "清晰底線型",
@@ -502,7 +507,7 @@ const PRESET_CATEGORIES = {
           id: "daily_health",
           title: "身體亮紅燈老闆還不准請假",
           tag: "人體電池剩 3%",
-          rant: "連續忙了好幾個禮拜根本沒休息，今天起來頭痛又發燒超不舒服，結果老闆還說案子趕不能請假！我又不是機器人，身體都在發警報了，是一定要我垮給他看嗎？",
+          rant: "連續忙了好幾個禮拜根本沒休息，今天起來頭痛又發燒超不舒服，結果老闆還說案子很趕，不能請假！我又不是機器人，身體都在發警報了，是一定要我垮給他看嗎？",
           rageLevel: 88,
           roast: {
             tagTitle: "人體電池剩 3%",
@@ -528,7 +533,7 @@ const PRESET_CATEGORIES = {
                 text: "我硬撐了一段時間，身體開始收利息了。我先請 [今天/明天] 把狀態養回來，才能以 100% 回歸——一上線我立刻回報進度。"
               }
             ],
-            insight: "健康請假要用『風險管理』包裝才容易准：講客觀狀況、給備援方案、給歸隊日期。主管可以拒絕幫忙，但拒絕不了傳染風險，也拒絕不了一個已經拆完風險的排程。"
+            insight: "健康請假要用『風險管理』包裝才容易准假：講客觀狀況、給備援方案、給歸隊日期。主管可以拒絕幫忙，但拒絕不了傳染風險，也拒絕不了一個已經拆完風險的排程。"
           },
           thinkingLens: {
             secondOrder: {
@@ -869,6 +874,11 @@ const PRESET_CATEGORIES = {
                 type: "Audit-to-Enroll",
                 tag: "Demonstrate Commitment",
                 text: "Dear Professor [Name], I understand class capacity is strictly capped. If enrollment is currently unavailable, could I request permission to audit the first two weeks? If seats open up and my class engagement earns your approval, I would be honored to be considered for an add code."
+              },
+              {
+                type: "Graceful Backup",
+                tag: "Join The Waitlist・Leave On Good Terms",
+                text: "Dear Professor [Name], I completely understand that seats are full this term. If possible, could I be placed first on the waitlist? The moment one opens up, I'll complete the add immediately. I'd also appreciate your advice on when this course runs next term — I'll finish the prerequisites ahead of time either way. Thank you, Professor!"
               }
             ],
             insight: "Asking professors for exceptions requires mitigating their risk. Acknowledging the prerequisite gap while providing evidence of self-prep (or offering to audit first) is far more persuasive than emotional pleas about graduation."
@@ -999,7 +1009,7 @@ const PRESET_CATEGORIES = {
           id: "daily_relationship",
           title: "Situationship Stuck in Ambiguity",
           tag: "Relationship Tourist",
-          rant: "Are we together or not? Every time I ask 'so what are we?', he dodges the question — and he left me on read twice this week! Guessing someone's feelings is exhausting. I just want one clear answer, is that too much?",
+          rant: "Are we together or not? Every time I ask 'so what are we?', he dodges the question — and he left me on read twice this week! Guessing someone's feelings is exhausting. I just want one clear answer — is that too much?",
           rageLevel: 78,
           roast: {
             tagTitle: "Relationship Tourist",
@@ -1045,13 +1055,13 @@ const PRESET_CATEGORIES = {
           id: "daily_health",
           title: "Body Failing, Boss Won't Grant Leave",
           tag: "Human Battery at 3%",
-          rant: "I've been going non-stop for weeks with zero rest, and today I woke up with a headache and fever. My boss still says the deadline is too tight for me to take leave! I'm not a robot — my body is sounding alarms and he wants me to collapse first?",
+          rant: "I've been going non-stop for weeks with zero rest, and today I woke up with a headache and fever. My boss still says the deadline's too tight for me to take leave! I'm not a robot — my body is sounding alarms and he expects me to collapse first?",
           rageLevel: 88,
           roast: {
             tagTitle: "Human Battery at 3%",
             stars: "★★★★☆",
             comment: "Your body has been pushing 'low battery' notifications for months and you keep swiping them away like annoying pop-ups. Spoiler: the hardware has no 'deal with it later' mode — only a shutdown.",
-            comfortTip: "Rest isn't a reward you earn after collapsing — it's the maintenance that prevents the collapse. Book the appointment today; future-you is already thanking you."
+            comfortTip: "Rest isn't a reward you earn after collapsing — it's the maintenance that prevents a collapse. Book the appointment today; future-you is already thanking you."
           },
           diplomacy: {
             tactics: [
