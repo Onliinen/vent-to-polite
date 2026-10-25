@@ -745,41 +745,41 @@ const PRESET_CATEGORIES = {
     },
     living: {
       id: "living",
-      name: "生活室友",
+      name: "Roommates & Living",
       icon: "🏠",
-      description: "碗不洗、冰箱食物偷吃、半夜吵鬧，如何化解生活地獄？",
+      description: "Dirty dishes, stolen fridge food, midnight noise — how do you survive shared living hell?",
       items: [
         {
           id: "living_dishes",
-          title: "吃完碗堆水槽三天不洗",
-          tag: "水槽古文明製造者",
-          rant: "每次吃完泡麵和外帶碗就往水槽一丟，都發酵出酸味引來果蠅了！明明講過好幾次了到底為什麼可以髒成這樣？我是室友不是你的免費保母耶！",
+          title: "Dishes Piled in the Sink for 3 Days",
+          tag: "Ancient Sink Civilization",
+          rant: "Every time they finish instant noodles or takeout, the bowl goes straight into the sink — now it's sour and breeding fruit flies! I've told them so many times, how can it possibly get this dirty?! I'm a roommate, not their free live-in maid!",
           rageLevel: 92,
           roast: {
-            tagTitle: "生態系培育家",
+            tagTitle: "Ecosystem Cultivator",
             stars: "★★★★☆",
-            comment: "那個水槽裡的不是碗盤，是他在進行某種新型微生物培養實驗。他可能在等盤子裡的細菌進化出高度文明，然後自己走路去洗碗機洗澡呢。",
-            comfortTip: "別幫他洗，幫他洗一次你就得幫他洗一輩子。用幽默化解尷尬，但要把界線釘死。"
+            comment: "That's not dishes in the sink — it's a cutting-edge microbial cultivation experiment. He's probably waiting for the bacteria on his plates to evolve into a full civilization that walks itself to the dishwasher for a bath.",
+            comfortTip: "Don't wash for them — do it once and you'll be doing it forever. Defuse the awkwardness with humor, but nail that boundary in place."
           },
           diplomacy: {
             tactics: [
               {
-                type: "幽默提醒型",
-                tag: "群組破冰・好笑有用",
-                text: "各位室友注意～水槽裡的碗盤好像快要進化出自主意識跟我們打招呼了！今天哪位大廚的料理廚具記得回家給它們洗個熱水澡喔，果蠅們已經在旁邊開派對了哈哈！"
+                type: "Playful Reminder",
+                tag: "Group Icebreaker・Funny & Effective",
+                text: "Attention roommates! The dishes in the sink seem to be evolving self-awareness and about to say hi to us! Whoever owns tonight's cooking gear, take it home and give it a hot bath — the fruit flies are already throwing a party around it haha!"
               },
               {
-                type: "清晰公約型",
-                tag: "理性建立共識",
-                text: "哈囉大家，為了維護廚房衛生，我們之前約定過當天碗盤當天洗～水槽裡有些餐具堆了幾天已有異味，麻煩主人今天睡前隨手清理一下，大家住起來也比較舒服！"
+                type: "Clear House Rules",
+                tag: "Build Consensus Calmly",
+                text: "Hey everyone, to keep the kitchen sanitary we agreed long ago: dishes get washed the same day. Some utensils in the sink have been sitting for days and smell now — could whoever owns them do a quick rinse before bed? It'll be comfier for all of us!"
               },
               {
-                type: "行動邊界型",
-                tag: "不撕破臉的實際作法",
-                text: "嗨！因為水槽目前滿了大家都沒辦法洗菜/洗手，我先把你的碗盤先集中放到旁邊的塑膠盆裡囉，等你今天回來再洗～"
+                type: "Action Boundary",
+                tag: "Practical, No Burned Bridges",
+                text: "Hey! The sink is full so nobody can wash veggies or hands, so I've moved your dishes into the plastic basin on the side for now — feel free to wash them when you get back tonight!"
               }
             ],
-            insight: "生活瑣事的溝通忌諱人身攻擊（如『你很噁心』），改為指涉『公共環境的客觀影響（果蠅、佔用水槽）』，並以群組公共維護的角度切入，最能達到效果而不反目。"
+            insight: "When nagging about chores, avoid personal attacks ('you're disgusting'). Point instead to the objective impact on the shared space (fruit flies, an occupied sink) and frame it as common-area upkeep — that gets results without anyone falling out."
           },
           thinkingLens: {
             secondOrder: {
