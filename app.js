@@ -436,6 +436,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
+   * 關鍵字比對（防止子字串誤判）：
+   * 英文關鍵字用 \b 單字邊界比對，避免 "translate" 誤判 late、"already" 誤判 read、
+   * "busy" 誤判 bus、"great" 誤判 eat 等子字串碰撞；
+   * 中文關鍵字（任何非 ASCII 字元）沒有空格邊界，維持子字串比對。
+   */
+  const matchKeyword = (lowerText, keyword) => {
+    if (/[^\u0000-\u007F]/.test(keyword)) return lowerText.includes(keyword);
+    return new RegExp("\\b" + keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(lowerText);
+  };
+
+  /**
    * 智慧語意離線引擎：依據使用者實際輸入的問題類型，進行情境分類與客製化應對
    * 徹底杜絕非工作情境卻給出工作 Milestone 答案的 bug！
    */
@@ -450,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "bad words", "swear", "swearing", "curse", "cursing", "vulgar", "rude", 
       "insult", "foul", "offensive words", "saying bad", "said bad", "harsh words",
       "髒話", "粗話", "粗口", "難聽", "沒禮貌", "說話難聽", "嘴臭", "罵人", "口出惡言"
-    ].some(k => lower.includes(k));
+    ].some(k => matchKeyword(lower, k));
 
     if (isVerbalConflict) {
       const match = PRESET_CATEGORIES[currentLang].friends.items.find(i => i.id === "friend_bad_words");
@@ -464,9 +475,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. 借錢與金錢糾紛 (Money, Borrowing, Splitting bills, Unpaid debts)
     const isMoneyConflict = [
-      "money", "borrow", "pay back", "owe", "split", "bill", "cheap", "lend", "debt",
+      "money", "borrow", "borrowed", "borrowing", "pay back", "owe", "owes", "owed",
+      "split", "bill", "cheap", "lend", "lent", "debt",
       "借錢", "還錢", "分帳", "欠錢", "催討", "不給錢", "討錢"
-    ].some(k => lower.includes(k));
+    ].some(k => matchKeyword(lower, k));
 
     if (isMoneyConflict) {
       activePresetId = null;
@@ -542,9 +554,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. 已讀不回與訊息冷暴力 (Ghosting, Left on read, Ignored messages)
     const isGhostingConflict = [
-      "ghost", "ghosting", "read", "reply", "ignore", "text back", "message",
+      "ghost", "ghosting", "read", "reply", "replied", "replying", "ignore", "ignored",
+      "ignoring", "text back", "message", "messaged", "messaging", "messages",
       "已讀", "不回", "不理", "人間蒸發", "回很慢", "不看訊息"
-    ].some(k => lower.includes(k));
+    ].some(k => matchKeyword(lower, k));
 
     if (isGhostingConflict) {
       activePresetId = null;
@@ -628,13 +641,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let matchedItem = null;
     for (const item of currentPresets) {
-      if ((lower.includes("遲到") || lower.includes("late") || lower.includes("wait")) && item.id === "friend_late") { matchedItem = item; break; }
-      if ((lower.includes("隨便") || lower.includes("吃什麼") || lower.includes("anything") || lower.includes("eat")) && item.id === "friend_any") { matchedItem = item; break; }
-      if ((lower.includes("下班") || lower.includes("急件") || lower.includes("urgent") || lower.includes("weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
-      if ((lower.includes("甩鍋") || lower.includes("責任") || lower.includes("bus") || lower.includes("blame")) && item.id === "work_blame") { matchedItem = item; break; }
-      if ((lower.includes("組員") || lower.includes("報告") || lower.includes("teammate") || lower.includes("slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
-      if ((lower.includes("教授") || lower.includes("加簽") || lower.includes("professor") || lower.includes("prereq")) && item.id === "campus_late_add") { matchedItem = item; break; }
-      if ((lower.includes("碗") || lower.includes("水槽") || lower.includes("dishes") || lower.includes("sink")) && item.id === "living_dishes") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "遲到") || matchKeyword(lower, "late") || matchKeyword(lower, "wait") || matchKeyword(lower, "waiting")) && item.id === "friend_late") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "隨便") || matchKeyword(lower, "吃什麼") || matchKeyword(lower, "anything") || matchKeyword(lower, "eat") || matchKeyword(lower, "eating")) && item.id === "friend_any") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "下班") || matchKeyword(lower, "急件") || matchKeyword(lower, "urgent") || matchKeyword(lower, "weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "甩鍋") || matchKeyword(lower, "責任") || matchKeyword(lower, "bus") || matchKeyword(lower, "blame")) && item.id === "work_blame") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "組員") || matchKeyword(lower, "報告") || matchKeyword(lower, "teammate") || matchKeyword(lower, "slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "教授") || matchKeyword(lower, "加簽") || matchKeyword(lower, "professor") || matchKeyword(lower, "prereq")) && item.id === "campus_late_add") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "碗") || matchKeyword(lower, "水槽") || matchKeyword(lower, "dishes") || matchKeyword(lower, "sink")) && item.id === "living_dishes") { matchedItem = item; break; }
     }
 
     if (matchedItem) {
@@ -644,7 +657,245 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 5. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
+    // 5. 家人與父母壓力 (Family & Parents Pressure)
+    const isFamilyConflict = [
+      "mom", "mommy", "mother", "dad", "daddy", "father", "parents", "family",
+      "sister", "brother", "siblings",
+      "媽", "爸", "父母", "爸媽", "家人", "兄弟", "姐妹", "母親", "父親"
+    ].some(k => matchKeyword(lower, k));
+
+    if (isFamilyConflict) {
+      activePresetId = null;
+      const familyResult = {
+        roast: {
+          tagTitle: isEn ? "Backseat Life Driver" : "人生代駕司機",
+          stars: "★★★★☆",
+          comment: isEn
+            ? "They've appointed themselves chauffeurs of your life — flooring the accelerator labeled 'it's for your own good' while ignoring the GPS that says 'their choice'. The love is real. So is the reckless driving."
+            : "他們自聘為你人生的代駕——猛踩那台寫著『為你好』的油門，完全無視導航上寫的『當事人選擇』。愛是真的，車開太猛也是真的。",
+          comfortTip: isEn
+            ? "Their pressure is usually love delivered in the only language they ever learned. You don't have to obey the message to respect the messenger — translate it, don't swallow it whole."
+            : "爸媽的壓力通常是愛，只是用他們唯一會的語言講。你不需要照單全收才叫孝順——翻譯它，不要整顆吞下去。"
+        },
+        diplomacy: {
+          tactics: [
+            {
+              type: isEn ? "Reframe & Reassure" : "翻譯安心型",
+              tag: isEn ? "Show Plan・Defuse Worry" : "給方案・消擔心",
+              text: isEn
+                ? "I know this comes from you caring about me — thank you for that. Here's exactly how I'm planning to handle it: [plan]. I'll keep you posted on how it goes, okay?"
+                : "我知道你會這樣講是因為擔心我——這點我先謝謝你。我目前的規劃是這樣：[方案]。過程我會跟你更新進度，好不好？"
+            },
+            {
+              type: isEn ? "Role Boundary" : "角色界線型",
+              tag: isEn ? "Report, Don't Ask" : "成年人決策・報告不請示",
+              text: isEn
+                ? "I really value talking things through with you, but this one I have to own — I'm the one who'll live with the decision. I've made my call, and I'd love your support on the ride, not a veto on the route."
+                : "我很重視跟你討論，但這件事我得自己扛——畢竟日子是我自己在過。我已經做了決定，希望你當我的支持者，不是路線審查員。"
+            },
+            {
+              type: isEn ? "Steady Repetition" : "平靜重申型",
+              tag: isEn ? "Same Answer・No Debate" : "答案不變・不再辯論",
+              text: isEn
+                ? "I know we see this differently, and that's okay — my answer hasn't changed. I'd much rather enjoy dinner hearing about [their hobby] than relitigate this one. Deal?"
+                : "我知道我們在這件事上看法不同，這沒關係——我的答案沒有變。我更想好好吃飯、聽你聊聊你最近的興趣，而不是再吵一次。成交？"
+            }
+          ],
+          insight: isEn
+            ? "Family boundaries work best as doors, not walls: walls trigger siege mentality and endless escalation. Keep the relationship channel wide open while making the decision channel one-way — you share outcomes, not vetoes."
+            : "家人的界線要當『門』不要當『牆』：牆會引發攻城心態、吵個沒完。把關係通道開大，把決策通道設成單向——你分享結果，不開放否決權。"
+        },
+        thinkingLens: {
+          secondOrder: {
+            firstOrder: isEn ? "Immediate Reaction: You respond with a plan instead of defense, so the topic loses its grip on dinner." : "眼前反應：你用計畫而不是防禦來回應，這個話題就抓不住餐桌了。",
+            secondOrder: isEn ? "Ripple Effect: They stop seeing you as the kid who needs managing and start seeing an adult who reports rather than asks." : "長遠效應：他們不再把你當需要管理的小孩，而是會主動匯報的大人。"
+          },
+          preMortem: {
+            risk: isEn ? "Potential Pitfall: Explaining your reasoning in exhaustive detail invites them to debate every detail." : "潛在翻車點：把理由講得太詳細，等於邀請他們逐條辯論。",
+            prevention: isEn ? "Safeguard: Lead with the decision and the plan — details are shared as updates, not submitted for approval." : "避坑策略：先講決定、再講方案——細節是『更新進度』，不是『送審』。"
+          },
+          firstPrinciples: {
+            coreTruth: isEn ? "You can honor your parents' voice without handing them the veto — love and autonomy are not zero-sum." : "你可以尊重父母的聲音，卻不必交出否決權——愛與自主不是零和遊戲。"
+          }
+        }
+      };
+
+      roastTag.textContent = familyResult.roast.tagTitle;
+      roastStars.textContent = familyResult.roast.stars;
+      roastContent.textContent = familyResult.roast.comment;
+      comfortContent.textContent = familyResult.roast.comfortTip;
+      currentTactics = familyResult.diplomacy.tactics;
+      insightContent.textContent = familyResult.diplomacy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      renderThinkingLens(familyResult.thinkingLens);
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
+
+    // 6. 感情、曖昧與分手 (Romance, Breakups & Relationship Ambiguity)
+    const isRelationshipConflict = [
+      "girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "partner",
+      "dating", "crush", "break up", "broke up", "breakup", "marriage", "married",
+      "wedding", "divorce",
+      "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"
+    ].some(k => matchKeyword(lower, k));
+
+    if (isRelationshipConflict) {
+      activePresetId = null;
+      const relResult = {
+        roast: {
+          tagTitle: isEn ? "Relationship Tourist" : "戀愛觀光客",
+          stars: "★★★★☆",
+          comment: isEn
+            ? "They treat love like a sightseeing tour — collecting experiences, taking selfies, never signing the lease. Meanwhile you're refreshing a chat window like it owes you interest. Feelings deserve a destination, not an endless layover."
+            : "他把戀愛當成觀光行程——收集體驗、狂拍美照，就是從不簽長期租約。你卻在那邊狂刷新聊天視窗，像它欠你利息一樣。感情值得有個目的地，不是無限轉機。",
+          comfortTip: isEn
+            ? "You can't negotiate chemistry, but you can negotiate clarity. Ask one honest question; whatever the answer, at least you stop paying rent in your own head."
+            : "你談判不了化學反應，但你談判得了清楚。問一個誠實的問題；無論答案是什麼，至少你不用繼續在腦袋裡付房租。"
+        },
+        diplomacy: {
+          tactics: [
+            {
+              type: isEn ? "Playful Probe" : "輕踩試探型",
+              tag: isEn ? "Low Pressure・Saves Face" : "零壓力・留面子",
+              text: isEn
+                ? "Sooo I've been rehearsing this in the shower like it's an Oscar speech 😅 — but seriously, where are we at? No big dramatic talk needed, just a vibe check!"
+                : "所以～我已經在浴室裡把這段話排練得像奧斯卡得獎感言了哈哈😅——認真的，我們現在到底算什麼？不用搞得很盛大，氣氛確認一下就好！"
+            },
+            {
+              type: isEn ? "Honest & Gentle" : "真誠溫柔型",
+              tag: isEn ? "Share Feelings・Invite Reply" : "分享感受・邀請回應",
+              text: isEn
+                ? "Hey, I've really enjoyed getting to know you, and I like where this is heading. I'd love to hear how you're feeling about us — no pressure at all, I'm just genuinely curious where your head's at."
+                : "嗨，我很享受跟你相處的過程，也喜歡我們現在的狀態。想聽聽你對我們的感覺是什麼——完全沒壓力，我單純很好奇你心裡的模樣。"
+            },
+            {
+              type: isEn ? "Clear Bottom Line" : "清晰底線型",
+              tag: isEn ? "Clarity Over Comfort" : "寧要清楚・不要舒服",
+              text: isEn
+                ? "I'm at a point where clarity matters more to me than comfort. If you're not on the same page, that's completely fine — but I'd rather know now than keep guessing and hoping for the best."
+                : "我現在要清楚勝過要舒服。如果你沒有同樣的想法那也沒關係——但我寧可現在就知道，也不想繼續猜然後抱著期待過日子。"
+            }
+          ],
+          insight: isEn
+            ? "Ambiguity isn't romance — it's debt, and every unspoken question compounds interest. One calm, low-pressure question converts emotional debt into either a real relationship or a clean answer; both are cheaper than endless hope."
+            : "曖昧不是浪漫，是欠債，每個沒問出口的問題都在累積利息。一句冷靜、無壓力的提問，就能把情緒欠款換成一段真關係或一個乾淨的答案——兩者都比無限期待便宜。"
+        },
+        thinkingLens: {
+          secondOrder: {
+            firstOrder: isEn ? "Immediate Reaction: The ambiguity breaks — you get a real answer instead of replaying old chats in your head at 2am." : "眼前反應：曖昧被打破——你得到真實答案，而不是半夜兩點還在腦海重播舊對話。",
+            secondOrder: isEn ? "Ripple Effect: You stop auditioning for a role that may not exist and reclaim your emotional bandwidth." : "長遠效應：你停止試鏡一個可能不存在的角色，把情緒頻寬拿回來。"
+          },
+          preMortem: {
+            risk: isEn ? "Potential Pitfall: Delivering an ultimatum while emotional turns an honest question into a threat." : "潛在翻車點：帶著情緒下最後通牒，會把誠實提問變成威脅。",
+            prevention: isEn ? "Safeguard: Ask when calm, face-to-face if possible — and mean it when you say 'no pressure'." : "避坑策略：挑冷靜的時候、能見面就見面問——說『沒壓力』的時候要真的沒壓力。"
+          },
+          firstPrinciples: {
+            coreTruth: isEn ? "A relationship only exists where two people agree it exists — clarity is kinder than prolonged hope." : "關係存在於兩人共同確認的地方——清楚，比漫長的希望更仁慈。"
+          }
+        }
+      };
+
+      roastTag.textContent = relResult.roast.tagTitle;
+      roastStars.textContent = relResult.roast.stars;
+      roastContent.textContent = relResult.roast.comment;
+      comfortContent.textContent = relResult.roast.comfortTip;
+      currentTactics = relResult.diplomacy.tactics;
+      insightContent.textContent = relResult.diplomacy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      renderThinkingLens(relResult.thinkingLens);
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
+
+    // 7. 身體不適與健康 (Health & Body)
+    const isHealthConflict = [
+      "sick", "fever", "headache", "headaches", "migraine", "flu", "nauseous",
+      "vomit", "doctor", "hospital", "medicine", "unwell",
+      "生病", "發燒", "頭痛", "想吐", "看醫生", "吃藥", "不舒服", "請病假"
+    ].some(k => matchKeyword(lower, k));
+
+    if (isHealthConflict) {
+      activePresetId = null;
+      const healthResult = {
+        roast: {
+          tagTitle: isEn ? "Human Battery at 3%" : "人體電池剩 3%",
+          stars: "★★★★☆",
+          comment: isEn
+            ? "Your body has been pushing 'low battery' notifications for months and you keep swiping them away like annoying pop-ups. Spoiler: the hardware has no 'deal with it later' mode — only a shutdown."
+            : "你的身體已經跳出『電量不足』通知好幾個月了，你每次都像關彈窗一樣滑掉。劇透：這台硬體沒有『以後再處理』模式，只有關機模式。",
+          comfortTip: isEn
+            ? "Rest isn't a reward you earn after collapsing — it's the maintenance that prevents the collapse. Book the appointment today; future-you is already thanking you."
+            : "休息不是昏倒之後才領得到的獎勵，是避免昏倒的保養。今天就先掛號——未來的你已經先謝過了。"
+        },
+        diplomacy: {
+          tactics: [
+            {
+              type: isEn ? "Factual Sync" : "事實同步型",
+              tag: isEn ? "Condition + Coverage + Return" : "狀況＋備援＋歸隊",
+              text: isEn
+                ? "Hi, quick heads-up: I woke up with [fever/migraine] and should rest today. I've handed [task] to [name] and will monitor from home — I'll be back online tomorrow and catch up first thing."
+                : "哈囉，先跟你同步一下：我今天醒來 [發燒/偏頭痛]，需要休息一天。[工作] 我已經交給 [同事] 並會在家遠端關注——我明天回到崗位，一早先補進度。"
+            },
+            {
+              type: isEn ? "Coverage Plan" : "補償方案型",
+              tag: isEn ? "De-risk The Deadline" : "替期限拆風險",
+              text: isEn
+                ? "I'm not well enough to give this my usual focus today. Rather than send something half-done, could we move [deadline] to [date]? Here's my plan to make up the time — I'll own the catch-up."
+                : "我今天狀況沒辦法給這件事該有的專注。與其交半成品，[期限] 能不能改到 [日期]？補回來的計畫我先排好了——追進度的責任我扛。"
+            },
+            {
+              type: isEn ? "Health Boundary" : "健康底線型",
+              tag: isEn ? "Recover To Return At 100%" : "先修復・再歸隊",
+              text: isEn
+                ? "I've been pushing through and it's catching up with me. I'm taking [today/tomorrow] to recover so I can come back at full capacity — I'll send an update the moment I'm back online."
+                : "我硬撐了一段時間，身體開始收利息了。我先請 [今天/明天] 把狀態養回來，才能以 100% 回歸——一上線我立刻回報進度。"
+            }
+          ],
+          insight: isEn
+            ? "Health requests land when framed as risk management, not weakness: state the objective condition, show the coverage plan, give a return date. A superior can decline a favor, but not a contagion risk or a deadline that's already been de-risked."
+            : "健康請假要用『風險管理』包裝才容易准：講客觀狀況、給備援方案、給歸隊日期。主管可以拒絕幫忙，但拒絕不了傳染風險，也拒絕不了一個已經拆完風險的排程。"
+        },
+        thinkingLens: {
+          secondOrder: {
+            firstOrder: isEn ? "Immediate Reaction: You stop performing wellness you don't feel, and the body gets the recovery window it's been demanding." : "眼前反應：你不再假裝活得很好，身體終於拿到它喊了很久的修復窗口。",
+            secondOrder: isEn ? "Ripple Effect: Honest status updates become normal instead of risky — prevention beats the ER visit you keep postponing." : "長遠效應：如實回報狀態變成常態而不是冒險——預防勝過你一直延期的急診。"
+          },
+          preMortem: {
+            risk: isEn ? "Potential Pitfall: 'I'm sick' with zero handover reads as an excuse and invites negotiation." : "潛在翻車點：只說『我生病了』卻沒有交接，會被當藉口，還會被拿來談判。",
+            prevention: isEn ? "Safeguard: Always pair the bad news with a coverage plan and a return date." : "避坑策略：壞消息旁邊永遠附上備援方案與歸隊日期。"
+          },
+          firstPrinciples: {
+            coreTruth: isEn ? "Your body runs the only irreplaceable hardware you own — maintenance is not optional." : "身體是你唯一不可替換的硬體——保養不是選配。"
+          }
+        }
+      };
+
+      roastTag.textContent = healthResult.roast.tagTitle;
+      roastStars.textContent = healthResult.roast.stars;
+      roastContent.textContent = healthResult.roast.comment;
+      comfortContent.textContent = healthResult.roast.comfortTip;
+      currentTactics = healthResult.diplomacy.tactics;
+      insightContent.textContent = healthResult.diplomacy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      renderThinkingLens(healthResult.thinkingLens);
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
+
+    // 8. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
     // 徹底移除不相干的職場里程碑 (milestones) 詞彙！
     activePresetId = null;
     const universalResult = {
