@@ -1163,6 +1163,256 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       },
       {
+        id: "extended_relative_prying",
+        keywords: {
+          en: ["relatives keep asking when I'm getting married", "aunt keeps asking when I'll have kids", "uncle keeps asking about my salary", "grandparents keep questioning my relationship", "relatives keep prying into my personal life", "relatives keep asking when I'm having children"],
+          zh: ["親戚一直問我什麼時候結婚", "阿姨一直問我什麼時候生小孩", "叔叔一直問我的薪水", "長輩一直追問我的感情", "親戚一直問東問西", "親戚一直打聽我的私事"]
+        },
+        zh: {
+          tag: "親戚提問連發",
+          roast: "家族聚會突然變成人生進度報告會，問題一題接一題，彷彿答完就能領號碼牌抽獎。",
+          comfort: "你的感情、工作和生育安排是私人選擇，不必在餐桌上交代進度。",
+          playful: "「這題今天先不開放家族問答喔😅 有好消息我會自己分享，先聊聊最近吃什麼吧。」",
+          soft: "「我知道你是關心我，不過感情／結婚／生小孩的事我想自己安排。等我想分享時會再告訴你。」",
+          firm: "「這是我的私人安排，我不想繼續回答。請換個話題；如果一直追問，我會先離開一下。」",
+          insight: "簡短回答、設定話題界線，不需要用更多個人細節來證明自己的決定合理。"
+        },
+        en: {
+          tag: "Relatives’ Rapid-Fire Questions",
+          roast: "The family gathering has turned into a life-progress review, with questions arriving like there’s a prize for finishing the whole questionnaire.",
+          comfort: "Your relationship, career, and family plans are personal choices; you don’t owe the dinner table a progress report.",
+          playful: "“That question isn’t open for family Q&A today 😅 I’ll share news if I have any. What have you been enjoying lately?”",
+          soft: "“I know you care, but I want to make my own choices about relationships/marriage/kids. I’ll tell you if and when I’m ready to share.”",
+          firm: "“That’s personal, and I don’t want to discuss it. Please change the subject; if the questions continue, I’m going to step away.”",
+          insight: "A brief answer and a clear topic boundary avoid turning private choices into a debate that needs defending."
+        }
+      },
+      {
+        id: "cousin_comparisons_favoritism",
+        keywords: {
+          en: ["uncle compares me to my cousin", "aunt keeps comparing my salary to my cousin's", "grandparents favor my cousin", "relatives compare our careers", "family keeps comparing the cousins", "grandma says my cousin is better than me"],
+          zh: ["叔叔拿我跟表哥比較", "舅舅拿我跟堂弟比較", "姑姑一直比較我和表姊的收入", "長輩偏心表弟", "家人一直比較堂表兄弟姊妹", "奶奶說表姊比我好"]
+        },
+        zh: {
+          tag: "堂表兄弟姊妹排行榜",
+          roast: "家族聚會又開啟堂表兄弟姊妹排行榜，彷彿人生是同一場考試，還有人兼任裁判。",
+          comfort: "你不必用親戚設定的排名衡量自己的進度或價值。",
+          playful: "「今天的表親排行榜先休刊吧😅 我們每個人的路線不一樣，聊點不用比名次的話題？」",
+          soft: "「把我和表哥／表姊比較會讓我有壓力。我希望我們可以各自談自己的近況，不用排高低。」",
+          firm: "「請不要再拿我和表親比較。若話題又回到排名或批評，我會先結束這段對話。」",
+          insight: "指出比較造成的影響並要求停止排名，能把重點從爭輸贏拉回彼此尊重。"
+        },
+        en: {
+          tag: "The Cousin Leaderboard",
+          roast: "The family gathering has reopened the cousin leaderboard, as if everyone took the same exam and someone got appointed judge.",
+          comfort: "You don’t have to measure your progress or worth by a ranking relatives made up.",
+          playful: "“Can we retire the cousin leaderboard for today? 😅 We’re on different paths—let’s talk about something that doesn’t need rankings.”",
+          soft: "“Being compared with my cousin puts pressure on me. I’d rather we talk about each person’s life without ranking us.”",
+          firm: "“Please stop comparing me with my cousins. If the conversation turns back to ranking or criticism, I’m going to step away.”",
+          insight: "Name the impact and ask for the comparisons to stop so the conversation can return to respect instead of competition."
+        }
+      },
+      {
+        id: "eldercare_relative_conflict",
+        keywords: {
+          en: ["only one relative caring for grandma", "siblings won't help care for grandparent", "family arguing over elder care responsibilities", "fight over paying for grandparent care", "relatives disagree about assisted living for grandpa", "my aunt does all the caregiving for grandma"],
+          zh: ["照顧阿嬤都我在做", "親戚都不幫忙照顧長輩", "大家為照顧爺爺奶奶吵架", "長照費用分攤不公平", "為阿公要不要住機構吵架", "姑姑一個人在照顧阿嬤"]
+        },
+        zh: {
+          tag: "照顧責任不能隱形",
+          roast: "長輩需要的是一份大家看得見的照顧計畫，不是讓最常出現的那位自動包辦所有班表。",
+          comfort: "照顧長輩的時間、費用和安排都是真實負擔，談清楚分工是在保護照顧者和長輩。",
+          playful: "「我們別再用『有空再幫忙』當排班系統了😅 一起把探望、接送和費用分清楚吧。」",
+          soft: "「我希望先確認長輩目前需要什麼，再把探望、接送、預約和費用列出來分工。每個人能負擔的方式不同，我們可以一起談。」",
+          firm: "「我沒辦法再一個人承擔目前的照顧安排。請大家在[日期]前認領可負責的事項；醫療或安置決定則一起聽取長輩意願和專業意見。」",
+          insight: "把照顧工作拆成可認領的任務與費用，並把醫療決定交由長輩意願及合適專業資訊引導，避免只靠責怪談判。"
+        },
+        en: {
+          tag: "Care Work Shouldn’t Be Invisible",
+          roast: "An older relative needs a care plan everyone can see, not a schedule that silently assigns every shift to whoever lives closest.",
+          comfort: "Care time, costs, and coordination are real responsibilities; discussing them protects both the caregiver and the older relative.",
+          playful: "“Can we retire ‘help when you can’ as our scheduling system? 😅 Let’s divide visits, rides, appointments, and costs clearly.”",
+          soft: "“I’d like us to confirm what support they need, then list visits, rides, appointments, and expenses and share the tasks. People can contribute in different ways.”",
+          firm: "“I can’t keep carrying the current care plan alone. Please claim the tasks you can take by [date]; for medical or living decisions, let’s include their wishes and professional guidance.”",
+          insight: "Turn care into specific tasks and costs people can own, and ground medical or living decisions in the older person’s wishes and appropriate professional input."
+        }
+      },
+      {
+        id: "family_gathering_hosting_load",
+        keywords: {
+          en: ["always expected to host family gatherings", "I do all the cooking and cleaning for family holidays", "relatives never help clean up after dinner", "same person always hosts family dinner", "family gathering costs aren't shared fairly", "I pay for the whole family dinner"],
+          zh: ["每次家庭聚會都要我主辦", "過節都要我煮菜打掃", "親戚都不幫忙收拾", "家族聚餐都我在準備", "家族聚會費用分攤不公平", "整桌家族聚餐都我付"]
+        },
+        zh: {
+          tag: "家族聚會總召又是你",
+          roast: "家族聚會的主持、廚師、清潔和會計好像都自動指派給同一個人，這不是聚會，是一人公司年會。",
+          comfort: "想把準備工作和費用分攤清楚很合理，聚會不該靠一個人默默透支。",
+          playful: "「今年家族聚會開放大家認領任務囉😅 我負責一項，其他人也來分一下菜色和收拾吧。」",
+          soft: "「我很願意和大家聚聚，但最近準備、收拾和費用大多由我負責，有點吃不消。下次我們可以先分配工作和預算嗎？」",
+          firm: "「這次我只能負責[一項工作／固定金額]，其他準備和費用需要大家一起分攤；如果分工沒確認，我就不負責主辦。」",
+          insight: "在活動前把主辦工作、收拾和預算具體分配，比事後累積怨氣更容易維持親戚關係。"
+        },
+        en: {
+          tag: "Family Reunion, One-Person Crew",
+          roast: "Hosting, cooking, cleaning, and accounting all seem auto-assigned to one person. That’s not a gathering; it’s a one-person annual meeting.",
+          comfort: "It’s reasonable to share the preparation and cost; a family event shouldn’t quietly drain one person.",
+          playful: "“We’re opening sign-ups for reunion jobs this year 😅 I’ll take one task—everyone else can claim a dish or cleanup too.”",
+          soft: "“I love getting everyone together, but I’ve been handling most of the prep, cleanup, and cost, and it’s a lot. Could we divide the work and budget before the next gathering?”",
+          firm: "“I can take [one task/a set amount] this time. The rest of the prep and cost needs to be shared; if we can’t confirm that, I won’t organize the event.”",
+          insight: "Assign hosting work, cleanup, and budget before the event so the load is visible instead of becoming resentment afterward."
+        }
+      },
+      {
+        id: "relative_political_argument",
+        keywords: {
+          en: ["uncle starts political arguments at dinner", "relatives keep arguing politics at family gatherings", "family dinner turns into a political fight", "politics ruins every family holiday", "aunt keeps provoking political arguments"],
+          zh: ["叔叔吃飯一直聊政治吵架", "親戚聚餐一直吵政治", "家族聚會變成政治辯論", "每次過年都為政治吵架", "阿姨一直挑起政治話題"]
+        },
+        zh: {
+          tag: "餐桌辯論賽又開場",
+          roast: "菜還沒上齊，餐桌辯論賽已經進入加時賽；你只是想吃飯，沒有報名當裁判。",
+          comfort: "你可以選擇不參與政治爭論，也可以在氣氛變差前換話題或離席。",
+          playful: "「這桌今天先休戰吧😅 我想好好吃飯，誰要分享最近看的電影？」",
+          soft: "「我知道大家看法不同，但我不想在聚會裡辯論政治。可以換個話題，讓大家把飯吃完嗎？」",
+          firm: "「我不會繼續這個政治話題。如果還是要爭論，我先去別桌／離開一下。」",
+          insight: "把界線放在自己是否參與和何時離席，不必在餐桌上說服所有親戚改變立場。"
+        },
+        en: {
+          tag: "Dinner Table Debate, Again",
+          roast: "The food isn’t all on the table and the debate is already in overtime. You came to eat, not to referee.",
+          comfort: "You can opt out of a political argument and change the subject or step away before the gathering turns sour.",
+          playful: "“Can we call a truce at this table? 😅 I’d like to eat—who’s watched a good movie lately?”",
+          soft: "“I know we see this differently, but I don’t want to debate politics at a family gathering. Could we switch topics and enjoy dinner?”",
+          firm: "“I’m not continuing this political discussion. If it keeps going, I’m going to move to another table/step away.”",
+          insight: "Set a boundary around your own participation and exit rather than trying to persuade the whole family at dinner."
+        }
+      },
+      {
+        id: "neighbor_noise",
+        keywords: {
+          en: ["neighbor plays loud music late at night", "upstairs neighbor stomps after midnight", "neighbor's party is too loud", "neighbor does renovation early in the morning", "noise from my neighbor keeps waking me", "neighbor keeps making noise at night"],
+          zh: ["鄰居半夜放音樂很大聲", "樓上鄰居半夜一直跺腳", "鄰居派對太吵", "鄰居一大早裝修很吵", "鄰居的噪音一直吵醒我", "鄰居晚上一直製造噪音"]
+        },
+        zh: {
+          tag: "隔壁音響自帶環繞",
+          roast: "牆壁薄到像幫鄰居加裝了免費環繞音響，而你的睡眠被迫訂閱整晚特別節目。",
+          comfort: "先用具體日期、時段和影響說明問題，通常比直接批評對方生活方式更容易溝通。",
+          playful: "「嗨，昨晚的音樂我這邊也收到完整專輯了😅 可以在晚上[時間]後把音量調低嗎？」",
+          soft: "「你好，最近晚上[時段]的音樂／聲響會傳到我家，影響休息。方便在這個時段把音量降低一些嗎？謝謝。」",
+          firm: "「我已在[日期]提過夜間噪音問題，最近仍持續影響休息。我會記錄發生時段，並依大樓／社區的正式流程反映。」",
+          insight: "記下發生時間和具體影響，再提出一個可執行的音量或時段請求；持續發生時使用社區流程。"
+        },
+        en: {
+          tag: "Surround Sound Through the Wall",
+          roast: "The wall seems to come with free surround sound, and your sleep got subscribed to the neighbor’s all-night special.",
+          comfort: "Describe the dates, hours, and effect on you; that usually lands better than criticizing someone’s lifestyle.",
+          playful: "“Hey, I think I got the full album from last night too 😅 Could you lower the volume after [time]?”",
+          soft: "“Hi, sound from the music/noise around [time] has been carrying into my place and affecting my sleep. Could you keep it lower during those hours? Thanks.”",
+          firm: "“I mentioned the nighttime noise on [date], and it’s still affecting my rest. I’ll keep a record of the times and raise it through the building/community process.”",
+          insight: "Record when it happens and how it affects you, make one specific volume or timing request, and use the community process if it continues."
+        }
+      },
+      {
+        id: "neighbor_parking",
+        keywords: {
+          en: ["neighbor keeps blocking my driveway", "neighbor parks in my assigned parking spot", "neighbor blocks the garage entrance", "neighbor's guest blocks our driveway", "neighbor keeps taking my parking space"],
+          zh: ["鄰居一直擋我家車道", "鄰居停在我的固定車位", "鄰居擋住車庫出入口", "鄰居的客人擋住車道", "鄰居一直佔我的停車位"]
+        },
+        zh: {
+          tag: "車位界線請勿跨線",
+          roast: "車子停得很有創意，創意到你的車道快變成對方的私人延伸空間。",
+          comfort: "先確認車位標示或管理規則，並記錄具體時間和位置，讓溝通有共同事實。",
+          playful: "「嗨，這個位置是我家的車道／固定車位喔😅 可以麻煩移一下，之後也不要停在這裡嗎？」",
+          soft: "「你好，這輛車停在我家車道／分配車位，讓我無法正常進出。麻煩移車，之後請停到可使用的位置，謝謝。」",
+          firm: "「這個車道／車位不是訪客停車區，請勿再停放。若再次擋住出入口，我會依大樓或社區的處理流程通報。」",
+          insight: "指出確切位置和實際影響，先按標示或社區規則處理，不要把公共道路或車位權利想當然耳。"
+        },
+        en: {
+          tag: "Parking Spot Boundary Patrol",
+          roast: "That’s a creative parking job—so creative your driveway is starting to look like someone else’s private extension.",
+          comfort: "Check the space markings or building rules and note the time and location so the conversation starts with shared facts.",
+          playful: "“Hi, this is my driveway/assigned spot 😅 Could you move the car and leave this space clear next time?”",
+          soft: "“Hi, this car is in my driveway/assigned space, so I can’t get in or out. Could you move it and use an available space next time? Thanks.”",
+          firm: "“This driveway/space isn’t guest parking. Please don’t park here again. If access is blocked again, I’ll report it through the building/community process.”",
+          insight: "Name the exact location and impact, then follow posted or community rules instead of assuming who owns a public curb space."
+        }
+      },
+      {
+        id: "neighbor_pet_problem",
+        keywords: {
+          en: ["neighbor's dog barks all night", "neighbor dog barks while they're away", "neighbor won't pick up dog poop", "neighbor's cat keeps digging up my garden", "neighbor's pet keeps damaging my plants", "pet waste in my yard from neighbor"],
+          zh: ["鄰居的狗整晚一直叫", "鄰居上班時狗一直叫", "鄰居不清狗大便", "鄰居的貓一直挖我的花圃", "鄰居的寵物弄壞我的植物", "鄰居的狗在我家院子大小便"]
+        },
+        zh: {
+          tag: "毛小孩越界支線",
+          roast: "毛小孩很可愛，但半夜演唱會和自助花圃改造，已經超出鄰居粉絲福利範圍。",
+          comfort: "對方可能不知道寵物獨處時的狀況；用具體時間或地點說明，通常更容易一起找辦法。",
+          playful: "「嗨，毛小孩最近好像把我家院子當成巡演場／洗手間了😅 可以一起想個辦法嗎？」",
+          soft: "「你好，最近[時段／地點]會有狗叫／寵物排泄物，影響休息／環境。想請你留意一下，並協助清理或避免牠進入這個區域。」",
+          firm: "「這個情況已持續一段時間，請安排好寵物照看並清理排泄物，避免牠進入我家範圍。若仍持續，我會依社區流程反映。」",
+          insight: "把問題說成可觀察的行為（吠叫時段、排泄物位置或植物受損），再提出清楚的照顧和清理要求。"
+        },
+        en: {
+          tag: "Pet Side Quest Crossed the Line",
+          roast: "Pets are adorable, but a midnight concert and a self-service garden makeover exceed the neighbor-fan benefits.",
+          comfort: "The owner may not know what happens while the pet is alone; concrete times and locations make it easier to solve together.",
+          playful: "“Hi, your pet may have added my yard to its tour/restroom route 😅 Could we figure out a fix?”",
+          soft: "“Hi, there’s been barking/waste around [time/place], and it’s affecting my rest/the yard. Could you keep an eye on it, clean up, or keep the pet out of this area?”",
+          firm: "“This has continued for a while. Please arrange care and clean up after your pet, and keep it out of my yard. If it continues, I’ll raise it through the community process.”",
+          insight: "Describe the observable issue—barking times, waste location, or plant damage—and make a clear request about supervision and cleanup."
+        }
+      },
+      {
+        id: "neighbor_property_boundary",
+        keywords: {
+          en: ["neighbor's fence is over the property line", "neighbor's tree branches hang over my yard", "neighbor keeps entering my yard", "neighbor put belongings on my property", "neighbor's renovation crossed our boundary", "neighbor built a fence on my land"],
+          zh: ["鄰居的圍籬越界", "鄰居的樹枝伸進我家", "鄰居一直走進我家院子", "鄰居把東西放在我家範圍", "鄰居施工跨到我家界線", "鄰居把圍牆蓋到我家土地"]
+        },
+        zh: {
+          tag: "地界不是猜謎遊戲",
+          roast: "圍籬和樹枝都在努力拓展版圖，但地界不是靠誰先伸過去就自動更新的地圖。",
+          comfort: "先確認界線資料和實際位置，再討論處理方式；不必在沒有共同資訊時先互相指控。",
+          playful: "「我們先讓地圖和圍籬對一下答案吧😅 可以一起確認界線，再談怎麼修剪／調整嗎？」",
+          soft: "「你好，我注意到[圍籬／樹枝／物品]好像跨到我這側了。可以先一起確認界線和位置，再討論怎麼處理嗎？」",
+          firm: "「在界線確認前，請先不要繼續施工或移動物品。我會查核相關圖面／管理資料，再透過合適的社區或專業管道處理。」",
+          insight: "先核對地界和管理資料再談方案；涉及所有權時避免只靠口頭印象或情緒自行定論。"
+        },
+        en: {
+          tag: "Property Lines Aren’t Guesswork",
+          roast: "The fence and branches are expanding their territory, but a boundary isn’t a map that updates just because something crossed it first.",
+          comfort: "Check the boundary records and actual location before discussing a fix; don’t start with accusations when you lack shared information.",
+          playful: "“Could we let the map and fence compare notes first? 😅 Let’s confirm the boundary and then discuss trimming/adjustments.”",
+          soft: "“Hi, I noticed the [fence/branches/items] may be crossing onto my side. Could we confirm the boundary and location together, then discuss a solution?”",
+          firm: "“Please pause further work or moving items until the boundary is confirmed. I’ll check the relevant records/building information and use the appropriate community or professional channel.”",
+          insight: "Verify the boundary and relevant records before agreeing on a fix; don’t make ownership conclusions from memory or frustration alone."
+        }
+      },
+      {
+        id: "neighbor_shared_space",
+        keywords: {
+          en: ["neighbor leaves trash in the shared hallway", "neighbor stores things in the common area", "neighbor blocks the apartment hallway", "neighbor leaves garbage by my door", "neighbor never cleans the shared area", "neighbor dumps rubbish in the shared space"],
+          zh: ["鄰居把垃圾放在公共走廊", "鄰居把東西堆在公共區域", "鄰居堵住公寓走道", "鄰居把垃圾放在我家門口", "鄰居從不整理公共空間", "鄰居在共用空間堆雜物"]
+        },
+        zh: {
+          tag: "公共走道不是私人倉庫",
+          roast: "公共走道被佈置成私人倉庫，其他住戶只能在雜物迷宮裡練習閃避。",
+          comfort: "保持共用空間通暢關係到所有住戶的使用和安全，提出清理要求很合理。",
+          playful: "「走道最近開了快閃倉庫嗎😅 可以把門口的東西移回室內，讓大家好好通行嗎？」",
+          soft: "「你好，走道上的垃圾／物品會影響通行和公共空間使用。麻煩你在[日期]前移走，謝謝。」",
+          firm: "「請勿把物品或垃圾堆放在公共走道。若[日期]後仍未清理，我會依大樓管理規定通知管委會／管理處。」",
+          insight: "聚焦在具體位置、通行影響和管理規則，讓請求可以被確認和處理。"
+        },
+        en: {
+          tag: "The Hallway Isn’t a Storage Unit",
+          roast: "The shared hallway has become a private storage unit, and everyone else is practicing obstacle-course navigation.",
+          comfort: "Keeping a shared path clear affects everyone’s access and safety, so asking for cleanup is reasonable.",
+          playful: "“Did the hallway open a pop-up storage unit? 😅 Could you move those things inside so everyone can get through?”",
+          soft: "“Hi, the trash/items in the hallway are affecting access to the shared space. Could you move them by [date]? Thanks.”",
+          firm: "“Please don’t leave belongings or trash in the shared hallway. If it’s still there after [date], I’ll notify building management under the community rules.”",
+          insight: "Focus on the exact location, impact on access, and applicable building rules so the request can be acted on."
+        }
+      },
+      {
         id: "parent_teen_tech_chores",
         keywords: {
           en: ["teen is always on their phone", "child won't put the phone down", "arguing about screen time", "teen won't do chores", "child ignores every instruction", "fighting about bedtime"],
