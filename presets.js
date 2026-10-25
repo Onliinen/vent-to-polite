@@ -482,6 +482,62 @@ const PRESET_CATEGORIES = {
           quickScenario: true
         },
         {
+          id: "roommate_food_taken",
+          title: "室友沒問就吃我的食物",
+          rant: "室友一直偷吃我的食物",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bills",
+          title: "室友一直拖欠水電費",
+          rant: "室友一直不付水電費",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_shared_supplies",
+          title: "公共用品用完都不補",
+          rant: "室友用完衛生紙都不補",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_guests",
+          title: "室友常常沒問就帶朋友回家",
+          rant: "室友常常沒問就帶朋友回家",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_borrowing_privacy",
+          title: "室友沒問就拿我的東西",
+          rant: "室友沒問就拿我的東西",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bathroom_schedule",
+          title: "室友太久都佔著浴室",
+          rant: "室友洗澡洗很久",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_temperature",
+          title: "室友一直亂調冷氣溫度",
+          rant: "室友一直亂調冷氣溫度",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_locked_door",
+          title: "室友出門常忘記鎖門",
+          rant: "室友出門不鎖門",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
           id: "living_dishes",
           title: "吃完碗堆水槽三天不洗",
           tag: "水槽古文明製造者",
@@ -1104,6 +1160,62 @@ const PRESET_CATEGORIES = {
           id: "neighbor_shared_space",
           title: "Neighbor Leaves Items in Shared Spaces",
           rant: "neighbor stores things in the common area",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_food_taken",
+          title: "Roommate Eats My Food Without Asking",
+          rant: "roommate keeps eating my food without asking",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bills",
+          title: "Roommate Hasn’t Paid Their Share of Bills",
+          rant: "roommate hasn't paid their share of utilities",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_shared_supplies",
+          title: "Roommate Never Replaces Shared Supplies",
+          rant: "roommate never replaces toilet paper",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_guests",
+          title: "Roommate Brings Guests Over Without Asking",
+          rant: "roommate keeps bringing guests over without asking",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_borrowing_privacy",
+          title: "Roommate Borrows My Things Without Asking",
+          rant: "roommate borrows my things without asking",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bathroom_schedule",
+          title: "Roommate Takes Too Long in the Bathroom",
+          rant: "roommate takes too long in the bathroom",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_temperature",
+          title: "Roommate Keeps Changing the Thermostat",
+          rant: "roommate keeps changing the thermostat",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_locked_door",
+          title: "Roommate Leaves the Front Door Unlocked",
+          rant: "roommate keeps leaving the front door unlocked",
           rageLevel: 60,
           quickScenario: true
         },

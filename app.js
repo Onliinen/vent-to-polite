@@ -1445,6 +1445,209 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
 
+    quickScenarios.push(
+      {
+        id: "roommate_food_taken",
+        keywords: {
+          en: ["roommate keeps eating my food without asking", "roommate eats my groceries", "roommate takes my food from the fridge", "roommate keeps taking my snacks"],
+          zh: ["室友一直偷吃我的食物", "室友沒問就吃我的東西", "室友一直拿冰箱裡的食物", "室友偷吃我的零食"]
+        },
+        zh: {
+          tag: "冰箱不是共享自助餐",
+          roast: "你的食物放進冰箱，不代表自動加入室友的試吃活動；標籤寫著『我的』不是裝飾品。",
+          comfort: "先把哪些食物可以共用、哪些要先問說清楚，避免把習慣不同直接升級成偷竊指控。",
+          playful: "「冰箱不是無限續盤區喔😅 想吃我的東西先問一聲，我們也可以另外劃出共用區。」",
+          soft: "「我注意到我放在冰箱的[食物]幾次不見了。那些是我自己要吃的；如果想分享，請先問我，我們也可以一起標出共用的東西。」",
+          firm: "「請不要再拿我標明或放在個人區的食物。若你想共用某些食材，我們先說好怎麼分和補。」",
+          insight: "區分個人食物與共用食材，描述具體例子並提出先詢問的規則，不必先推斷對方的動機。"
+        },
+        en: {
+          tag: "The Fridge Isn’t a Shared Buffet",
+          roast: "Putting food in the fridge doesn’t enroll it in your roommate’s tasting program. The “mine” label isn’t decorative.",
+          comfort: "Clarify which food is shared and which needs permission before turning different habits into accusations about intent.",
+          playful: "“The fridge isn’t an all-you-can-eat buffet 😅 Please ask before taking my food—we can also mark a shared shelf.”",
+          soft: "“I noticed my [food] has gone missing a few times. I bought it for myself; please ask before taking it. We can label what’s shared if that helps.”",
+          firm: "“Please don’t take food I’ve marked or set aside for myself. If you want to share certain groceries, let’s agree on how we split and replace them first.”",
+          insight: "Separate personal food from shared groceries, name a concrete example, and agree on an ask-first rule without guessing intent."
+        }
+      },
+      {
+        id: "roommate_bills",
+        keywords: {
+          en: ["roommate hasn't paid their share of utilities", "roommate is late paying rent and bills", "roommate owes me for the internet bill", "roommate won't pay their share of the electric bill"],
+          zh: ["室友一直不付水電費", "室友沒分攤房租", "室友欠我網路費", "室友每次都拖著不繳帳單", "室友不付自己的電費"]
+        },
+        zh: {
+          tag: "帳單分攤別靠心電感應",
+          roast: "帳單不會因為大家都假裝沒看到就自己繳掉；電表也不接受『下次一定』當付款方式。",
+          comfort: "拿出帳單、分攤方式和到期日談，比只說對方不負責更容易得到具體結果。",
+          playful: "「電費帳單又來敲門了😅 這期你的份是[金額]，可以在[日期]前轉給我嗎？」",
+          soft: "「這期[帳單]總額是[金額]，照我們說好的分法，你的份是[金額]，到期日是[日期]。方便在那之前付給我嗎？」",
+          firm: "「[帳單]的[金額]目前還沒收到。請在[日期]前付清，之後我們把每月分攤和付款日寫下來，避免再拖到逾期。」",
+          insight: "用帳單、約定比例、個人金額和日期對帳；若原本沒有約定，先談新規則，不要假設對方知道你的期待。"
+        },
+        en: {
+          tag: "Bills Don’t Run on Mind Reading",
+          roast: "The bill won’t pay itself because everyone pretends not to see it. The meter doesn’t accept “next time for sure” as currency.",
+          comfort: "Bring the bill, agreed split, and due date; specific numbers work better than calling someone irresponsible.",
+          playful: "“The electric bill is back to collect 😅 Your share is [amount]—could you send it by [date]?”",
+          soft: "“The [bill] came to [amount]. Based on our split, your part is [amount], due on [date]. Could you send it before then?”",
+          firm: "“I haven’t received your [amount] share for [bill]. Please pay by [date]. Let’s write down the monthly split and payment date so it doesn’t become overdue again.”",
+          insight: "Compare the bill, agreed ratio, amount, and due date. If there was no agreement, establish one instead of assuming expectations were shared."
+        }
+      },
+      {
+        id: "roommate_shared_supplies",
+        keywords: {
+          en: ["roommate uses shared supplies but never replaces them", "roommate never replaces toilet paper", "roommate uses all the cleaning supplies", "roommate won't replace shared household items"],
+          zh: ["室友用完衛生紙都不補", "室友一直用公共用品不補貨", "清潔用品都是我在買", "室友用完共用品不補", "室友從不補衛生紙"]
+        },
+        zh: {
+          tag: "公共用品不是無限生成",
+          roast: "衛生紙和洗碗精不是打開櫃子就會自動重生的遊戲道具，補貨責任也不能永遠只有一個人看見。",
+          comfort: "如果共用和個人用品沒有分清楚，先訂簡單的購買與輪替方式，通常比追究每一張衛生紙有效。",
+          playful: "「公共用品庫存又見底啦😅 我們排個輪流補貨表，別讓最後一卷衛生紙承受所有壓力。」",
+          soft: "「最近衛生紙／清潔用品大多是我在補。我們可以列一份共用清單，輪流買或月底分帳嗎？」",
+          firm: "「我不會再單獨負責購買所有共用品。請大家照輪值補貨，或先同意哪些物品共用、費用如何分攤。」",
+          insight: "先定義共用品清單，再選擇輪流購買或分帳，讓責任和費用都看得見。"
+        },
+        en: {
+          tag: "Household Supplies Don’t Respawn",
+          roast: "Toilet paper and dish soap aren’t game items that regenerate in the cupboard, and restocking can’t stay visible to just one person.",
+          comfort: "If shared and personal supplies aren’t clear, set a simple buying or rotation system instead of tracking every roll.",
+          playful: "“The shared-supplies shelf is empty again 😅 Let’s make a restock rota before the last toilet roll has to carry the house.”",
+          soft: "“I’ve been replacing most of the toilet paper/cleaning supplies lately. Could we make a shared list and rotate purchases or split the cost?”",
+          firm: "“I can’t keep buying all the shared supplies on my own. Please follow a restock rota, or let’s agree which items are shared and how we split the cost.”",
+          insight: "Agree on a list of shared essentials, then rotate purchases or split costs so the work and expense are visible."
+        }
+      },
+      {
+        id: "roommate_guests",
+        keywords: {
+          en: ["roommate keeps bringing guests over without asking", "roommate's partner is here all the time", "roommate has overnight guests every week", "roommate's boyfriend practically lives here", "roommate's girlfriend is always in our shared space"],
+          zh: ["室友常常沒問就帶朋友回家", "室友的伴侶幾乎天天住這裡", "室友每週都帶人過夜", "室友男友一直待在公共空間", "室友女友常常來住"]
+        },
+        zh: {
+          tag: "室友的客人快變固定住戶",
+          roast: "這位訪客出勤率高到快能領門禁卡了，而共用空間和水電也悄悄多了一位使用者。",
+          comfort: "你可以在不批評對方關係的前提下，談通知、過夜頻率、公共空間和費用分攤。",
+          playful: "「你伴侶最近出席率很高，快要成為第三位室友了😅 我們能先聊聊來訪頻率和共用空間怎麼安排嗎？」",
+          soft: "「我不反對你邀請朋友／伴侶來，但最近來訪很頻繁，會影響我使用公共空間和休息。我們可以約定提前通知和過夜頻率嗎？」",
+          firm: "「請不要在沒有先和室友說好的情況下安排長時間或頻繁過夜。這個住處是共用的，來訪頻率、安靜時間和費用影響都需要一起談。」",
+          insight: "把焦點放在頻率、通知、休息與共同成本，而不是否定室友的伴侶或朋友。也要一起遵守租約與住宿規則。"
+        },
+        en: {
+          tag: "The Guest Is Nearly a Third Roommate",
+          roast: "This guest is close to earning a key, while the shared space and utility use quietly gained another regular.",
+          comfort: "You can discuss notice, overnight frequency, shared space, and costs without criticizing your roommate’s relationship.",
+          playful: "“Your partner’s attendance is approaching roommate status 😅 Could we talk about visit frequency and shared-space plans?”",
+          soft: "“I don’t mind you having friends/your partner over, but visits have been frequent and affect my use of the shared space and rest. Could we agree on advance notice and overnight frequency?”",
+          firm: "“Please don’t arrange frequent or extended overnight stays without discussing them with the household first. Visit frequency, quiet time, and shared costs affect everyone here.”",
+          insight: "Keep the discussion on frequency, notice, rest, and shared costs rather than judging the relationship. Follow the lease or housing rules together."
+        }
+      },
+      {
+        id: "roommate_borrowing_privacy",
+        keywords: {
+          en: ["roommate borrows my things without asking", "roommate uses my belongings without permission", "roommate goes into my room without asking", "roommate keeps borrowing my clothes", "roommate invades my privacy"],
+          zh: ["室友沒問就拿我的東西", "室友一直借東西不還", "室友擅自進我的房間", "室友沒問就穿我的衣服", "室友一直侵犯我的隱私"]
+        },
+        zh: {
+          tag: "共住不等於物品共享",
+          roast: "住在同一個屋簷下，不代表你的耳機、衣服和房門都自動改成公共財產。",
+          comfort: "清楚說明哪些物品不共用、進房前要先問，能減少對界線的猜測。",
+          playful: "「我們共享地址，不共享所有物品喔😅 借之前先問我，進房間也請先敲門。」",
+          soft: "「我發現[物品]被拿去使用／房間在我不在時被進入，讓我不太自在。請先問我再借，也請進房前敲門。」",
+          firm: "「請不要再未經同意拿我的物品或進我的房間。若需要借用，先取得我的同意；房間是我的私人空間。」",
+          insight: "把可借用規則和私人空間界線說具體；若重複發生，記錄情況並尋求可信任的宿舍管理或房東協助。"
+        },
+        en: {
+          tag: "Sharing an Address Isn’t Sharing Everything",
+          roast: "Living under one roof doesn’t automatically turn your headphones, clothes, or bedroom into community property.",
+          comfort: "Name what isn’t shared and ask for a knock before entry so no one has to guess where the boundary is.",
+          playful: "“We share an address, not every possession 😅 Please ask before borrowing and knock before coming in.”",
+          soft: "“I noticed my [item] was used/my room was entered while I was away, and I’m not comfortable with that. Please ask before borrowing and knock first.”",
+          firm: "“Please don’t take my belongings or enter my room without permission. Ask me first if you need to borrow something; my room is private space.”",
+          insight: "Set a clear borrowing rule and privacy boundary. If it keeps happening, document it and ask trusted housing staff or a landlord for help."
+        }
+      },
+      {
+        id: "roommate_bathroom_schedule",
+        keywords: {
+          en: ["roommate takes too long in the bathroom", "roommate monopolizes the shower", "roommate uses the bathroom during my morning routine", "roommate leaves no time for others to shower"],
+          zh: ["室友洗澡洗很久", "室友一直佔著浴室", "室友早上霸佔浴室", "室友洗澡時間太長害我遲到"]
+        },
+        zh: {
+          tag: "浴室不是私人包場",
+          roast: "浴室使用時間長到快能辦會員制了，其他人只能在門外練習把上班時間往後移。",
+          comfort: "共用浴室最需要的是可預期的時段；一起排出早晨尖峰安排，比敲門催人更省火氣。",
+          playful: "「浴室今天有包場活動嗎😅 我們排一下早上使用順序，讓大家都趕得上出門吧。」",
+          soft: "「最近早上浴室使用時間比較長，我有幾次差點來不及出門。我們能不能排個尖峰時段的順序或時間上限？」",
+          firm: "「我需要在[時間]前使用浴室。請在約定時段內完成，若需要更久，先和大家協調其他時段。」",
+          insight: "確認彼此作息後，約定早晨時段或簡單輪序；針對共享資源談時間安排，不必指責個人習慣。"
+        },
+        en: {
+          tag: "The Bathroom Isn’t a Private Suite",
+          roast: "The bathroom session is long enough to start a membership program, while everyone else practices moving their workday later.",
+          comfort: "A shared bathroom needs predictable timing. Planning the morning rush is less heated than knocking and hoping.",
+          playful: "“Is the bathroom hosting a private event today? 😅 Can we set a morning order so everyone gets out on time?”",
+          soft: "“The bathroom has been occupied for a while during the morning rush, and I’ve nearly been late. Could we set a schedule or a time limit for peak hours?”",
+          firm: "“I need bathroom access before [time]. Please finish within our agreed slot; if you need longer, coordinate another time with everyone.”",
+          insight: "Compare schedules and agree on a morning slot or rotation. Address the shared resource and timing rather than attacking someone’s habits."
+        }
+      },
+      {
+        id: "roommate_temperature",
+        keywords: {
+          en: ["roommate keeps changing the thermostat", "roommate sets the AC too cold", "roommate won't let us turn on the air conditioning", "we keep arguing about the thermostat", "roommate keeps turning the heat up"],
+          zh: ["室友一直亂調冷氣溫度", "室友把冷氣開太冷", "室友不讓開冷氣", "室友一直調暖氣", "我們一直為冷氣溫度吵架"]
+        },
+        zh: {
+          tag: "冷氣遙控器爭奪戰",
+          roast: "冷氣遙控器成了室友版拔河繩，一個人調低兩度，另一個人就調回去，電費在旁邊默默加戲。",
+          comfort: "每個人的體感不同，可以把舒適度、電費和作息一起談，找一個大家都能接受的預設值。",
+          playful: "「冷氣遙控器今天又在自己投票了😅 我們訂個大家都能接受的溫度和調整方式吧。」",
+          soft: "「我們對冷氣溫度的偏好不太一樣。能不能約定一個範圍，太冷／太熱時先說一聲，也一起分攤相關費用？」",
+          firm: "「請不要一直私自改掉我們約定的設定。我希望我們先定好溫度範圍和費用分法，再照約定調整。」",
+          insight: "把舒適度和電費都納入協商，約定可接受範圍與調整方式，避免每次都變成遙控器拉鋸戰。"
+        },
+        en: {
+          tag: "Thermostat Remote Tug-of-War",
+          roast: "The thermostat has become a roommate tug-of-war: one person lowers it, another raises it, and the utility bill gets a supporting role.",
+          comfort: "Comfort differs by person. Discuss temperature, routines, and cost together to find a workable default.",
+          playful: "“The thermostat remote is voting again 😅 Can we agree on a comfortable range and how we’ll adjust it?”",
+          soft: "“We seem to prefer different temperatures. Could we agree on a range, give each other a heads-up before changing it, and share the related cost?”",
+          firm: "“Please don’t keep changing the setting we agreed on. Let’s set a temperature range and cost split, then stick to it.”",
+          insight: "Include comfort and utility cost in the agreement, with a shared range and adjustment rule instead of repeated remote-control battles."
+        }
+      },
+      {
+        id: "roommate_locked_door",
+        keywords: {
+          en: ["roommate keeps leaving the front door unlocked", "roommate forgets to lock the apartment door", "roommate leaves our house door open", "roommate doesn't lock the door at night"],
+          zh: ["室友出門不鎖門", "室友一直忘記鎖大門", "室友離開家都不鎖門", "室友晚上忘記鎖門"]
+        },
+        zh: {
+          tag: "大門不是自動上鎖的",
+          roast: "大門每次都靠運氣確認有沒有鎖，這種安全抽卡遊戲大家其實都不想玩。",
+          comfort: "先確認門現在已鎖，再把鎖門步驟變成共同習慣；安全問題值得直接而不羞辱地談。",
+          playful: "「出門前幫大門做一下『拉門確認』吧😅 它沒有自動鎖門技能，大家一起記得鎖好。」",
+          soft: "「我發現幾次出門後大門沒有鎖，會讓我擔心住家安全。可以把鎖門確認加進出門習慣嗎？」",
+          firm: "「請每次進出後確認大門已上鎖。這是住家安全的基本共識；如果鎖具或門有問題，我們一起回報房東／管理處。」",
+          insight: "處理前先確認門已安全上鎖，再說明具體情況並建立可執行的離家檢查習慣。"
+        },
+        en: {
+          tag: "The Front Door Doesn’t Lock Itself",
+          roast: "Checking whether the door is locked by luck is a security lottery nobody signed up to play.",
+          comfort: "First make sure the door is locked now, then agree on a shared habit. Safety deserves a direct conversation without shaming.",
+          playful: "“Let’s do a quick door-pull check before heading out 😅 It doesn’t have an auto-lock superpower.”",
+          soft: "“I’ve noticed the front door unlocked a few times after someone left, and it worries me. Could we add a lock check to our leaving routine?”",
+          firm: "“Please confirm the front door is locked every time you leave or enter. If the lock or door is faulty, let’s report it to the landlord/building manager together.”",
+          insight: "Make sure the door is secure first, describe what happened, and agree on a concrete check whenever someone leaves."
+        }
+      }
+    );
+
     const quickScenario = quickScenarios
       .map(scenario => ({
         scenario,
