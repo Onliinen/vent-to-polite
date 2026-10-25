@@ -351,12 +351,136 @@ const PRESET_CATEGORIES = {
         }
       ]
     },
+    family: {
+      id: "family",
+      name: "家庭與親友",
+      icon: "👨‍👩‍👧‍👦",
+      description: "面對父母、親戚、表親與家族分工，找到清楚又體面的回覆。",
+      items: [
+        {
+          id: "daily_family",
+          title: "爸媽施壓催婚又愛管東管西",
+          tag: "人生代駕司機",
+          rant: "選科系要管、工作要管，現在連結婚都要催！每次講沒兩句就說『我都是為你好』，我是你小孩，不是你的人生專案吧？壓力真的好大，到底要怎麼溝通才不會吵起來？",
+          rageLevel: 85,
+          roast: {
+            tagTitle: "人生代駕司機",
+            stars: "★★★★☆",
+            comment: "他們自聘為你人生的代駕——猛踩那台寫著『為你好』的油門，完全無視導航上寫的『當事人選擇』。愛是真的，車開太猛也是真的。",
+            comfortTip: "爸媽的壓力通常是愛，只是用他們唯一會的語言講。你不需要照單全收才叫孝順——翻譯它，不要整顆吞下去。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "翻譯安心型",
+                tag: "給方案・消擔心",
+                text: "我知道你會這樣講是因為擔心我——這點我先謝謝你。我目前的規劃是這樣：[方案]。過程我會跟你更新進度，好不好？"
+              },
+              {
+                type: "角色界線型",
+                tag: "成年人決策・報告不請示",
+                text: "我很重視跟你討論，但這件事我得自己扛——畢竟日子是我自己在過。我已經做了決定，希望你當我的支持者，不是路線審查員。"
+              },
+              {
+                type: "平靜重申型",
+                tag: "答案不變・不再辯論",
+                text: "我知道我們在這件事上看法不同，這沒關係——我的答案沒有變。我更想好好吃飯、聽你聊聊你最近的興趣，而不是再吵一次。成交？"
+              }
+            ],
+            insight: "家人的界線要當『門』不要當『牆』：牆會引發攻城心態、吵個沒完。把關係通道開大，把決策通道設成單向——你分享結果，不開放否決權。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前反應：你用計畫而不是防禦來回應，飯桌氣氛就不會被這個話題綁架。",
+              secondOrder: "長遠效應：他們不再把你當需要管理的小孩，而是會主動匯報的大人。"
+            },
+            preMortem: {
+              risk: "潛在翻車點：把理由講得太詳細，等於邀請他們逐條辯論。",
+              prevention: "避坑策略：先講決定、再講方案——細節是『更新進度』，不是『送審』。"
+            },
+            firstPrinciples: {
+              coreTruth: "你可以尊重父母的聲音，卻不必交出否決權——愛與自主不是零和遊戲。"
+            }
+          }
+        },
+        {
+          id: "relative_questions",
+          title: "親戚一直打聽我的私事",
+          rant: "親戚一直打聽我的私事",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "cousin_comparisons",
+          title: "叔叔拿我跟表哥比較",
+          rant: "叔叔拿我跟表哥比較",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "eldercare",
+          title: "親戚都不幫忙照顧長輩",
+          rant: "親戚都不幫忙照顧長輩",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "family_hosting",
+          title: "每次家庭聚會都要我主辦",
+          rant: "每次家庭聚會都要我主辦",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "family_politics",
+          title: "親戚聚餐一直吵政治",
+          rant: "親戚聚餐一直吵政治",
+          rageLevel: 60,
+          quickScenario: true
+        }
+      ]
+    },
     living: {
       id: "living",
-      name: "生活室友",
+      name: "居家與鄰里",
       icon: "🏠",
-      description: "碗不洗、冰箱食物偷吃、半夜吵鬧，如何化解生活地獄？",
+      description: "處理室友、住家、噪音、停車、寵物與公共空間的摩擦。",
       items: [
+        {
+          id: "neighbor_noise",
+          title: "鄰居半夜放音樂很大聲",
+          rant: "鄰居半夜放音樂很大聲",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_parking",
+          title: "鄰居一直擋我家車道",
+          rant: "鄰居一直擋我家車道",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_pets",
+          title: "鄰居的狗整晚一直叫",
+          rant: "鄰居的狗整晚一直叫",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_boundary",
+          title: "鄰居的圍籬越界",
+          rant: "鄰居的圍籬越界",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_shared_space",
+          title: "鄰居把東西堆在公共區域",
+          rant: "鄰居把東西堆在公共區域",
+          rageLevel: 60,
+          quickScenario: true
+        },
         {
           id: "living_dishes",
           title: "吃完碗堆水槽三天不洗",
@@ -407,56 +531,10 @@ const PRESET_CATEGORIES = {
     },
     daily: {
       id: "daily",
-      name: "人生課題",
+      name: "個人生活",
       icon: "🌱",
-      description: "爸媽碎念催婚、曖昧卡關、身體亮紅燈，日常三大難題一次拆解！",
+      description: "整理感情、自我照顧與日常選擇中的難題。",
       items: [
-        {
-          id: "daily_family",
-          title: "爸媽施壓催婚又愛管東管西",
-          tag: "人生代駕司機",
-          rant: "選科系要管、工作要管，現在連結婚都要催！每次講沒兩句就說『我都是為你好』，我是你小孩，不是你的人生專案吧？壓力真的好大，到底要怎麼溝通才不會吵起來？",
-          rageLevel: 85,
-          roast: {
-            tagTitle: "人生代駕司機",
-            stars: "★★★★☆",
-            comment: "他們自聘為你人生的代駕——猛踩那台寫著『為你好』的油門，完全無視導航上寫的『當事人選擇』。愛是真的，車開太猛也是真的。",
-            comfortTip: "爸媽的壓力通常是愛，只是用他們唯一會的語言講。你不需要照單全收才叫孝順——翻譯它，不要整顆吞下去。"
-          },
-          diplomacy: {
-            tactics: [
-              {
-                type: "翻譯安心型",
-                tag: "給方案・消擔心",
-                text: "我知道你會這樣講是因為擔心我——這點我先謝謝你。我目前的規劃是這樣：[方案]。過程我會跟你更新進度，好不好？"
-              },
-              {
-                type: "角色界線型",
-                tag: "成年人決策・報告不請示",
-                text: "我很重視跟你討論，但這件事我得自己扛——畢竟日子是我自己在過。我已經做了決定，希望你當我的支持者，不是路線審查員。"
-              },
-              {
-                type: "平靜重申型",
-                tag: "答案不變・不再辯論",
-                text: "我知道我們在這件事上看法不同，這沒關係——我的答案沒有變。我更想好好吃飯、聽你聊聊你最近的興趣，而不是再吵一次。成交？"
-              }
-            ],
-            insight: "家人的界線要當『門』不要當『牆』：牆會引發攻城心態、吵個沒完。把關係通道開大，把決策通道設成單向——你分享結果，不開放否決權。"
-          },
-          thinkingLens: {
-            secondOrder: {
-              firstOrder: "眼前反應：你用計畫而不是防禦來回應，飯桌氣氛就不會被這個話題綁架。",
-              secondOrder: "長遠效應：他們不再把你當需要管理的小孩，而是會主動匯報的大人。"
-            },
-            preMortem: {
-              risk: "潛在翻車點：把理由講得太詳細，等於邀請他們逐條辯論。",
-              prevention: "避坑策略：先講決定、再講方案——細節是『更新進度』，不是『送審』。"
-            },
-            firstPrinciples: {
-              coreTruth: "你可以尊重父母的聲音，卻不必交出否決權——愛與自主不是零和遊戲。"
-            }
-          }
-        },
         {
           id: "daily_relationship",
           title: "曖昧卡關搞不清楚關係",
@@ -899,12 +977,136 @@ const PRESET_CATEGORIES = {
         }
       ]
     },
+    family: {
+      id: "family",
+      name: "Family & Relatives",
+      icon: "👨‍👩‍👧‍👦",
+      description: "Handle pressure, comparisons, caregiving, and other family tensions with clear, respectful replies.",
+      items: [
+        {
+          id: "daily_family",
+          title: "Parents Meddling & Pushing for Marriage",
+          tag: "Backseat Life Driver",
+          rant: "They controlled my major, my job, and now they're pressuring me to get married! Every conversation ends with 'it's for your own good.' I'm their kid, not their life project! How do I even talk to them without starting a fight?",
+          rageLevel: 85,
+          roast: {
+            tagTitle: "Backseat Life Driver",
+            stars: "★★★★☆",
+            comment: "They've appointed themselves chauffeurs of your life — flooring the accelerator labeled 'it's for your own good' while ignoring the GPS that says 'their choice'. The love is real. So is the reckless driving.",
+            comfortTip: "Their pressure is usually love delivered in the only language they ever learned. You don't have to obey the message to respect the messenger — translate it, don't swallow it whole."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Reframe & Reassure",
+                tag: "Show Plan・Defuse Worry",
+                text: "I know this comes from you caring about me — thank you for that. Here's exactly how I'm planning to handle it: [plan]. I'll keep you posted on how it goes, okay?"
+              },
+              {
+                type: "Role Boundary",
+                tag: "Report, Don't Ask",
+                text: "I really value talking things through with you, but this one I have to own — I'm the one who'll live with the decision. I've made my call, and I'd love your support on the ride, not a veto on the route."
+              },
+              {
+                type: "Steady Repetition",
+                tag: "Same Answer・No Debate",
+                text: "I know we see this differently, and that's okay — my answer hasn't changed. I'd much rather enjoy dinner hearing about [their hobby] than relitigate this one. Deal?"
+              }
+            ],
+            insight: "Family boundaries work best as doors, not walls: walls trigger siege mentality and endless escalation. Keep the relationship channel wide open while making the decision channel one-way — you share outcomes, not vetoes."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate Reaction: You respond with a plan instead of defense, so the topic loses its grip on dinner.",
+              secondOrder: "Ripple Effect: They stop seeing you as the kid who needs managing and start seeing an adult who reports rather than asks."
+            },
+            preMortem: {
+              risk: "Potential Pitfall: Explaining your reasoning in exhaustive detail invites them to debate every detail.",
+              prevention: "Safeguard: Lead with the decision and the plan — details are shared as updates, not submitted for approval."
+            },
+            firstPrinciples: {
+              coreTruth: "You can honor your parents' voice without handing them the veto — love and autonomy are not zero-sum."
+            }
+          }
+        },
+        {
+          id: "relative_questions",
+          title: "Relatives Keep Asking Personal Questions",
+          rant: "relatives keep prying into my personal life",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "cousin_comparisons",
+          title: "Relatives Compare Me With My Cousin",
+          rant: "uncle compares me to my cousin",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "eldercare",
+          title: "Family Disagrees About Elder Care",
+          rant: "family arguing over elder care responsibilities",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "family_hosting",
+          title: "I’m Always Expected to Host",
+          rant: "always expected to host family gatherings",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "family_politics",
+          title: "Family Gatherings Turn Into Political Arguments",
+          rant: "relatives keep arguing politics at family gatherings",
+          rageLevel: 60,
+          quickScenario: true
+        }
+      ]
+    },
     living: {
       id: "living",
-      name: "Roommates & Living",
+      name: "Home & Neighbors",
       icon: "🏠",
-      description: "Dirty dishes, stolen fridge food, midnight noise — how do you survive shared living hell?",
+      description: "Handle roommate and neighborhood issues such as noise, parking, pets, and shared spaces.",
       items: [
+        {
+          id: "neighbor_noise",
+          title: "Neighbor Noise at Night",
+          rant: "neighbor keeps making noise at night",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_parking",
+          title: "Neighbor Blocks My Driveway",
+          rant: "neighbor keeps blocking my driveway",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_pets",
+          title: "Neighbor’s Pet Is a Problem",
+          rant: "neighbor's dog barks all night",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_boundary",
+          title: "A Neighbor Crosses the Property Boundary",
+          rant: "neighbor's fence is over the property line",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "neighbor_shared_space",
+          title: "Neighbor Leaves Items in Shared Spaces",
+          rant: "neighbor stores things in the common area",
+          rageLevel: 60,
+          quickScenario: true
+        },
         {
           id: "living_dishes",
           title: "Dishes Piled in the Sink for 3 Days",
@@ -955,56 +1157,10 @@ const PRESET_CATEGORIES = {
     },
     daily: {
       id: "daily",
-      name: "Life & Wellbeing",
+      name: "Personal Life",
       icon: "🌱",
-      description: "Parent pressure, situationship limbo, body at 3% battery — life's three toughest everyday dilemmas, decoded.",
+      description: "Find words for relationships, self-care, and everyday personal decisions.",
       items: [
-        {
-          id: "daily_family",
-          title: "Parents Meddling & Pushing for Marriage",
-          tag: "Backseat Life Driver",
-          rant: "They controlled my major, my job, and now they're pressuring me to get married! Every conversation ends with 'it's for your own good.' I'm their kid, not their life project! How do I even talk to them without starting a fight?",
-          rageLevel: 85,
-          roast: {
-            tagTitle: "Backseat Life Driver",
-            stars: "★★★★☆",
-            comment: "They've appointed themselves chauffeurs of your life — flooring the accelerator labeled 'it's for your own good' while ignoring the GPS that says 'their choice'. The love is real. So is the reckless driving.",
-            comfortTip: "Their pressure is usually love delivered in the only language they ever learned. You don't have to obey the message to respect the messenger — translate it, don't swallow it whole."
-          },
-          diplomacy: {
-            tactics: [
-              {
-                type: "Reframe & Reassure",
-                tag: "Show Plan・Defuse Worry",
-                text: "I know this comes from you caring about me — thank you for that. Here's exactly how I'm planning to handle it: [plan]. I'll keep you posted on how it goes, okay?"
-              },
-              {
-                type: "Role Boundary",
-                tag: "Report, Don't Ask",
-                text: "I really value talking things through with you, but this one I have to own — I'm the one who'll live with the decision. I've made my call, and I'd love your support on the ride, not a veto on the route."
-              },
-              {
-                type: "Steady Repetition",
-                tag: "Same Answer・No Debate",
-                text: "I know we see this differently, and that's okay — my answer hasn't changed. I'd much rather enjoy dinner hearing about [their hobby] than relitigate this one. Deal?"
-              }
-            ],
-            insight: "Family boundaries work best as doors, not walls: walls trigger siege mentality and endless escalation. Keep the relationship channel wide open while making the decision channel one-way — you share outcomes, not vetoes."
-          },
-          thinkingLens: {
-            secondOrder: {
-              firstOrder: "Immediate Reaction: You respond with a plan instead of defense, so the topic loses its grip on dinner.",
-              secondOrder: "Ripple Effect: They stop seeing you as the kid who needs managing and start seeing an adult who reports rather than asks."
-            },
-            preMortem: {
-              risk: "Potential Pitfall: Explaining your reasoning in exhaustive detail invites them to debate every detail.",
-              prevention: "Safeguard: Lead with the decision and the plan — details are shared as updates, not submitted for approval."
-            },
-            firstPrinciples: {
-              coreTruth: "You can honor your parents' voice without handing them the veto — love and autonomy are not zero-sum."
-            }
-          }
-        },
         {
           id: "daily_relationship",
           title: "Situationship Stuck in Ambiguity",

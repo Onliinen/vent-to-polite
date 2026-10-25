@@ -204,9 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentCatData && currentCatData.items) {
         const item = currentCatData.items.find(i => i.id === activePresetId);
         if (item) {
-          rantInput.value = item.rant;
-          updateRageMeter(item.rant, item.rageLevel);
-          applyPresetResult(item);
+          activatePreset(item);
         }
       }
     }
@@ -222,14 +220,22 @@ document.addEventListener("DOMContentLoaded", () => {
       chip.className = `preset-chip ${activePresetId === item.id ? "active" : ""}`;
       chip.textContent = item.title;
       chip.addEventListener("click", () => {
-        activePresetId = item.id;
-        rantInput.value = item.rant;
-        updateRageMeter(item.rant, item.rageLevel);
-        applyPresetResult(item);
-        renderPresetChips();
+        activatePreset(item);
       });
       presetChipsContainer.appendChild(chip);
     });
+  }
+
+  function activatePreset(item) {
+    activePresetId = item.id;
+    rantInput.value = item.rant;
+    updateRageMeter(item.rant, item.rageLevel);
+    if (item.quickScenario) {
+      generateOfflineIntelligent(item.rant);
+    } else {
+      applyPresetResult(item);
+    }
+    renderPresetChips();
   }
 
   function switchCategory(catId) {
