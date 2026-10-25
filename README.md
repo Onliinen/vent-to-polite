@@ -6,6 +6,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![AI-Powered](https://img.shields.io/badge/AI-Dual--Engine-orange.svg)](#)
 [![Responsive Web](https://img.shields.io/badge/Platform-Web%20%2F%20Mobile-blue.svg)](#)
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-brightgreen.svg)](https://onliinen.github.io/vent-to-polite/)
+
+👉 **[點此直接體驗線上 Live Demo（免安裝、點開即玩）](https://onliinen.github.io/vent-to-polite/)**
 
 ---
 
