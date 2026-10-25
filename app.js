@@ -48,6 +48,8 @@ const UI_STRINGS = {
     toastEmpty: "⚠️ 請先輸入你的生氣真心話！",
     toastDone: "✨ 雙面翻譯完成！",
     toastLiveDone: "🚀 即時 AI 雙引擎生成成功！",
+    toastOffline: "ℹ️ 離線示範：這是常見情境範本；要分析自訂問題，請設定可用的 AI API Key。",
+    toastApiFailed: "⚠️ AI API 無法使用，已改用離線範本；請檢查 API 設定以取得針對此問題的回答。",
     toastSaved: "💾 設定已儲存！"
   },
   "en": {
@@ -95,6 +97,8 @@ const UI_STRINGS = {
     toastEmpty: "⚠️ Please enter your thoughts first!",
     toastDone: "✨ Dual translation completed!",
     toastLiveDone: "🚀 Live AI generation succeeded!",
+    toastOffline: "ℹ️ Offline demo: this is a common-scenario template. Set a working AI API key to analyze custom situations.",
+    toastApiFailed: "⚠️ The AI API is unavailable, so an offline template was used. Check your API settings for a response tailored to this issue.",
     toastSaved: "💾 Settings saved!"
   }
 };
@@ -425,10 +429,12 @@ document.addEventListener("DOMContentLoaded", () => {
         await callLiveLLM(text, apiKey);
       } else {
         await generateOfflineIntelligent(text);
+        showToast(UI_STRINGS[currentLang].toastOffline);
       }
     } catch (err) {
       console.warn("API Call fallback:", err);
       await generateOfflineIntelligent(text);
+      showToast(UI_STRINGS[currentLang].toastApiFailed);
     } finally {
       btnGenerate.disabled = false;
       btnGenerateText.textContent = UI_STRINGS[currentLang].btnGenerateText;
@@ -475,8 +481,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. 借錢與金錢糾紛 (Money, Borrowing, Splitting bills, Unpaid debts)
     const isMoneyConflict = [
-      "money", "borrow", "borrowed", "borrowing", "pay back", "owe", "owes", "owed",
-      "split", "bill", "cheap", "lend", "lent", "debt",
+      "borrow", "borrowed", "borrowing", "pay back", "owe", "owes", "owed",
+      "split the bill", "lend", "lent", "debt", "unpaid", "pay me back",
       "借錢", "還錢", "分帳", "欠錢", "催討", "不給錢", "討錢"
     ].some(k => matchKeyword(lower, k));
 
@@ -554,9 +560,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. 已讀不回與訊息冷暴力 (Ghosting, Left on read, Ignored messages)
     const isGhostingConflict = [
-      "ghost", "ghosting", "read", "reply", "replied", "replying", "ignore", "ignored",
-      "ignoring", "text back", "message", "messaged", "messaging", "messages",
-      "已讀", "不回", "不理", "人間蒸發", "回很慢", "不看訊息"
+      "ghost", "ghosted", "ghosting", "left on read", "no reply", "no response",
+      "won't reply", "doesn't reply", "not replying", "ignoring me", "ignored me",
+      "text me back", "reply to me", "已讀不回", "不回訊息", "不回我", "不理我",
+      "人間蒸發", "回很慢", "不看訊息"
     ].some(k => matchKeyword(lower, k));
 
     if (isGhostingConflict) {
@@ -642,15 +649,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let matchedItem = null;
     for (const item of currentPresets) {
-      if ((matchKeyword(lower, "遲到") || matchKeyword(lower, "late") || matchKeyword(lower, "wait") || matchKeyword(lower, "waiting")) && item.id === "friend_late") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "隨便") || matchKeyword(lower, "吃什麼") || matchKeyword(lower, "anything") || matchKeyword(lower, "eat") || matchKeyword(lower, "eating")) && item.id === "friend_any") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "下班") || matchKeyword(lower, "急件") || matchKeyword(lower, "urgent") || matchKeyword(lower, "weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "甩鍋") || matchKeyword(lower, "責任") || matchKeyword(lower, "bus") || matchKeyword(lower, "blame")) && item.id === "work_blame") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "組員") || matchKeyword(lower, "報告") || matchKeyword(lower, "teammate") || matchKeyword(lower, "slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "遲到") || matchKeyword(lower, "always late") || matchKeyword(lower, "keeps arriving late") || matchKeyword(lower, "made me wait") || matchKeyword(lower, "kept me waiting")) && item.id === "friend_late") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "隨便") || matchKeyword(lower, "吃什麼") || matchKeyword(lower, "where should we eat") || matchKeyword(lower, "where to eat") || matchKeyword(lower, "pick a restaurant")) && item.id === "friend_any") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "下班") || matchKeyword(lower, "急件") || matchKeyword(lower, "urgent") || matchKeyword(lower, "weekend work") || matchKeyword(lower, "work this weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "甩鍋") || matchKeyword(lower, "推責") || matchKeyword(lower, "blame") || matchKeyword(lower, "pushed the responsibility")) && item.id === "work_blame") { matchedItem = item; break; }
+      if ((matchKeyword(lower, "組員") || matchKeyword(lower, "組員擺爛") || matchKeyword(lower, "groupmate") || matchKeyword(lower, "teammate") || matchKeyword(lower, "freeload") || matchKeyword(lower, "slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
       if ((matchKeyword(lower, "教授") || matchKeyword(lower, "加簽") || matchKeyword(lower, "professor") || matchKeyword(lower, "prereq")) && item.id === "campus_late_add") { matchedItem = item; break; }
       if ((matchKeyword(lower, "碗") || matchKeyword(lower, "水槽") || matchKeyword(lower, "dishes") || matchKeyword(lower, "sink")) && item.id === "living_dishes") { matchedItem = item; break; }
       if (["mom", "mommy", "mother", "dad", "daddy", "father", "parents", "family", "sister", "brother", "siblings", "媽", "爸", "父母", "爸媽", "家人", "兄弟", "姐妹", "母親", "父親"].some(k => matchKeyword(lower, k)) && item.id === "daily_family") { matchedItem = item; break; }
-      if (["girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "partner", "dating", "crush", "break up", "broke up", "breakup", "marriage", "married", "wedding", "divorce", "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
+      if (["girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "romantic partner", "dating", "crush", "break up", "broke up", "breakup", "marriage", "married", "wedding", "divorce", "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
       if (["sick", "fever", "headache", "headaches", "migraine", "flu", "nauseous", "vomit", "doctor", "hospital", "medicine", "unwell", "生病", "發燒", "頭痛", "想吐", "看醫生", "吃藥", "不舒服", "請病假"].some(k => matchKeyword(lower, k)) && item.id === "daily_health") { matchedItem = item; break; }
     }
 
@@ -742,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 6. 感情、曖昧與分手 (Romance, Breakups & Relationship Ambiguity)
     const isRelationshipConflict = [
-      "girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "partner",
+      "girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "romantic partner",
       "dating", "crush", "break up", "broke up", "breakup", "marriage", "married",
       "wedding", "divorce",
       "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"
@@ -900,18 +907,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 8. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
-    // 徹底移除不相干的職場里程碑 (milestones) 詞彙！
+    // The offline engine cannot infer an unrecognized situation. Keep the input visible
+    // in the drafts and ask for clarification instead of pretending a generic answer is specific.
     activePresetId = null;
+    const userIssue = text.replace(/\s+/g, " ").trim().slice(0, 180);
     const universalResult = {
       roast: {
-        tagTitle: isEn ? "Absurd Boundary Violation" : "人際界線越界認證",
-        stars: "★★★★☆",
+        tagTitle: isEn ? "Needs More Context" : "需要更多情境",
+        stars: "★★★☆☆",
         comment: isEn 
-          ? "What this person did is a textbook display of zero emotional intelligence. Your frustration is completely justified! Someone else's lack of self-awareness should never become your personal burden."
-          : "對方這個舉動真的是標準的『毫無同理心與自覺』。你的生氣完全合情合理！別人的白目不該成為懲罰你的枷鎖，這口悶氣我們絕不自己吞。",
+          ? `I don't want to guess what happened from “${userIssue}”. Add who was involved and what outcome you want, and I can help you shape a response.`
+          : `我不想只憑「${userIssue}」就猜測事情經過。補充對方是誰、發生什麼事，以及你希望達到什麼結果，我才能幫你整理出貼切的回應。`,
         comfortTip: isEn
-          ? "Take a deep breath for 3 seconds. The issue lies squarely with their behavior, not your patience. Let's set the boundary cleanly."
-          : "先深呼吸三秒鐘。問題在他不在你，我們用最得體、最無懈可擊的方式把界線劃分清楚。"
+          ? "This offline demo only has templates for common scenarios; it can't reliably interpret a new situation."
+          : "目前是離線示範模式，只能處理少數常見情境，無法可靠理解這個新問題。"
       },
       diplomacy: {
         tactics: [
@@ -919,41 +928,28 @@ document.addEventListener("DOMContentLoaded", () => {
             type: isEn ? "Playful Deflection" : "幽默調侃型",
             tag: isEn ? "Diffuses Tension・Maintains Face" : "軟性提醒・保留面子",
             text: isEn
-              ? "Hey! About what happened earlier—my brain did a little triple-take haha. Can we hit the reset button and find a smoother way for both of us to handle this?"
-              : "哈囉！關於剛才那件事，我的腦袋差點當機哈哈～想說我們彼此退一步，找個兩邊相處都舒服的方式，你覺得呢？"
+              ? `Hey, about “${userIssue}”—I may be missing some context. Can we talk through what happened and find a way that works for both of us?`
+              : `嗨，關於「${userIssue}」這件事，我可能還缺一些背景。方便聊聊當時的情況嗎？我們一起找個雙方都能接受的做法。`
           },
           {
             type: isEn ? "Honest Boundary" : "真誠表達型",
             tag: isEn ? "Express Discomfort Directly" : "表達感受・建立界線",
             text: isEn
-              ? "Hey, I've been reflecting on our interaction, and to be open, it left me feeling a bit uncomfortable. I value our relationship, so I wanted to share my thoughts honestly rather than keeping it to myself."
-              : "嗨，稍微沈澱了一下剛才的事，老實說當下的情況讓我覺得有點不太舒服。因為我很在乎我們之間的相處，所以想坦誠跟你分享我的感受，也聽聽你的想法！"
+              ? `I want to talk about “${userIssue}”. It affected me, and I'd like to explain what bothered me and hear your view before deciding what to do next.`
+              : `我想談談「${userIssue}」這件事。這對我造成了一些影響，我想先說明在意的地方，也聽聽你的想法，再一起決定接下來怎麼處理。`
           },
           {
             type: isEn ? "Firm Standard" : "明確原則型",
             tag: isEn ? "Mutual Respect Ground Rule" : "互相尊重・確立原則",
             text: isEn
-              ? "I think mutual respect is essential for us to communicate well. Here is where I stand on this, and I hope we can find common ground so neither of us feels frustrated moving forward."
-              : "我覺得彼此互相尊重、有話好說是長久相處的基礎。在這件事情上我的原則比較明確，希望能跟你取得共識，避免以後雙方都覺得委屈或產生誤解。"
+              ? `Regarding “${userIssue}”, I need us to agree on a clear next step. What I need is [specific request]; can we confirm whether that works?`
+              : `關於「${userIssue}」，我希望我們能確認一個明確的下一步。我需要的是[具體需求]，我們可以確認這樣是否可行嗎？`
           }
         ],
         insight: isEn
-          ? "When resolving awkward interpersonal conflicts, use 'I-statements' (how the situation made you feel) rather than 'You-statements' (accusing their character). Expressing your standard with calm composure leaves zero room for toxic drama while making your boundary respected."
-          : "處理人際摩擦時，切記使用『我字開頭』（表達自己的真實感受），而不是『你字開頭』（指責對方的品格）。聚焦在感受與長遠關係，能最大程度降低對方的防衛心，同時讓界線清晰有效。"
+          ? "This is a general offline template, not an interpretation of your situation. Add context or configure an AI API key for a tailored analysis."
+          : "這是通用離線範本，並非對你情境的判讀。補充事件背景，或設定 AI API Key，才能取得針對問題的分析。"
       },
-      thinkingLens: {
-        secondOrder: {
-          firstOrder: isEn ? "Immediate Reaction: The other party recognizes an uncomfortable boundary has been crossed without feeling attacked." : "眼前反應：對方清楚意識到自己踩到了界線，同時沒有被當面羞辱或防衛激化。",
-          secondOrder: isEn ? "Ripple Effect: Calibrates the long-term relationship dynamic to one based on mutual respect rather than silent resentment." : "長遠效應：將長期互動基調校正為彼此尊重，避免暗生芥蒂甚至最終關係破裂。"
-        },
-        preMortem: {
-          risk: isEn ? "Potential Pitfall: Using 'You' blame statements escalates the conversation into an ego battle." : "潛在翻車點：使用『你總是/你根本』指責語氣，引爆對方的自尊反擊戰。",
-          prevention: isEn ? "Safeguard: Use 'I-statements' focusing on feelings and desired mutual ground rather than character flaws." : "避坑策略：全面改採『我感到/為了雙方相處更順暢』的我字陳述法，聚焦行為與感受。"
-        },
-        firstPrinciples: {
-          coreTruth: isEn ? "Civil boundaries are not fences to push people away; they are the guardrails that make genuine relationships sustainable." : "清晰的界線不是為了推開彼此，而是為了讓健康的關係能夠長久維繫的防護欄。"
-        }
-      }
     };
 
     roastTag.textContent = universalResult.roast.tagTitle;
@@ -965,7 +961,7 @@ document.addEventListener("DOMContentLoaded", () => {
     insightContent.textContent = universalResult.diplomacy.insight;
     currentTacticIndex = 0;
     renderTacticsTabs();
-    renderThinkingLens(universalResult.thinkingLens);
+    renderThinkingLens(null);
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
@@ -981,7 +977,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const systemPrompt = isEn 
       ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine), powered by high-order cognitive models.
-CRITICAL RULE: The user input is their REAL interpersonal problem (e.g., friends swearing, unreturned money, slacking, annoying habits, broken boundaries). Your output MUST SPECIFICALLY and DIRECTLY address the exact situation they mentioned. DO NOT output generic workplace milestone or deadline templates unless they explicitly talked about work/deadlines!
+CRITICAL RULES: The user input is their current interpersonal problem. Treat it as the only request; this API call has no prior-question context. Do not reuse a prior answer. Use at least one concrete detail from this exact input in each ready-to-send tactic. Do not assume facts the user did not provide. If the input is too vague, ask a concise clarifying question in the tactics instead of inventing details. Never force the problem into a workplace scenario unless it is about work.
 
 Return valid JSON with:
 1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity in this specific situation), comfortTip (1 practical de-escalation tip) }.
@@ -993,8 +989,7 @@ Return valid JSON with:
 }.
 Language: ENGLISH.`
       : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理，並具備頂級高階思維推演能力。
-重要準則：使用者輸入的是他現實中遇到的具體人際困難（例如朋友常講髒話、借錢不還、被放鳥、討厭的習慣、被踩底線等）。
-你的輸出必須 100% 針對使用者所描述的具體事件進行精準回應，嚴禁給予無關的職場里程碑或工作截止日套話！
+重要準則：這次使用者輸入就是目前唯一要處理的人際問題；API 不會收到上一題的內容。不得沿用上一題答案。每則可直接傳送的話術都必須提到這次輸入中的至少一個具體細節，不可自行假設使用者沒提供的事實。若資訊不足，請在話術中先提出簡短釐清問題，不要編造情節。除非使用者提到工作，否則不可硬套職場情境。
 
 請嚴格返回 JSON 格式：
 {
@@ -1063,6 +1058,9 @@ Language: ENGLISH.`
 
     if (content.thinkingLens) {
       renderThinkingLens(content.thinkingLens);
+    } else {
+      // Do not leave the previous request's analysis visible when this response omits it.
+      renderThinkingLens(null);
     }
 
     placeholderState.style.display = "none";
