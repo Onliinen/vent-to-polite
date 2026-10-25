@@ -348,6 +348,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function completeThinkingLens(lensData, issue, isEn) {
+    const subject = issue.replace(/\s+/g, " ").trim().slice(0, 90);
+    const fallback = isEn ? {
+      secondOrder: {
+        firstOrder: `For “${subject}”, state what happened and what you need without attacking the person.`,
+        secondOrder: "If the same issue repeats, agree on one clear next step so the pattern does not continue."
+      },
+      preMortem: {
+        risk: "A sarcastic or accusatory reply could shift the discussion from the issue to the tone.",
+        prevention: "Keep the message short: name the behavior, its effect on you, and the change you want."
+      },
+      firstPrinciples: {
+        coreTruth: "Focus on the specific behavior and the practical outcome you need; avoid guessing the other person's intent."
+      }
+    } : {
+      secondOrder: {
+        firstOrder: `針對「${subject}」，先說明發生的事與你的需求，避免把焦點變成人身指責。`,
+        secondOrder: "若同一問題再次發生，和對方約定一個明確的下一步，避免模式持續。"
+      },
+      preMortem: {
+        risk: "太諷刺或帶指責的回覆，可能讓討論從事情本身偏到你的語氣。",
+        prevention: "訊息保持簡短：說明具體行為、對你的影響，以及希望對方如何調整。"
+      },
+      firstPrinciples: {
+        coreTruth: "聚焦在具體行為與你需要的結果，不猜測對方的動機。"
+      }
+    };
+
+    return {
+      secondOrder: {
+        firstOrder: lensData?.secondOrder?.firstOrder || fallback.secondOrder.firstOrder,
+        secondOrder: lensData?.secondOrder?.secondOrder || fallback.secondOrder.secondOrder
+      },
+      preMortem: {
+        risk: lensData?.preMortem?.risk || fallback.preMortem.risk,
+        prevention: lensData?.preMortem?.prevention || fallback.preMortem.prevention
+      },
+      firstPrinciples: {
+        coreTruth: lensData?.firstPrinciples?.coreTruth || fallback.firstPrinciples.coreTruth
+      }
+    };
+  }
+
   function applyPresetResult(presetItem) {
     roastTag.textContent = presetItem.roast.tagTitle;
     roastStars.textContent = presetItem.roast.stars;
@@ -359,11 +402,11 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTacticIndex = 0;
     renderTacticsTabs();
 
-    if (presetItem.thinkingLens) {
-      renderThinkingLens(presetItem.thinkingLens);
-    } else {
-      renderThinkingLens(null);
-    }
+    renderThinkingLens(completeThinkingLens(
+      presetItem.thinkingLens,
+      rantInput.value || presetItem.rant || "",
+      currentLang === "en"
+    ));
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
@@ -962,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
     insightContent.textContent = universalResult.diplomacy.insight;
     currentTacticIndex = 0;
     renderTacticsTabs();
-    renderThinkingLens(null);
+    renderThinkingLens(completeThinkingLens(null, text, isEn));
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
@@ -981,12 +1024,12 @@ document.addEventListener("DOMContentLoaded", () => {
 CRITICAL RULES: The user input is their current interpersonal problem. Treat it as the only request; this API call has no prior-question context. Do not reuse a prior answer. Use a concrete detail from this input in the roast and replies. Keep the output quick, concise, and immediately useful. Do not ask follow-up questions or demand more detail; when the input is brief, make a reasonable low-risk assumption and give adaptable wording without inventing specific facts. Never force the problem into a workplace scenario unless it is about work.
 
 Return valid JSON with:
-1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity in this specific situation), comfortTip (1 practical de-escalation tip) }.
-2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "string", text: "ready-to-send message specifically solving this problem" }, { type: "Gentle Boundary", tag: "string", text: "..." }, { type: "Firm Standard", tag: "string", text: "..." } ], insight: "psychological explanation of why this communication strategy works" }.
+1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (a witty, situation-specific roast in 1-2 short sentences, max 45 words), comfortTip (one practical sentence) }.
+2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "short label", text: "a concise, ready-to-send reply for this situation" }, { type: "Gentle Boundary", tag: "short label", text: "..." }, { type: "Firm Standard", tag: "short label", text: "..." } ], insight: "one concise sentence explaining the approach" }.
 3. thinkingLens: {
-  secondOrder: { firstOrder: "immediate reaction to this message", secondOrder: "long-term behavioral ripple effect" },
-  preMortem: { risk: "the #1 way this response could backfire", prevention: "practical rule to prevent that failure" },
-  firstPrinciples: { coreTruth: "the bedrock fundamental principle governing this interaction" }
+  secondOrder: { firstOrder: "one short sentence on the immediate effect", secondOrder: "one short sentence on the longer-term effect" },
+  preMortem: { risk: "one short likely failure mode", prevention: "one short prevention tip" },
+  firstPrinciples: { coreTruth: "one short fundamental principle for this situation" }
 }.
 Language: ENGLISH.`
       : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理，並具備頂級高階思維推演能力。
@@ -997,28 +1040,28 @@ Language: ENGLISH.`
   "roast": {
     "tagTitle": "四字至六字趣味標籤",
     "stars": "★★★★☆",
-    "comment": "100字左右尖銳幽默又好笑的吐槽，專門針對該具體荒謬事件",
+    "comment": "一至兩句、約80字內，針對具體情境的幽默吐槽",
     "comfortTip": "一句實用安慰"
   },
   "diplomacy": {
     "tactics": [
-      { "type": "幽默調侃型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" },
-      { "type": "溫和直白型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" },
-      { "type": "明確底線型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" }
+      { "type": "幽默調侃型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" },
+      { "type": "溫和直白型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" },
+      { "type": "明確底線型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" }
     ],
-    "insight": "針對該人際溝通問題的心理學與高情商眉角說明"
+    "insight": "一句簡短說明，解釋話術的溝通策略"
   },
   "thinkingLens": {
     "secondOrder": {
-      "firstOrder": "傳送此訊息後的眼前直接反應",
-      "secondOrder": "兩到三個月後的長遠骨牌連鎖效應"
+      "firstOrder": "一句話說明眼前效果",
+      "secondOrder": "一句話說明長期影響"
     },
     "preMortem": {
-      "risk": "這則訊息最可能踩雷的翻車點",
-      "prevention": "徹底避開此翻車點的關鍵策略"
+      "risk": "一句話指出最可能的風險",
+      "prevention": "一句話提供避險方法"
     },
     "firstPrinciples": {
-      "coreTruth": "此人際摩擦背後不可動搖的第一性原理底層真相"
+      "coreTruth": "一句話指出此情境的核心原則"
     }
   }
 }`;
@@ -1036,7 +1079,7 @@ Language: ENGLISH.`
           { role: "system", content: systemPrompt },
           { role: "user", content: rantText }
         ],
-        temperature: 0.8
+        temperature: 0.5
       })
     });
 
@@ -1057,12 +1100,7 @@ Language: ENGLISH.`
     currentTacticIndex = 0;
     renderTacticsTabs();
 
-    if (content.thinkingLens) {
-      renderThinkingLens(content.thinkingLens);
-    } else {
-      // Do not leave the previous request's analysis visible when this response omits it.
-      renderThinkingLens(null);
-    }
+    renderThinkingLens(completeThinkingLens(content.thinkingLens, rantText, isEn));
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
