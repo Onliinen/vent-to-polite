@@ -1,26 +1,25 @@
 /**
- * VentToPolite - 核心互動、雙語切換 (i18n) 與精準語意雙引擎邏輯
+ * VentToPolite - bilingual, browser-based scenario reply templates
  */
 
 const UI_STRINGS = {
   "zh-TW": {
     langBtn: "English",
-    brandBadge: "AI 雙引擎",
-    navSettingsLabel: "API 設定",
-    heroPill: "<span>🚀 2026 AI 創新專案</span><span>•</span><span>一個能分享給全世界的溝通神器</span>",
+    brandBadge: "中英雙語範本",
+    heroPill: "<span>🔥 快速回覆範本</span><span>•</span><span>免 API、開啟即用</span>",
     heroTitleInner: "內心",
     heroTitleFire: "暴躁發洩",
     heroTitleCross: " ✕ ",
     heroTitleOuter: "外在",
     heroTitleDiplomat: "體面求生",
-    heroSubtitle: "生活中充滿了說不出口的拒絕、難以啟齒的界線與莫名其妙的人際摩擦？<br>倒出你最真實的生氣大實話，AI 幫你<b>毒舌吐槽宣洩情緒</b>，同時產出<b>高情商、不撕破臉的完美應對話術</b>！",
+    heroSubtitle: "遇到讓人為難、委屈或抓狂的人際情境？<br>選擇常見案例或寫下幾句描述，範本會整理出<b>快速吐槽、柔和回覆與思考提示</b>。免 API 金鑰，直接使用。",
     presetLabel: "💡 常見人際情境參考：",
     inputAreaLabel: "傾倒你的原始真心話（生活中遇到的任何難題，毫無保留、自由開火）",
     rageLabel: "抓狂指數:",
     rantPlaceholder: "輸入任何讓你為難、憤怒、委屈，或是不知道該怎麼得體開口的生活／職場／社交難題...",
-    btnGenerateText: "啟動雙引擎翻譯",
-    btnGeneratingText: "雙引擎分析中...",
-    placeholderText: "點選上方的經典案例，或直接在框框輸入真心話，點擊「啟動雙引擎翻譯」！",
+    btnGenerateText: "快速產生回覆",
+    btnGeneratingText: "正在整理回覆...",
+    placeholderText: "點選上方的常見案例，或輸入情境後點擊「快速產生回覆」。結果由內建範本整理，不會呼叫 AI API。",
     roastTitleText: "毒舌解憂閣",
     comfortTitleText: "💡 心靈降溫小秘方：",
     diplomatTitleText: "高情商外交官",
@@ -36,40 +35,29 @@ const UI_STRINGS = {
     lensRiskPrefix: "潛在翻車點：",
     lensPreventionPrefix: "避坑策略：",
     lensCoreTruthPrefix: "核心本質：",
-    modalTitleText: "⚙️ API 串接設定 (可選)",
-    modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
-    modalHelpText: "未填寫時可使用常見情境範本與快速離線回覆；設定 API Key 可依你的描述產生更貼切的吐槽與回覆。",
-    modalEndpointLabel: "API Endpoint",
-    modalModelLabel: "Model Name",
-    modalSaveText: "儲存設定",
-    footerMainText: "VentToPolite 專案｜人機協同創新（Human-AI Collaboration Showcase）",
-    footerSubText: "依據開源原則構建 • 專題展示請遵守社群禮儀",
+    footerMainText: "VentToPolite｜中英雙語人際情境回覆範本",
+    footerSubText: "靜態網站 • 無需 API 金鑰 • 回覆由瀏覽器內建範本產生",
     toastCopied: "✅ 已複製高情商話術到剪貼簿！",
     toastEmpty: "⚠️ 請先輸入你的生氣真心話！",
-    toastDone: "✨ 雙面翻譯完成！",
-    toastLiveDone: "🚀 即時 AI 雙引擎生成成功！",
-    toastOffline: "ℹ️ 離線快速回覆：可直接使用或稍作修改；設定 AI API Key 可取得更貼近情境的版本。",
-    toastApiFailed: "⚠️ AI API 無法使用，已改用快速離線回覆；檢查 API 設定可取得更貼近情境的版本。",
-    toastSaved: "💾 設定已儲存！"
+    toastDone: "✨ 範本回覆已整理完成！"
   },
   "en": {
     langBtn: "繁體中文",
-    brandBadge: "Dual-Engine AI",
-    navSettingsLabel: "API Settings",
-    heroPill: "<span>🚀 2026 AI Innovation</span><span>•</span><span>A Shareable Diplomatic Tool</span>",
+    brandBadge: "Bilingual Templates",
+    heroPill: "<span>🔥 Quick Reply Templates</span><span>•</span><span>Online and API-free</span>",
     heroTitleInner: "Raw ",
     heroTitleFire: "Venting",
     heroTitleCross: " ✕ ",
     heroTitleOuter: "Civil ",
     heroTitleDiplomat: "Diplomacy",
-    heroSubtitle: "Struggling with awkward boundaries, unspoken friction, or frustrating demands in daily life?<br>Pour out your raw, unfiltered thoughts—AI gives you a <b>cathartic roast</b> to laugh it off, and <b>high-EQ drafts</b> to resolve conflicts without burning bridges!",
+    heroSubtitle: "Dealing with an awkward, unfair, or frustrating interaction?<br>Choose a common scenario or describe it briefly to get a <b>quick roast, softer replies, and thinking prompts</b> from built-in templates. No API key needed.",
     presetLabel: "💡 Common Scenarios for Reference:",
     inputAreaLabel: "Unfiltered Vent (Any real-life conflict or dilemma, no filter):",
     rageLabel: "Rage Level:",
     rantPlaceholder: "Enter any frustrating interaction, awkward boundary, unfair demand, or interpersonal problem you're dealing with...",
-    btnGenerateText: "Launch Dual-Engine Translation",
-    btnGeneratingText: "Analyzing with Dual Engines...",
-    placeholderText: "Click a scenario above or enter your thoughts, then click 'Launch Dual-Engine Translation'!",
+    btnGenerateText: "Generate Quick Replies",
+    btnGeneratingText: "Preparing replies...",
+    placeholderText: "Choose a common scenario or describe yours, then select 'Generate Quick Replies'. Replies come from built-in templates; no AI API is called.",
     roastTitleText: "Roast & Catharsis",
     comfortTitleText: "💡 De-escalation Tip:",
     diplomatTitleText: "Diplomatic Response",
@@ -85,21 +73,11 @@ const UI_STRINGS = {
     lensRiskPrefix: "Potential pitfall: ",
     lensPreventionPrefix: "Safeguard: ",
     lensCoreTruthPrefix: "Core Truth: ",
-    modalTitleText: "⚙️ API Settings (Optional)",
-    modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
-    modalHelpText: "Without a key, use common-scenario templates and quick offline replies. An API key gives you a more tailored roast and response.",
-    modalEndpointLabel: "API Endpoint",
-    modalModelLabel: "Model Name",
-    modalSaveText: "Save Settings",
-    footerMainText: "VentToPolite Project | Human-AI Collaboration Showcase",
-    footerSubText: "Built with Open Source Principles • Designed for Civil Communication",
+    footerMainText: "VentToPolite | Bilingual interpersonal reply templates",
+    footerSubText: "Static website • No API key • Replies are assembled from built-in browser templates",
     toastCopied: "✅ Copied message to clipboard!",
     toastEmpty: "⚠️ Please enter your thoughts first!",
-    toastDone: "✨ Dual translation completed!",
-    toastLiveDone: "🚀 Live AI generation succeeded!",
-    toastOffline: "ℹ️ Quick offline reply: use or tweak this draft. Add an AI API key for a more tailored version.",
-    toastApiFailed: "⚠️ The AI API is unavailable, so a quick offline reply was used. Check your API settings for a more tailored version.",
-    toastSaved: "💾 Settings saved!"
+    toastDone: "✨ Template replies are ready!"
   }
 };
 
@@ -163,20 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 彈窗
-  const btnSettings = document.getElementById("btnSettings");
-  const settingsModal = document.getElementById("settingsModal");
-  const btnCloseModal = document.getElementById("btnCloseModal");
-  const btnSaveSettings = document.getElementById("btnSaveSettings");
-  const apiKeyInput = document.getElementById("apiKeyInput");
-  const apiEndpointInput = document.getElementById("apiEndpointInput");
-  const apiModelInput = document.getElementById("apiModelInput");
   const toast = document.getElementById("toast");
 
-  // 載入 API 設定
-  if (apiKeyInput) apiKeyInput.value = localStorage.getItem("vent_api_key") || "";
-  if (apiEndpointInput) apiEndpointInput.value = localStorage.getItem("vent_api_endpoint") || "https://api.openai.com/v1";
-  if (apiModelInput) apiModelInput.value = localStorage.getItem("vent_api_model") || "gpt-4o-mini";
 
   // 切換語言
   function applyLanguage(lang) {
@@ -186,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     langLabel.textContent = strings.langBtn;
     document.getElementById("brandBadge").textContent = strings.brandBadge;
-    document.getElementById("navSettingsLabel").textContent = strings.navSettingsLabel;
     document.getElementById("heroPill").innerHTML = strings.heroPill;
     document.getElementById("heroTitleInner").textContent = strings.heroTitleInner;
     document.getElementById("heroTitleFire").textContent = strings.heroTitleFire;
@@ -218,12 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lensPreventionPrefix) lensPreventionPrefix.textContent = strings.lensPreventionPrefix;
     if (lensCoreTruthPrefix) lensCoreTruthPrefix.textContent = strings.lensCoreTruthPrefix;
 
-    document.getElementById("modalTitleText").textContent = strings.modalTitleText;
-    document.getElementById("modalApiKeyLabel").textContent = strings.modalApiKeyLabel;
-    document.getElementById("modalHelpText").textContent = strings.modalHelpText;
-    document.getElementById("modalEndpointLabel").textContent = strings.modalEndpointLabel;
-    document.getElementById("modalModelLabel").textContent = strings.modalModelLabel;
-    document.getElementById("modalSaveText").textContent = strings.modalSaveText;
     document.getElementById("footerMainText").textContent = strings.footerMainText;
     document.getElementById("footerSubText").textContent = strings.footerSubText;
 
@@ -462,22 +421,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const apiKey = localStorage.getItem("vent_api_key");
-
     btnGenerate.disabled = true;
     btnGenerateText.textContent = UI_STRINGS[currentLang].btnGeneratingText;
 
     try {
-      if (apiKey) {
-        await callLiveLLM(text, apiKey);
-      } else {
-        await generateOfflineIntelligent(text);
-        showToast(UI_STRINGS[currentLang].toastOffline);
-      }
-    } catch (err) {
-      console.warn("API Call fallback:", err);
       await generateOfflineIntelligent(text);
-      showToast(UI_STRINGS[currentLang].toastApiFailed);
+    } catch (err) {
+      console.error("Template generation failed:", err);
+      showToast(UI_STRINGS[currentLang].toastDone);
     } finally {
       btnGenerate.disabled = false;
       btnGenerateText.textContent = UI_STRINGS[currentLang].btnGenerateText;
@@ -500,8 +451,6 @@ document.addEventListener("DOMContentLoaded", () => {
    * unknown situations receive a short general draft rather than a false exact match.
    */
   async function generateOfflineIntelligent(text) {
-    await new Promise(r => setTimeout(r, 600));
-
     const lower = text.toLowerCase();
     const isEn = currentLang === "en";
 
@@ -1544,101 +1493,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showToast(UI_STRINGS[currentLang].toastDone);
   }
 
-  // 即時呼叫 LLM (針對問題 100% 精準對齊 + 思維模型深度推演)
-  async function callLiveLLM(rantText, apiKey) {
-    const endpoint = localStorage.getItem("vent_api_endpoint") || "https://api.openai.com/v1";
-    const model = localStorage.getItem("vent_api_model") || "gpt-4o-mini";
-    const isEn = currentLang === "en";
-
-    const systemPrompt = isEn 
-      ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine), powered by high-order cognitive models.
-CRITICAL RULES: The user input is their current interpersonal problem. Treat it as the only request; this API call has no prior-question context. Do not reuse a prior answer. Use a concrete detail from this input in the roast and replies. Keep the output quick, concise, and immediately useful. Do not ask follow-up questions or demand more detail; when the input is brief, make a reasonable low-risk assumption and give adaptable wording without inventing specific facts. Never force the problem into a workplace scenario unless it is about work.
-
-Return valid JSON with:
-1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (a witty, situation-specific roast in 1-2 short sentences, max 45 words), comfortTip (one practical sentence) }.
-2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "short label", text: "a concise, ready-to-send reply for this situation" }, { type: "Gentle Boundary", tag: "short label", text: "..." }, { type: "Firm Standard", tag: "short label", text: "..." } ], insight: "one concise sentence explaining the approach" }.
-3. thinkingLens: {
-  secondOrder: { firstOrder: "one short sentence on the immediate effect", secondOrder: "one short sentence on the longer-term effect" },
-  preMortem: { risk: "one short likely failure mode", prevention: "one short prevention tip" },
-  firstPrinciples: { coreTruth: "one short fundamental principle for this situation" }
-}.
-Language: ENGLISH.`
-      : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理，並具備頂級高階思維推演能力。
-重要準則：這次使用者輸入就是目前唯一要處理的人際問題；API 不會收到上一題的內容，不得沿用上一題答案。吐槽與回覆都要帶到這次輸入的具體細節。回答要簡短、快速、可直接使用，不要追問或要求補充情境；輸入很短時，採取低風險的合理理解，給出可自行微調的話術，不可編造具體事實。除非使用者提到工作，否則不可硬套職場情境。
-
-請嚴格返回 JSON 格式：
-{
-  "roast": {
-    "tagTitle": "四字至六字趣味標籤",
-    "stars": "★★★★☆",
-    "comment": "一至兩句、約80字內，針對具體情境的幽默吐槽",
-    "comfortTip": "一句實用安慰"
-  },
-  "diplomacy": {
-    "tactics": [
-      { "type": "幽默調侃型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" },
-      { "type": "溫和直白型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" },
-      { "type": "明確底線型", "tag": "簡短標籤", "text": "簡短、可直接傳送且符合情境的話術" }
-    ],
-    "insight": "一句簡短說明，解釋話術的溝通策略"
-  },
-  "thinkingLens": {
-    "secondOrder": {
-      "firstOrder": "一句話說明眼前效果",
-      "secondOrder": "一句話說明長期影響"
-    },
-    "preMortem": {
-      "risk": "一句話指出最可能的風險",
-      "prevention": "一句話提供避險方法"
-    },
-    "firstPrinciples": {
-      "coreTruth": "一句話指出此情境的核心原則"
-    }
-  }
-}`;
-
-    const res = await fetch(`${endpoint.replace(/\/$/, "")}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: model,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: rantText }
-        ],
-        temperature: 0.5
-      })
-    });
-
-    if (!res.ok) {
-      throw new Error(`API HTTP ${res.status}`);
-    }
-
-    const data = await res.json();
-    const content = JSON.parse(data.choices[0].message.content);
-
-    roastTag.textContent = content.roast.tagTitle;
-    roastStars.textContent = content.roast.stars;
-    roastContent.textContent = content.roast.comment;
-    comfortContent.textContent = content.roast.comfortTip;
-
-    currentTactics = content.diplomacy.tactics;
-    insightContent.textContent = content.diplomacy.insight;
-    currentTacticIndex = 0;
-    renderTacticsTabs();
-
-    renderThinkingLens(completeThinkingLens(content.thinkingLens, rantText, isEn));
-
-    placeholderState.style.display = "none";
-    resultsContainer.style.display = "grid";
-    resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    showToast(UI_STRINGS[currentLang].toastLiveDone);
-  }
-
   btnLangToggle.addEventListener("click", () => {
     const newLang = currentLang === "zh-TW" ? "en" : "zh-TW";
     applyLanguage(newLang);
@@ -1651,27 +1505,7 @@ Language: ENGLISH.`
     });
   });
 
-  if (btnSettings && settingsModal) {
-    btnSettings.addEventListener("click", () => {
-      settingsModal.classList.add("active");
-    });
 
-    btnCloseModal.addEventListener("click", () => {
-      settingsModal.classList.remove("active");
-    });
-
-    settingsModal.addEventListener("click", (e) => {
-      if (e.target === settingsModal) settingsModal.classList.remove("active");
-    });
-
-    btnSaveSettings.addEventListener("click", () => {
-      localStorage.setItem("vent_api_key", apiKeyInput.value.trim());
-      localStorage.setItem("vent_api_endpoint", apiEndpointInput.value.trim());
-      localStorage.setItem("vent_api_model", apiModelInput.value.trim());
-      settingsModal.classList.remove("active");
-      showToast(UI_STRINGS[currentLang].toastSaved);
-    });
-  }
 
   applyLanguage(currentLang);
   switchCategory("friends");

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentToPolite｜發洩解憂所 ✕ 高情商溝通翻譯機 (Dual-Engine Vent & Diplomat)</title>
-  <meta name="description" content="AI 雙引擎：內心暴躁發洩 ✕ 外在體面求生 (Raw Venting & Diplomatic Communication)">
+  <title>VentToPolite｜快速回覆範本 (Bilingual Quick Reply Templates)</title>
+  <meta name="description" content="中英雙語人際情境回覆範本：快速吐槽、柔和回覆與思考提示。免 API 金鑰，開啟即用。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
       <a href="#" class="brand-logo">
         <span class="brand-icon">🔥💬</span>
         <span>VentToPolite</span>
-        <span id="brandBadge" class="brand-badge">AI 雙引擎</span>
+        <span id="brandBadge" class="brand-badge">中英雙語範本</span>
       </a>
 
       <div class="nav-actions">
@@ -28,11 +28,6 @@
           <span id="langLabel">English</span>
         </button>
 
-        <!-- API 設定按鈕 -->
-        <button id="btnSettings" class="btn-icon" title="設定 API Key (可選)">
-          <span>⚙️</span>
-          <span id="navSettingsLabel">API 設定</span>
-        </button>
       </div>
     </div>
   </header>
@@ -43,9 +38,9 @@
     <!-- Hero Header -->
     <section class="hero-header">
       <div id="heroPill" class="hero-pill">
-        <span>🚀 2026 AI 創新專案</span>
+        <span>🔥 快速回覆範本</span>
         <span>•</span>
-        <span>一個能分享給全世界的溝通神器</span>
+        <span>免 API、開啟即用</span>
       </div>
       <h1 class="hero-title">
         <span id="heroTitleInner">內心</span><span id="heroTitleFire" class="gradient-fire">暴躁發洩</span> 
@@ -54,7 +49,7 @@
       </h1>
       <p id="heroSubtitle" class="hero-subtitle">
         生活中充滿了說不出口的拒絕、難以啟齒的界線與莫名其妙的人際摩擦？<br>
-        倒出你最真實的生氣大實話，AI 幫你<b>毒舌吐槽宣洩情緒</b>，同時產出<b>高情商、不撕破臉的完美應對話術</b>！
+        選擇常見案例或寫下幾句描述，範本會整理出<b>快速吐槽、柔和回覆與思考提示</b>。免 API 金鑰，直接使用。
       </p>
     </section>
 
@@ -115,7 +110,7 @@
         <span id="charCount" class="char-counter">0 字</span>
         <button id="btnGenerate" class="btn-generate">
           <span class="brand-icon">⚡</span>
-          <span id="btnGenerateText">啟動雙引擎翻譯</span>
+          <span id="btnGenerateText">快速產生回覆</span>
         </button>
       </div>
     </section>
@@ -123,7 +118,7 @@
     <!-- 空白引導狀態 -->
     <div id="placeholderState" class="placeholder-state">
       <div class="placeholder-icon">🔮</div>
-      <p id="placeholderText">點選上方的經典案例，或直接在框框輸入真心話，點擊「啟動雙引擎翻譯」！</p>
+      <p id="placeholderText">點選上方的經典案例，或直接在框框輸入真心話，點擊「快速產生回覆」！</p>
     </div>
 
     <!-- 雙面產出結果網格 -->
@@ -236,48 +231,16 @@
 
   </main>
 
-  <!-- API 設定 Modal 彈窗 -->
-  <div id="settingsModal" class="modal-overlay">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="modalTitleText" class="modal-title">⚙️ API 串接設定 (可選)</h3>
-        <button id="btnCloseModal" class="btn-close">&times;</button>
-      </div>
-
-      <div class="form-group">
-        <label id="modalApiKeyLabel" class="form-label" for="apiKeyInput">API Key (OpenAI / DeepSeek / Gemini)</label>
-        <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-...">
-        <p id="modalHelpText" class="form-help">未填寫時可使用常見情境範本與快速離線回覆；設定 API Key 可依你的描述產生更貼切的吐槽與回覆。</p>
-      </div>
-
-      <div class="form-group">
-        <label id="modalEndpointLabel" class="form-label" for="apiEndpointInput">API Endpoint</label>
-        <input type="text" id="apiEndpointInput" class="form-input" value="https://api.openai.com/v1">
-      </div>
-
-      <div class="form-group">
-        <label id="modalModelLabel" class="form-label" for="apiModelInput">Model Name</label>
-        <input type="text" id="apiModelInput" class="form-input" value="gpt-4o-mini">
-      </div>
-
-      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem;">
-        <button id="btnSaveSettings" class="btn-generate" style="padding: 0.6rem 1.4rem; font-size: 0.9rem;">
-          <span id="modalSaveText">儲存設定</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast 訊息 -->
   <div id="toast" class="toast">已複製到剪貼簿！</div>
 
   <!-- 頁尾 -->
   <footer class="footer">
-    <p id="footerMainText">VentToPolite 專案｜人機協同創新（Human-AI Collaboration Showcase）</p>
-    <p id="footerSubText" style="margin-top: 0.3rem; opacity: 0.7;">依據開源原則構建 • 專題展示請遵守社群禮儀</p>
+    <p id="footerMainText">VentToPolite｜中英雙語人際情境回覆範本</p>
+    <p id="footerSubText" style="margin-top: 0.3rem; opacity: 0.7;">靜態網站 • 無需 API 金鑰 • 回覆由瀏覽器內建範本產生</p>
   </footer>
 
   <script src="presets.js?v=2"></script>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

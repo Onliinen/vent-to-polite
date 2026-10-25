@@ -1,152 +1,36 @@
-# 🔥 VentToPolite｜發洩解憂所 ✕ 高情商溝通翻譯機
+# VentToPolite｜快速回覆範本
 
-> **「內心暴躁發洩，外在體面求生。」**  
-> 一個能分享給每個人的日常人際溝通神器——倒出未經修飾的生氣大實話，AI 幫你毒舌吐槽宣洩情緒，同時產出高情商、不撕破臉的體面溝通對策！
+> **內心盡情吐槽，外在保留體面。**
+>
+> VentToPolite is a bilingual, static website that turns common interpersonal situations into a quick roast, practical de-escalation tip, ready-to-send reply options, and a Cognitive Thinking Lens.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![AI-Powered](https://img.shields.io/badge/AI-Dual--Engine-orange.svg)](#)
 [![Bilingual](https://img.shields.io/badge/Language-繁體中文%20%7C%20English-purple.svg)](#)
-[![Responsive Web](https://img.shields.io/badge/Platform-Web%20%2F%20Mobile-blue.svg)](#)
+[![Static Web](https://img.shields.io/badge/Platform-Static%20Web-blue.svg)](#)
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-brightgreen.svg)](https://onliinen.github.io/vent-to-polite/)
 
-👉 **[點此直接體驗線上 Live Demo（免安裝、點開即玩）](https://onliinen.github.io/vent-to-polite/)**
+👉 [Open the live app](https://onliinen.github.io/vent-to-polite/)
 
----
+## How it works
 
-## 💡 為什麼需要 VentToPolite？（痛點與核心理念）
+The site runs in the browser and uses its built-in bilingual scenario templates. It does not call an AI service, require an API key, send the situation to a server, or need a backend. Familiar situations are matched against curated phrases; other inputs receive a general draft that can be edited before sending.
 
-人際關係是日常生活中最普遍的壓力來源。無論是誰，都曾經歷過各種讓人委屈、抓狂卻又難以開口的困境：
-* **難以啟齒的界線**：被踩到底線卻不知道如何表達，怕顯得斤斤計較；
-* **說不出口的拒絕**：面對親友或同事不合理的要求，想拒絕卻怕撕破臉；
-* **溝通與協作摩擦**：面對推諉卸責、進度延誤、習慣差異，不知如何得體交涉；
-* **權力與地位落差**：面對長輩、主管、教授，明明有苦難言卻必須維持最高禮貌。
+Because this is a template tool rather than a language model, it cannot reliably understand every unusual or nuanced situation. For the closest match, choose a scenario chip or mention the concrete behavior and the relationship involved. The app also includes a rage meter, copyable reply styles, and a Cognitive Thinking Lens with second-order thinking, pre-mortem risks, and first-principles prompts.
 
-這時每個人都面臨兩難：
-1. **直接發飆開罵？** 破壞關係、在群體留下情緒化的標籤，代價高昂；
-2. **吞下去選擇隱忍？** 內耗嚴重、怒火中燒，對方依然故我，問題得不到解決。
+## Scenario coverage
 
-**VentToPolite 專為「解決所有人際難題」而生！透過 AI 雙引擎架構，同時兼顧「內在心理情緒的徹底釋放」與「外在人際現實的高情商解決方案」。**
+Built-in examples and phrase matching cover common friction across friends, work, school, shared living, and daily life. Topics include communication tone, time and cancellations, money, chores and noise, guests and shared items, boundaries, uneven work, deadlines, credit, family rules, and future plans. Both Traditional Chinese and English are supported.
 
----
+## Run or publish
 
-## ✨ 核心功能特色
+This is a static site. Open `index.html` in a browser, or publish the repository with GitHub Pages. No package install, API key, environment variable, or server is required.
 
-### 1. 🌡️ 即時怒氣計（Real-time Rage Meter）
-輸入文字時，演算法會根據用詞強度（如「氣死」、「憑什麼」、「到底」）、標點符號與長度，動態計算你的「抓狂指數（0% ~ 99%）」，視覺化呈現情緒波動。
+## Project files
 
-### 2. 🔥 毒舌解憂閣（Catharsis Engine）
-AI 化身為與你同仇敵愾的嘴砲隊友，給出：
-* **荒謬評級**（例如：`時空扭曲慣犯 ★★★★☆`）
-* **一針見血的黑色幽默短評**（精準吐槽對方的荒謬行為，讓使用者破涕為笑）
-* **心靈降溫小秘方**（轉念思考，提供情緒價值）
+- `index.html` — page structure and text
+- `style.css` — responsive visual design
+- `app.js` — bilingual template matching, output rendering, and interaction
+- `presets.js` — curated example scenarios and category data
 
-### 3. 💡 高情商外交官（Diplomacy Engine）
-AI 迅速切換為資深公關外交官，輸出 2~3 種**可直接發送的體面話術**：
-* **幽默調侃型**：適合朋友熟人，以半開玩笑討杯飲料的方式化解尷尬。
-* **溫柔直白型**：委婉但堅定地設定邊界，避免對方再次踩線。
-* **戰略主導型 / 職場專業型**：以流程與客觀事實自保，不留把柄。
-* **🧠 高情商心理學剖析**：每項對策附帶心理機制解析，教你為什麼這樣說最管用。
+## License
 
-### 4. 🔭 高階思維模型深度推演（Thinking Lens）
-不只給出「說什麼」，更深度推導「為什麼這麼說」與「後續會發生什麼」：
-* **🔄 二階思考（Second-Order Thinking）**：推演眼前反應與 2-3 個月後的長期連鎖骨牌效應，避免當下痛快卻造成長期後患；
-* **🛡️ 事前驗屍（Pre-Mortem Risk Check）**：預先找出此話術最容易被對方反嗆或踩雷的翻車點，並給出精準避坑指南；
-* **🎯 第一性原理（First Principles）**：剝離表象情緒干擾，回歸人際互動不可動搖的底層核心價值（如「時間自主權」、「健康界線維繫」）。
-
-### 5. 👥 四大全族群情境覆蓋
-* **朋友社交**（遲到、選擇障礙、粗口言語摩擦、借錢拖欠、已讀不回）
-* **職場工作**（臨時急件、甩鍋自保、需求反覆）
-* **校園學術**（搭便車組員、求教授加簽、成績複查）
-* **生活室友**（碗盤衛生、噪音干擾、公物使用）
-
-### 6. 🛡️ 雙軌容錯架構（零門檻即開即用）
-* **無金鑰模式**：常見情境可直接套用範本；中英雙語離線比對涵蓋溝通語氣、相處時間、帳單分攤、家事噪音、訪客與共用物品、臨時取消、界線、分工期限、功勞肯定、友情互動、家庭規則和未來規劃。其他輸入會得到引用原始描述的快速吐槽與柔和回覆，不需多輪追問。離線範本適合快速草擬，未配置 API 時不會假裝具備完整語意理解。
-* **即時 AI 模式**：支援在設定中輸入 OpenAI / Gemini / DeepSeek 等兼容 API Key，針對使用者描述即時生成更貼切的雙面回覆，保持單次輸入、快速作答。
-
-### 7. 🌐 全站雙語支援（Full Bilingual: 繁體中文 ✕ English）
-右上角提供一鍵語言切換按鈕，全站介面、情境案例、毒舌評語、高情商話術與思維模型均支援流暢的**繁體中文**與**道地英文（English）**，兼顧在地文化梗與國際化展示！
-
----
-
-## 🖥️ 介面預覽
-
-```text
-+-------------------------------------------------------------------+
-|  🔥💬 VentToPolite                                    [⚙️ API設定] |
-+-------------------------------------------------------------------+
-|                                                                   |
-|              內心暴躁發洩 ✕ 外在體面求生                              |
-|                                                                   |
-|   [ 👥 朋友社交 ]   [ 💼 職場工作 ]   [ 🎓 校園學術 ]   [ 🏠 生活室友 ]  |
-|                                                                   |
-|   🔥 經典案例： [ 朋友每次遲到 10 分鐘 ]  [ 組員裝死擺爛 ] ...           |
-|                                                                   |
-|   +-----------------------------------------------------------+   |
-|   | ✍️ 傾倒你的原始真心話...                     [抓狂指數: 82%] |   |
-|   | 「每次約都遲到 10 分鐘，我到底要站在路邊吹風吹多久...」        |   |
-|   |                                       [ ⚡ 啟動雙引擎翻譯 ] |   |
-|   +-----------------------------------------------------------+   |
-|                                                                   |
-|   +---------------------------+   +---------------------------+   |
-|   | 🔥 毒舌解憂閣              |   | 💡 高情商外交官           |   |
-|   | 標籤: 時空扭曲慣犯 ★★★★☆   |   | [幽默調侃] [溫柔直白] ... |   |
-|   |                           |   |                           |   |
-|   | 「他的快到了是指剛起床穿襪  |   | 「我已經在現場把冷氣吹好  |   |
-|   |   子，手錶比樹懶還悠哉...」|   |   吹滿了！再不出現精神損失  |   |
-|   |                           |   |   費是一杯五十嵐喔～」     |   |
-|   | 💡 心靈降溫：待會凹他一杯飲料 |   |              [📋 一鍵複製] |   |
-|   |                           |   | 🧠 心理學：幽默索賠給足台階 |   |
-|   +---------------------------+   +---------------------------+   |
-+-------------------------------------------------------------------+
-```
-
----
-
-## 🚀 快速上手（Quick Start）
-
-本專案採用純原生現代 Web 技術（HTML5、CSS3、Vanilla JS）打造，**無需安裝 Node.js、無需編譯環境**，點開即用！
-
-### 本機直接執行
-1. Clone 本倉庫：
-   ```bash
-   git clone https://github.com/<your-username>/vent-to-polite.git
-   cd vent-to-polite
-   ```
-2. 直接用任何瀏覽器雙擊開啟 `index.html` 即可使用。
-3. （可選）使用本機靜態伺服器預覽：
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   # 開啟 http://localhost:8000
-   ```
-
-### 部署至 GitHub Pages（1 分鐘免費用戶上線）
-1. 將專案推上你的 GitHub Repo。
-2. 進入 Repo 的 **Settings** $\rightarrow$ **Pages**。
-3. 在 **Branch** 選擇 `main`，資料夾選擇 `/ (root)`，按下 **Save**。
-4. 即可獲得專屬的免費線上展示網址（如：`https://<username>.github.io/vent-to-polite/`）！
-
----
-
-## 🤖 人機協作歷程（How with AI）
-
-本專案為探索「生成式 AI 與日常心理機制結合」的原創人機協作成果：
-1. **雙重 System Prompt 設計**：
-   - *Engine A (Roast)*：設定高溫度係數（Temperature = 0.85），要求跳脫說教模式，運用黑色幽默與誇飾修辭引發共鳴。
-   - *Engine B (Diplomat)*：設定理性溫度係數（Temperature = 0.4），遵循哈佛談判專案溝通原則（區分人與事、聚焦利益而非立場）。
-2. **Prompt 安全邊界調校**：
-   - 允許使用者輸入憤怒髒字與情緒性字眼（作為發洩入口），但在輸出端建立嚴格的公關安全防線，確保產出的郵件信件合法、專業、具建設性。
-
----
-
-## 🔮 未來展望（Next Steps）
-
-- [ ] **支援 LINE / Slack 機器人**：直接在群組或私訊中轉發抱怨，即時私訊回傳得體建議。
-- [ ] **語音直接開噴（Speech-to-Text）**：支援長按錄音直接大罵，AI 自動轉文字並翻譯。
-- [ ] **多語系跨文化商務溝通**：支援英文、日文敬語（Keigo）等嚴苛文化的公關轉換。
-
----
-
-## 📄 開源授權
-
-本專案基於 [MIT License](LICENSE) 條款開源。歡迎自由 Fork、學習與改進！
+MIT. See [LICENSE](LICENSE).
