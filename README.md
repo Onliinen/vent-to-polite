@@ -18,7 +18,7 @@ Because this is a template tool rather than a language model, it cannot reliably
 
 ## Scenario coverage
 
-Built-in examples and phrase matching cover common friction across friends, work, school, shared living, and daily life. Topics include communication tone, time and cancellations, money, chores and noise, guests and shared items, boundaries, uneven work, deadlines, credit, after-hours work messages, public email call-outs, household planning load, holiday scheduling pressure, and being pulled into friends’ disputes. Both Traditional Chinese and English scenario phrases are supported, regardless of the selected reply language.
+Built-in examples and phrase matching cover common friction across friends, work, school, shared living, and daily life. Topics include communication tone, time and cancellations, money, chores and noise, guests and shared items, boundaries, uneven work, deadlines, credit, after-hours work messages, public email call-outs, household planning load, holiday scheduling pressure, being pulled into friends’ disputes, unwanted teasing, declining social plans, social irritation, and post-social fatigue. Both Traditional Chinese and English scenario phrases are supported, regardless of the selected reply language.
 
 ## Run or publish
 

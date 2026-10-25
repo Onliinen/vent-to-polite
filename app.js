@@ -585,8 +585,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "hurtful_teasing",
         keywords: {
-          en: ["body shaming", "comments on my body", "comments on my appearance", "making fun of my body", "keeps teasing me about", "jokes at my expense", "makes fun of my appearance"],
-          zh: ["拿我的身材開玩笑", "評論我的外表", "一直笑我的外表", "拿我外表開玩笑", "一直拿我開玩笑", "開我的身材玩笑", "嘲笑我的外表"]
+          en: ["body shaming", "comments on my body", "comments on my appearance", "making fun of my body", "keeps teasing me about my body", "makes fun of my appearance"],
+          zh: ["拿我的身材開玩笑", "評論我的外表", "一直笑我的外表", "拿我外表開玩笑", "拿我的外表開玩笑", "開我的身材玩笑", "嘲笑我的外表"]
         },
         zh: {
           tag: "玩笑界線測試員",
@@ -1055,6 +1055,106 @@ document.addEventListener("DOMContentLoaded", () => {
           soft: "“I know you want to work this out, but I’m not the best person to pass messages between you. I can help you sort out what you want to say, though.”",
           firm: "“I’m not going to relay messages or take sides. Please talk directly with the person involved; if you both agree, I can sit in for a conversation.”",
           insight: "Decline the message relay while offering a conversation everyone agrees to, so you can be supportive without owning their communication."
+        }
+      },
+      {
+        id: "friend_teasing_annoyance",
+        keywords: {
+          en: ["friend's teasing annoys me", "my friend's teasing makes me feel irritated", "friends teasing makes me feel annoyed", "my friend keeps teasing me", "friend keeps making jokes about me", "friend keeps making fun of me", "jokes at my expense", "friends keep teasing me", "their teasing is getting on my nerves"],
+          zh: ["朋友的調侃讓我感到很煩躁", "朋友的調侃讓我感到很煩", "朋友的調侃讓我很煩躁", "朋友的調侃讓我很煩", "朋友一直調侃我", "朋友一直拿我開玩笑", "朋友開玩笑讓我不舒服", "朋友的玩笑很煩", "被朋友嘲笑很煩"]
+        },
+        zh: {
+          tag: "玩笑音量太大",
+          roast: "對方把調侃當成友情快捷鍵，卻忘了接收的人也有音量和耐心上限。",
+          comfort: "覺得煩不代表你開不起玩笑；你可以指出哪些玩笑讓你不舒服。",
+          playful: "「這個梗我今天真的笑不出來，先換個話題吧😅」",
+          soft: "「我知道你可能是想開玩笑，但最近這種調侃讓我有點煩躁。可以先不要拿這件事說笑嗎？」",
+          firm: "「我不喜歡被這樣調侃，請停止。如果又繼續，我會先離開／結束這段對話。」",
+          insight: "直接描述玩笑的影響並說明希望停止的內容，比假裝不在意或反過來攻擊對方更能讓界線清楚。"
+        },
+        en: {
+          tag: "Joke Volume Too High",
+          roast: "Your friend treats teasing like a friendship shortcut and forgot the person receiving it has a limit on patience and volume.",
+          comfort: "Being annoyed doesn’t mean you can’t take a joke; you can name which jokes don’t feel good.",
+          playful: "“That one’s not landing for me today—can we switch topics? 😅”",
+          soft: "“I know you may mean it as a joke, but this kind of teasing has been getting on my nerves. Could you stop joking about it for now?”",
+          firm: "“I don’t like being teased about this. Please stop. If it continues, I’m going to leave/end the conversation.”",
+          insight: "Name the effect of the joke and the change you want instead of pretending it is fine or attacking the person back."
+        }
+      },
+      {
+        id: "need_social_break",
+        keywords: {
+          en: ["I don't want to socialize", "I do not want to socialize", "don't feel like socializing", "do not feel like socializing", "don't want to hang out with anyone", "need to be alone tonight", "not up for plans"],
+          zh: ["我不想社交", "不想社交", "不想跟人出去", "不想和人出去", "不想參加聚會", "今天不想見人", "只想自己待著"]
+        },
+        zh: {
+          tag: "社交邀請先暫停",
+          roast: "你的社交電量顯示低電量，今天不必硬開省電模式還假裝滿格。",
+          comfort: "你可以拒絕邀約而不必編理由；想獨處是合理的選擇。",
+          playful: "「我今天先跟社交行程請個假，改天電量回來再約你😅」",
+          soft: "「謝謝你邀我，但我今天想自己休息，就先不去了。希望你們玩得開心！」",
+          firm: "「我今天不參加，也不想再被勸了。等我有空、想出門時會再聯絡你。」",
+          insight: "簡短拒絕並清楚表達是否想改約，可以保留選擇權，也避免不必要的解釋。"
+        },
+        en: {
+          tag: "Social Plans on Pause",
+          roast: "Your social battery is flashing low; you don’t have to pretend it’s fully charged while running on power-saving mode.",
+          comfort: "You can decline an invitation without making up a reason. Wanting time alone is valid.",
+          playful: "“I’m taking a little vacation from plans today—let’s hang out when my social battery is back 😅”",
+          soft: "“Thanks for inviting me, but I’m going to take some time to myself today. I hope you have a great time!”",
+          firm: "“I’m not coming today, and I don’t want to be talked into it. I’ll reach out when I’m free and feel like going out.”",
+          insight: "A brief no, with or without a reschedule, protects your choice without requiring a long explanation."
+        }
+      },
+      {
+        id: "socializing_feels_annoying",
+        keywords: {
+          en: ["socializing feels annoying", "socializing is annoying", "social interaction is annoying", "people are getting on my nerves", "dealing with people is exhausting and annoying", "I find socializing irritating"],
+          zh: ["我覺得社交很煩", "社交很煩", "社交讓我覺得很煩", "跟人相處很煩", "人際互動讓我很煩", "最近覺得跟人說話很煩"]
+        },
+        zh: {
+          tag: "人際通知太密集",
+          roast: "最近每段對話都像跳出通知，難怪你想把整個人際系統先切成勿擾模式。",
+          comfort: "覺得社交很煩時，可以先減少刺激、縮短行程，看看自己需要的是休息還是更合適的相處方式。",
+          playful: "「我最近的人際通知有點爆量，先讓我切到勿擾模式一下😅」",
+          soft: "「我最近比較需要安靜一點，可能會少參加一些活動。不是針對你，我想先把自己的步調調整好。」",
+          firm: "「我現在不想繼續這個聚會／話題，先到這裡。請尊重我想休息一下的決定。」",
+          insight: "先降低當下的社交負荷，再分辨是特定活動、互動方式還是整體疲勞讓你煩躁，不必立刻做出長期判斷。"
+        },
+        en: {
+          tag: "Too Many People Notifications",
+          roast: "Lately every conversation feels like another pop-up notification. No wonder you want to put your whole social system on Do Not Disturb.",
+          comfort: "When socializing feels annoying, try fewer demands or shorter plans and notice whether you need rest or a different kind of interaction.",
+          playful: "“My people-notifications are a little overloaded lately—putting myself on Do Not Disturb for a bit 😅”",
+          soft: "“I’ve been needing more quiet lately, so I may join fewer plans for a while. It’s not about you; I’m trying to find a pace that works for me.”",
+          firm: "“I don’t want to continue this gathering/topic right now. I’m going to stop here; please respect that I need a break.”",
+          insight: "Lower the immediate social load, then notice whether a particular activity, interaction style, or general fatigue is driving the irritation before making a long-term judgment."
+        }
+      },
+      {
+        id: "socializing_feels_tiring",
+        keywords: {
+          en: ["socializing feels tiring", "socializing is exhausting", "socializing is draining", "feel drained after socializing", "being around people wears me out", "social events take all my energy"],
+          zh: ["我覺得社交很累", "社交很累", "社交讓我好累", "跟人相處很耗能", "社交很耗能", "每次社交後都很累", "聚會讓我精疲力盡"]
+        },
+        zh: {
+          tag: "社交後需要充電",
+          roast: "聚會結束後別人續攤，你的靈魂已經先一步回家插上充電線。",
+          comfort: "社交後需要獨處恢復很正常；安排休息時間不代表你不重視朋友。",
+          playful: "「今天的社交電量用完啦，我先回去跟沙發和充電器團聚，下次再約😅」",
+          soft: "「我很想和你保持聯絡，但最近社交後需要比較多時間恢復。我們可以約短一點，或改成比較安靜的活動嗎？」",
+          firm: "「我今天會先休息，不參加續攤。之後邀約我會看自己的時間和精力再決定。」",
+          insight: "在行程前後預留休息、縮短聚會或選擇安靜活動，可以讓社交更符合自己的精力，而不必完全切斷關係。"
+        },
+        en: {
+          tag: "Post-Social Recharge Needed",
+          roast: "Everyone else is planning the after-party while your soul has already gone home to plug itself in.",
+          comfort: "Needing solo recovery after socializing is normal; making room to rest doesn’t mean you don’t value your friends.",
+          playful: "“My social battery is out for today—I’m heading home to reunite with my couch and charger. Next time 😅”",
+          soft: "“I want to stay in touch, but I’ve been needing more time to recharge after social plans. Could we keep it shorter or choose something quieter?”",
+          firm: "“I’m going to rest tonight, so I’m skipping the after-party. I’ll decide about future plans based on my time and energy.”",
+          insight: "Build in recovery time, shorten plans, or choose quieter activities so socializing fits your energy without cutting off connection entirely."
         }
       },
       {
