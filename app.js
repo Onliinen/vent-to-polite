@@ -496,14 +496,245 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /**
-   * 智慧語意離線引擎：依據使用者實際輸入的問題類型，進行情境分類與客製化應對
-   * 徹底杜絕非工作情境卻給出工作 Milestone 答案的 bug！
+   * Key-free quick replies: route familiar phrases to bilingual scenario templates;
+   * unknown situations receive a short general draft rather than a false exact match.
    */
   async function generateOfflineIntelligent(text) {
     await new Promise(r => setTimeout(r, 600));
 
     const lower = text.toLowerCase();
     const isEn = currentLang === "en";
+
+    // Extra bilingual offline scenarios for short, everyday descriptions.
+    // Keep triggers phrase-based so incidental words do not hijack unrelated inputs.
+    const quickScenarios = [
+      {
+        id: "last_minute_cancel",
+        keywords: {
+          en: ["cancelled last minute", "canceled last minute", "cancel on me", "bailed on me", "flaked on me", "stood me up", "changed plans last minute"],
+          zh: ["臨時取消", "臨時放鳥", "臨時爽約", "突然取消約", "說改就改", "約好又不來"]
+        },
+        zh: {
+          tag: "臨時變卦大師",
+          roast: "行程說取消就取消，彷彿你的時間是可以無限退訂的免費試用。難怪耐性都快被排進取消名單了。",
+          comfort: "你可以體諒突發狀況，也可以要求對方提早告知。",
+          playful: "「嗨，臨時改行程我有點措手不及，下次如果有變動可以早點跟我說嗎？我好安排時間～」",
+          soft: "「我知道有時候會有突發狀況，不過臨時取消會影響我的安排。下次有變動時，麻煩早點告訴我，好嗎？」",
+          firm: "「如果行程又臨時取消，我之後會先安排自己的事，等時間確定再約。」",
+          insight: "用具體影響和下次的安排來表達，比爭論誰比較重視約定更容易改善狀況。"
+        },
+        en: {
+          tag: "Last-Minute Plot Twist",
+          roast: "Plans get canceled so suddenly your calendar needs a seat belt. Your time is not a free trial people can keep restarting.",
+          comfort: "You can understand emergencies and still ask for earlier notice.",
+          playful: "“Hey, that last-minute change caught me off guard 😅 Could you give me a heads-up sooner next time so I can plan?”",
+          soft: "“I understand things come up, but a last-minute cancellation affects my plans. Please let me know earlier if something changes.”",
+          firm: "“If plans change at the last minute again, I’ll make my own plans first and we can meet when the time is confirmed.”",
+          insight: "Naming the impact and agreeing on earlier notice keeps the conversation practical instead of turning it into a test of who cares more."
+        }
+      },
+      {
+        id: "interrupted",
+        keywords: {
+          en: ["talks over me", "talked over me", "keeps interrupting", "interrupted me", "won't let me finish", "doesn't let me finish", "cuts me off"],
+          zh: ["一直打斷我", "打斷我說話", "不讓我說完", "插嘴", "搶話", "都不聽我說"]
+        },
+        zh: {
+          tag: "搶話搶到超速",
+          roast: "對方接話的速度快到像在參加搶答比賽，只差沒按鈴。你的句子還沒落地，就被迫提早下班。",
+          comfort: "把話說完是基本的互相尊重，不是你在搶舞台。",
+          playful: "「等我把這句講完再換你，今天的搶答鈴先借我保管一下😄」",
+          soft: "「我想先把這個想法說完，等一下也想聽你的看法，可以嗎？」",
+          firm: "「我剛剛還沒說完。請先讓我講完，我也會留時間聽你說。」",
+          insight: "當下用簡短、明確的提示拿回發言空間，比事後累積不滿更容易讓對方調整。"
+        },
+        en: {
+          tag: "Conversation Speedrunner",
+          roast: "They jump in so fast the conversation feels like a buzzer round. Your sentence barely landed before it got sent home early.",
+          comfort: "Getting to finish a sentence is basic respect, not hogging the spotlight.",
+          playful: "“Hold that thought—let me finish this sentence before we start the buzzer round 😄”",
+          soft: "“I’d like to finish this thought, then I want to hear what you think. Is that okay?”",
+          firm: "“I wasn’t finished speaking. Please let me finish, and I’ll give you the same space.”",
+          insight: "A brief, calm cue in the moment restores your turn without turning the discussion into a fight about character."
+        }
+      },
+      {
+        id: "privacy_boundary",
+        keywords: {
+          en: ["went through my phone", "checked my phone", "read my messages", "looked at my private messages", "invaded my privacy", "asked really personal questions", "keeps asking personal questions"],
+          zh: ["翻我手機", "偷看我手機", "看我訊息", "偷看訊息", "侵犯隱私", "隱私界線", "一直問私事", "打聽私事"]
+        },
+        zh: {
+          tag: "隱私探測器過界",
+          roast: "對方把好奇心開到最大，卻忘了隱私不是公共展覽。你的手機和私事都沒有提供免費導覽。",
+          comfort: "親近不代表可以跳過你的同意；你有權決定哪些事要分享。",
+          playful: "「這題先列為私人珍藏，不開放參觀喔～下次先問我一下再看手機啦。」",
+          soft: "「我知道你可能只是好奇，但手機和這些私事對我來說比較私人。下次先問過我再看或聊，好嗎？」",
+          firm: "「請不要在沒有問我的情況下看手機或追問這些私事。這是我希望你尊重的界線。」",
+          insight: "把界線說成具體行為（先詢問、不直接查看），能讓對方清楚知道怎麼尊重你。"
+        },
+        en: {
+          tag: "Privacy Border Patrol",
+          roast: "Their curiosity has gone full documentary crew, forgetting your private life is not a public exhibit. Your phone does not come with a free tour.",
+          comfort: "Being close to someone does not replace asking for consent.",
+          playful: "“That one’s in the private collection—no tour today 😄 Please ask before checking my phone next time.”",
+          soft: "“I know you may just be curious, but my phone and personal life are private to me. Could you ask before looking or asking about them?”",
+          firm: "“Please don’t look through my phone or press me about private matters without asking. I need you to respect that boundary.”",
+          insight: "Naming the specific behavior you want changed makes the privacy boundary clear and actionable."
+        }
+      },
+      {
+        id: "unfair_requests",
+        keywords: {
+          en: ["keeps asking me to do", "always asks me for favors", "keeps dumping work on me", "unfair workload", "taking advantage of me", "expects me to do everything", "keeps making me cover"],
+          zh: ["一直叫我幫忙", "一直要我幫忙", "都把工作丟給我", "把事情推給我做", "工作都丟給我", "一直使喚我", "不合理的要求", "都要我代班"]
+        },
+        zh: {
+          tag: "免費支援部門主管",
+          roast: "對方把你的行程當成無限容量的共享雲端，事情一有空位就往裡丟。你不是全年無休的客服中心。",
+          comfort: "拒絕不合理的要求，不等於你不友善；你也需要保留自己的時間。",
+          playful: "「我的免費支援時數今天用完啦😅 這件事你先自己處理，真的卡住我們再一起看。」",
+          soft: "「我現在手上也有自己的安排，這次沒辦法再接下來。之後如果要我幫忙，麻煩先確認我的時間。」",
+          firm: "「這件事不在我目前能承接的範圍，我這次不會接手。請重新安排負責人或優先順序。」",
+          insight: "清楚說明能不能接、需要什麼前提，比含糊答應後再累積怨氣更能建立公平分工。"
+        },
+        en: {
+          tag: "Unpaid Support Department",
+          roast: "They treat your calendar like unlimited shared storage and keep dropping tasks into it. You are not a 24/7 help desk.",
+          comfort: "Declining an unfair request does not make you unkind; your time matters too.",
+          playful: "“My free-support hours are all used up today 😅 You’ll need to handle this one; if you get stuck, we can take a quick look together.”",
+          soft: "“I have my own commitments right now, so I can’t take this on. Please check with me before assigning me something next time.”",
+          firm: "“This isn’t within what I can take on right now, so I won’t be owning it. Please reassign it or reset the priorities.”",
+          insight: "A clear yes-or-no and the conditions for future help create fairer expectations than agreeing and building resentment."
+        }
+      },
+      {
+        id: "credit_taken",
+        keywords: {
+          en: ["took credit for my work", "taking credit for my work", "stole my idea", "claimed my work", "presented my idea as theirs", "takes credit for everything"],
+          zh: ["搶我的功勞", "把我的功勞拿走", "把我的點子說成他的", "把我的成果說成他的", "冒領功勞", "搶功"]
+        },
+        zh: {
+          tag: "功勞搬運專員",
+          roast: "成果還沒冷卻，功勞就被搬到別人的名下，這手速不去參加接力賽太可惜了。",
+          comfort: "把自己的貢獻留下紀錄，是專業自保，不是小題大作。",
+          playful: "「剛剛那個點子我也有參與喔，幫它補上完整作者名單，免得功勞迷路😄」",
+          soft: "「剛才提到的成果有一部分是我負責的，我想把各自的貢獻說清楚，避免後續資訊有落差。」",
+          firm: "「請在後續的簡報／紀錄中註明這部分由我完成。相關草稿和時間紀錄我也會一併整理。」",
+          insight: "用文件、草稿或具體分工記錄來校正事實，比直接指控對方的人品更有說服力。"
+        },
+        en: {
+          tag: "Credit Relocation Expert",
+          roast: "The work barely cooled before the credit got relocated. That kind of speed belongs in a relay race, not a project recap.",
+          comfort: "Keeping a record of your contribution is professional self-protection, not petty behavior.",
+          playful: "“I contributed to that idea too—let’s add the full author list before the credit wanders off again 😄”",
+          soft: "“Part of that work was mine, and I’d like us to make each person’s contribution clear so the record is accurate.”",
+          firm: "“Please credit me for the portion I completed in the next update. I’ll share the drafts and work records so we can document it clearly.”",
+          insight: "Correct the record with specific evidence and ownership details instead of making the conversation about motives."
+        }
+      },
+      {
+        id: "hurtful_teasing",
+        keywords: {
+          en: ["body shaming", "comments on my body", "comments on my appearance", "making fun of my body", "keeps teasing me about", "jokes at my expense", "makes fun of my appearance"],
+          zh: ["拿我的身材開玩笑", "評論我的外表", "一直笑我的外表", "拿我外表開玩笑", "一直拿我開玩笑", "開我的身材玩笑", "嘲笑我的外表"]
+        },
+        zh: {
+          tag: "玩笑界線測試員",
+          roast: "這個笑話的笑點大概只剩講的人自己知道，聽的人卻被迫買單。不好笑的玩笑不會因為加個『開玩笑啦』就自動變好笑。",
+          comfort: "你不需要證明自己開得起玩笑，才能要求對方停止讓你不舒服的話。",
+          playful: "「這個梗我先不收喔，換個笑點比較有機會全場都笑😅」",
+          soft: "「我知道你可能是在開玩笑，但拿我的外表／身材說笑會讓我不舒服，可以不要再這樣嗎？」",
+          firm: "「我已經說過不喜歡這類評論，請停止拿我的外表或身材開玩笑。」",
+          insight: "指出哪類玩笑不舒服並直接提出停止要求，能避免對方把界線模糊成你是否幽默。"
+        },
+        en: {
+          tag: "Joke Boundary Tester",
+          roast: "The punchline may only exist in the speaker’s head; everyone else got handed the bill. Adding “just joking” doesn’t magically make it funny.",
+          comfort: "You don’t have to prove you can take a joke before asking someone to stop.",
+          playful: "“I’m going to pass on that joke—let’s find one the whole room can laugh at 😅”",
+          soft: "“I know you may mean it as a joke, but comments about my appearance/body make me uncomfortable. Could you stop?”",
+          firm: "“I’ve said I don’t like those comments. Please stop making jokes about my appearance or body.”",
+          insight: "Name the kind of joke and the change you want so the boundary cannot be dismissed as a debate about humor."
+        }
+      },
+      {
+        id: "gossip_secret",
+        keywords: {
+          en: ["shared my secret", "told everyone my secret", "spread a rumor about me", "spreading rumors about me", "gossiping about me", "shared my private information"],
+          zh: ["把我的秘密說出去", "把我的秘密告訴別人", "亂傳我的八卦", "散播謠言", "到處說我", "把我的私事說出去", "洩漏我的秘密"]
+        },
+        zh: {
+          tag: "八卦快遞超時配送",
+          roast: "別人的私事被打包成八卦到處寄送，這份好奇心真的很勤勞，尊重卻一路請假。",
+          comfort: "你可以要求對方停止轉傳，也可以重新決定哪些事要告訴他。",
+          playful: "「我的私事不用幫我做全網配送啦😅 這件事先到你這裡就好，別再轉傳了。」",
+          soft: "「我把這件事告訴你是因為信任你，不希望再被轉述給其他人。可以請你不要再分享嗎？」",
+          firm: "「請停止傳播我的私事／這個說法，也請更正你已經告訴的人。之後我會先保留私人資訊。」",
+          insight: "明確指出要停止什麼、需要如何補救，並調整未來分享範圍，能同時處理影響與信任。"
+        },
+        en: {
+          tag: "Gossip Express Courier",
+          roast: "Someone packed your private life into gossip and shipped it everywhere. Their curiosity is working overtime; respect apparently called in sick.",
+          comfort: "You can ask them to stop sharing it and choose what you trust them with next time.",
+          playful: "“My private life doesn’t need worldwide delivery 😅 Please let this one stop with you—don’t pass it on.”",
+          soft: "“I told you that because I trusted you, and I don’t want it shared with anyone else. Could you please stop repeating it?”",
+          firm: "“Please stop sharing my private information and correct the story with anyone you told. I’ll be keeping personal details private going forward.”",
+          insight: "State what must stop, what repair you need, and how you’ll protect trust going forward."
+        }
+      },
+      {
+        id: "roommate_chores_noise",
+        keywords: {
+          en: ["roommate never cleans", "roommate won't clean", "never takes out the trash", "leaves a mess everywhere", "roommate is too loud", "keeps making noise at night", "roommate leaves dishes"],
+          zh: ["室友不打掃", "室友不倒垃圾", "室友都不整理", "房間很吵", "半夜很吵", "室友很吵", "公共區域都不清"]
+        },
+        zh: {
+          tag: "公共空間失憶症",
+          roast: "公共區域不是會自動復原的魔法地圖，垃圾也不會靠意念自己走出去。看來家事分工需要從傳說改成排班表。",
+          comfort: "把期待變成明確的分工和時間，比每次看到都生悶氣有效。",
+          playful: "「客廳又解鎖『物品自然生成』模式了😅 我們排個倒垃圾／整理輪值表，讓它恢復原狀吧。」",
+          soft: "「最近公共空間的清潔／晚上音量有點影響我，我們可以一起訂個輪值和安靜時間嗎？」",
+          firm: "「我希望公共區域由大家按排班表整理，晚上也請在約定時間後降低音量。這樣住起來才公平。」",
+          insight: "把家務或噪音轉成可觀察的規則、輪值與時間，能減少反覆爭執誰比較辛苦。"
+        },
+        en: {
+          tag: "Shared-Space Amnesia",
+          roast: "The common area isn’t a magical map that resets itself, and trash won’t walk out through positive thinking. Chores need a rota, not folklore.",
+          comfort: "A clear schedule works better than silently getting annoyed every time you see the mess.",
+          playful: "“The living room has unlocked item-generation mode again 😅 Let’s make a cleaning/trash rota and reset it.”",
+          soft: "“The shared-space cleanup/noise has been affecting me. Could we agree on a chore rota and quiet hours?”",
+          firm: "“I need everyone to follow a shared cleaning schedule and keep the noise down after our agreed quiet time. That’s the fairest way to share the space.”",
+          insight: "Turn chores or noise into observable rules and time slots so the discussion is about an agreement, not who complains more."
+        }
+      }
+    ];
+
+    const quickScenario = quickScenarios.find(scenario =>
+      scenario.keywords[isEn ? "en" : "zh"].some(keyword => matchKeyword(lower, keyword))
+    );
+    if (quickScenario) {
+      activePresetId = null;
+      const copy = quickScenario[isEn ? "en" : "zh"];
+      roastTag.textContent = copy.tag;
+      roastStars.textContent = "★★★★☆";
+      roastContent.textContent = copy.roast;
+      comfortContent.textContent = copy.comfort;
+      currentTactics = [
+        { type: isEn ? "Playful" : "幽默調侃型", tag: isEn ? "Keep it light" : "輕鬆提醒", text: copy.playful },
+        { type: isEn ? "Soft" : "溫和直白型", tag: isEn ? "Warm but clear" : "溫和表達", text: copy.soft },
+        { type: isEn ? "Firm" : "明確底線型", tag: isEn ? "Set a boundary" : "清楚設界線", text: copy.firm }
+      ];
+      insightContent.textContent = copy.insight;
+      currentTacticIndex = 0;
+      renderTacticsTabs();
+      renderThinkingLens(completeThinkingLens(null, text, isEn));
+      placeholderState.style.display = "none";
+      resultsContainer.style.display = "grid";
+      resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      showToast(UI_STRINGS[currentLang].toastDone);
+      return;
+    }
 
     // 1. 語言與口頭習慣摩擦 (Verbal Habits, Swearing, Bad words, Rude remarks)
     const isVerbalConflict = [
