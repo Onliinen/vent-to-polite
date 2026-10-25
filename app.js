@@ -933,6 +933,131 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       },
       {
+        id: "after_hours_work_messages",
+        keywords: {
+          en: ["messages me after work", "texts me late at night about work", "work messages on weekends", "expects me to reply after hours", "contacted me on my day off about work", "non-urgent work messages after hours"],
+          zh: ["下班還傳工作訊息", "下班後還找我工作", "週末傳工作訊息", "半夜傳工作訊息", "休假還要回工作", "期待我下班回覆"]
+        },
+        zh: {
+          tag: "下班後還在待命",
+          roast: "下班時間到了，工作訊息卻像忘記打卡一樣繼續出現。你的休息時間不是公司的備用辦公室。",
+          comfort: "非緊急事情可以等到上班時間處理；你可以先說明自己的可聯絡時段。",
+          playful: "「我現在切換成休息模式啦😅 這件事我明天上班後再接球，可以嗎？」",
+          soft: "「我下班後通常不會即時查看工作訊息。非緊急事項我會在下一個工作時段處理；若有急件，請用我們約定的緊急聯絡方式。」",
+          firm: "「請把非緊急工作訊息留到工作時間。我休假期間不會即時回覆，會在下一個工作日跟進。」",
+          insight: "把可聯絡時段和真正的緊急管道說清楚，能保護休息時間，也讓必要的急件有明確處理方式。"
+        },
+        en: {
+          tag: "Always-On After Hours",
+          roast: "The workday ended, but those messages forgot to clock out. Your personal time is not the company’s backup office.",
+          comfort: "Non-urgent work can wait until working hours; it is reasonable to state when you are available.",
+          playful: "“I’ve switched to rest mode 😅 I’ll pick this up when I’m back online tomorrow, okay?”",
+          soft: "“I don’t usually check work messages after hours. I’ll handle non-urgent items during my next work period; please use our agreed urgent channel for emergencies.”",
+          firm: "“Please keep non-urgent work messages to working hours. I’m not available for real-time replies on my days off and will follow up on my next workday.”",
+          insight: "State your availability and the agreed emergency channel so rest stays protected while genuinely urgent issues have a clear route."
+        }
+      },
+      {
+        id: "public_email_callout",
+        keywords: {
+          en: ["cc'd my boss to point out", "cced my boss to point out", "called me out in a group email", "passive-aggressive email at work", "copied the whole team on a minor mistake", "publicly corrected my typo at work"],
+          zh: ["副本主管指責我", "寄群組信公開指責", "把小錯誤抄送給主管", "用陰陽怪氣的郵件", "在全公司信件糾正我", "抄送全組糾正小錯"]
+        },
+        zh: {
+          tag: "抄送名單擴大術",
+          roast: "一個小問題被加上整排收件人，彷彿信件抄送越多人，事情就會越快變好。",
+          comfort: "先處理實際錯誤，再把後續溝通拉回直接、合適的管道。",
+          playful: "「收到，我會把這個細節修正好。下次小地方可以先直接敲我嗎？這樣不用讓整個收件匣一起開會😅」",
+          soft: "「謝謝提醒，我會修正這個部分。之後如果是單一細節的問題，可以先直接告訴我，我會更快處理。」",
+          firm: "「我已修正指出的問題。若後續有具體修改需求，請直接列出內容和期限；我也希望小型更正先透過直接訊息溝通。」",
+          insight: "先承接可核實的工作問題，再提出更有效的溝通管道，避免陷入對語氣或動機的爭辯。"
+        },
+        en: {
+          tag: "The CC List Expansion Pack",
+          roast: "One small issue got a whole audience, as if adding more recipients automatically fixes the work faster.",
+          comfort: "Address the actual error first, then move future feedback to a direct and appropriate channel.",
+          playful: "“Got it—I’ll fix that detail. Could you message me directly about small items next time? Then the whole inbox doesn’t have to attend the meeting 😅”",
+          soft: "“Thanks for flagging it; I’ll correct that part. For a single detail next time, could you tell me directly so I can address it quickly?”",
+          firm: "“I’ve corrected the issue you identified. For future requests, please list the specific change and deadline; I’d also like minor corrections handled directly first.”",
+          insight: "Acknowledge verifiable work issues and suggest a better feedback channel without getting pulled into an argument about tone or intent."
+        }
+      },
+      {
+        id: "invisible_mental_load",
+        keywords: {
+          en: ["mental load at home", "emotional labor at home", "only one tracking appointments", "I have to remember everything for the family", "planning all the family events", "invisible household labor", "I manage the household calendar"],
+          zh: ["家裡的心智負荷", "家務心智負擔", "情緒勞動", "只有我記得家裡的事", "家裡大小事都要我安排", "家庭行程都我在記", "只有我在安排看診和採買"]
+        },
+        zh: {
+          tag: "全家行程管理員",
+          roast: "家裡的事情不是自己排進行事曆的，但好像只有你被默認安裝了提醒功能。",
+          comfort: "看不見的規劃和記憶工作也是工作，提出分工不是在挑剔。",
+          playful: "「我可以卸載一下『全家提醒小幫手』嗎😅 這些行程和採買我們來分區負責吧。」",
+          soft: "「我最近一直在記行程、預約和家裡要補的東西，覺得有點累。我希望我們把這些固定工作列出來，再一起分配負責人。」",
+          firm: "「我不能再一個人負責記住和安排所有家務。請從這週開始固定負責其中幾項，並自行追蹤需要的時間和補貨。」",
+          insight: "把隱形的記憶、追蹤和安排工作列成清單，再分配完整責任，比只分派臨時跑腿更能減少負擔。"
+        },
+        en: {
+          tag: "Household Calendar Manager",
+          roast: "Household tasks don’t schedule themselves, but apparently you’re the only one with the reminder feature installed.",
+          comfort: "Planning and remembering are real work too; asking to share them is not nitpicking.",
+          playful: "“Can I uninstall the ‘family reminder app’ for a bit? 😅 Let’s split the appointments, errands, and restocking by owner.”",
+          soft: "“I’ve been keeping track of appointments, plans, and supplies, and I’m getting tired. Could we list these recurring tasks and decide who owns each one?”",
+          firm: "“I can’t keep being the only person who remembers and organizes all the household tasks. Starting this week, please take ownership of a few recurring items, including tracking when they need attention.”",
+          insight: "List the remembering, tracking, and planning work, then assign ownership of whole tasks instead of only occasional errands."
+        }
+      },
+      {
+        id: "holiday_family_pressure",
+        keywords: {
+          en: ["family expects us every holiday", "pressure to spend every holiday with family", "guilt trip about visiting family", "parents demand we visit for every holiday", "arguing over which family to visit", "in-laws expect every holiday", "holiday visits are never fair"],
+          zh: ["每個節日都要回婆家", "每個節日都要回娘家", "家人要求每個假日都回去", "被情緒勒索回家過節", "過年一定要去哪一家", "為了去哪邊過節吵架", "每次過節都只有我配合"]
+        },
+        zh: {
+          tag: "節日行程拉鋸戰",
+          roast: "節日原本是休息日，最後卻變成跨家族巡迴賽，還附贈一題『誰比較孝順』的加考。",
+          comfort: "你可以珍惜家人，也可以討論符合你們時間、預算和體力的安排。",
+          playful: "「今年的節日不辦家族巡迴賽啦😅 我們先排好時間，再輪流安排探訪好嗎？」",
+          soft: "「我知道大家都希望一起過節，但每次都照同一種安排讓我有點吃不消。我想和你先討論時間、交通和輪流探訪的方式。」",
+          firm: "「今年我們只能安排這些日期探訪。其他時間會留給休息或自己的計畫，請不要把沒有出席解讀成不在乎家人。」",
+          insight: "先對齊兩人的時間、交通和休息需求，再提出可預期的輪替安排，比臨近節日才回應壓力更容易維持公平。"
+        },
+        en: {
+          tag: "Holiday Itinerary Tug-of-War",
+          roast: "A holiday was supposed to be a day off; somehow it became a family tour with an extra exam on who is the most devoted.",
+          comfort: "You can care about family and still plan around your time, budget, and energy.",
+          playful: "“Can we skip the family world tour this year? 😅 Let’s plan the dates first and take turns arranging visits.”",
+          soft: "“I know everyone wants to celebrate together, but repeating the same plan every time is wearing me out. Could we talk through timing, travel, and a fair rotation?”",
+          firm: "“We can visit on these dates this year. I’m keeping the other days for rest or our own plans; not attending every gathering doesn’t mean we don’t care.”",
+          insight: "Agree on time, travel, and rest needs first, then make a predictable rotation instead of negotiating under last-minute pressure."
+        }
+      },
+      {
+        id: "friend_group_messenger",
+        keywords: {
+          en: ["asked me to pass a message between them", "put me in the middle of their argument", "friend wants me to take sides", "dragged me into their fight", "friends expect me to mediate", "being used as the messenger between friends"],
+          zh: ["叫我幫忙傳話", "被夾在朋友中間", "叫我選邊站", "被迫替朋友評理", "朋友吵架要我調停", "把我拖進他們的爭執", "要我替他跟對方說"]
+        },
+        zh: {
+          tag: "友情傳聲筒被徵召",
+          roast: "兩個人有話不直接說，卻把你升職成免費客服、傳聲筒兼裁判。這份差事看起來沒有排休。",
+          comfort: "你可以關心雙方，但不必替任何人傳話或選邊。",
+          playful: "「我友情支援可以，傳聲筒和裁判今天都沒有排班😅 你直接跟對方說會比較清楚。」",
+          soft: "「我知道你想把事情處理好，但我不太適合替你們傳話。我願意聽你整理想法，不過還是希望你直接和對方談。」",
+          firm: "「我不會替任何一方轉述或站隊。請直接和當事人溝通；如果你們都同意，我可以陪你們一起談。」",
+          insight: "拒絕三角傳話、提供雙方同意的共同對話選項，能支持朋友又不替他們承擔溝通責任。"
+        },
+        en: {
+          tag: "Friend-Group Messenger Duty",
+          roast: "Two people avoid talking directly and somehow promote you to unpaid help desk, messenger, and referee—with no days off.",
+          comfort: "You can care about both people without carrying messages or choosing a side.",
+          playful: "“I can offer friend support, but messenger and referee shifts aren’t open today 😅 It’ll be clearer if you tell them directly.”",
+          soft: "“I know you want to work this out, but I’m not the best person to pass messages between you. I can help you sort out what you want to say, though.”",
+          firm: "“I’m not going to relay messages or take sides. Please talk directly with the person involved; if you both agree, I can sit in for a conversation.”",
+          insight: "Decline the message relay while offering a conversation everyone agrees to, so you can be supportive without owning their communication."
+        }
+      },
+      {
         id: "parent_teen_tech_chores",
         keywords: {
           en: ["teen is always on their phone", "child won't put the phone down", "arguing about screen time", "teen won't do chores", "child ignores every instruction", "fighting about bedtime"],
@@ -960,7 +1085,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const quickScenario = quickScenarios.find(scenario =>
-      scenario.keywords[isEn ? "en" : "zh"].some(keyword => matchKeyword(lower, keyword))
+      [...scenario.keywords.en, ...scenario.keywords.zh].some(keyword => matchKeyword(lower, keyword))
     );
     if (quickScenario) {
       activePresetId = null;
