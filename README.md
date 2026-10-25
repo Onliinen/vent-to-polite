@@ -5,6 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![AI-Powered](https://img.shields.io/badge/AI-Dual--Engine-orange.svg)](#)
+[![Bilingual](https://img.shields.io/badge/Language-繁體中文%20%7C%20English-purple.svg)](#)
 [![Responsive Web](https://img.shields.io/badge/Platform-Web%20%2F%20Mobile-blue.svg)](#)
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-brightgreen.svg)](https://onliinen.github.io/vent-to-polite/)
 
@@ -55,6 +56,9 @@ AI 迅速切換為資深公關外交官，輸出 2~3 種**可直接發送的體�
 ### 5. 🛡️ 雙軌容錯架構（零門檻即開即用）
 * **無金鑰模式**：內建豐富的「經典案例智囊庫」，任何人在瀏覽器點開就能直接完整體驗，上台 Demo 絕不因網路延遲卡關！
 * **即時 AI 模式**：支援在設定中輸入 OpenAI / Gemini / DeepSeek 等兼容 API Key，享受無限自由輸入的即時雙面生成。
+
+### 6. 🌐 全站雙語支援（Full Bilingual: 繁體中文 ✕ English）
+右上角提供一鍵語言切換按鈕，全站介面、情境案例、毒舌評語與高情商話術均支援流暢的**繁體中文**與**道地英文（English）**，兼顧在地文化梗與國際化展示！
 
 ---
 
