@@ -839,3 +839,284 @@ body {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
+
+/* ============================================================
+   手機版專用樣式 (Phone Layout ≤640px)
+   修正橫向溢出、過小的點擊區域與過擠的卡片排版。
+   桌機版 (>640px) 完全不受影響。
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* --- 基礎：杜絕橫向捲動、縮減版面邊界換取閱讀寬度 --- */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .main-wrapper {
+    padding: 1.4rem 0.9rem 3rem;
+  }
+
+  /* --- 導覽列：改為兩列排版，按鈕不再被擠壓變形 --- */
+  .nav-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-height: 42px;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.875rem;
+  }
+
+  .brand-logo {
+    min-height: 40px;
+  }
+
+  .brand-badge {
+    font-size: 0.8125rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* --- Hero 區：縮小字級，避免中文斷在奇怪的位置 --- */
+  .hero-header {
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-pill {
+    font-size: 0.8125rem;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+    line-height: 1.35;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* --- 分類分頁：手指好點的大小，讓 5 個分頁收成 2 列 --- */
+  .category-tabs {
+    gap: 0.4rem;
+  }
+
+  .cat-tab {
+    min-height: 44px;
+    padding: 0.55rem 0.65rem;
+    font-size: 0.875rem;
+    gap: 0.4rem;
+  }
+
+  /* --- 情境小卡 (chips)：30px -> 42px --- */
+  .preset-chip {
+    min-height: 42px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .preset-label {
+    font-size: 0.85rem;
+  }
+
+  /* --- 輸入卡片：標籤與瘋狂指數改為直排，輸入框滿版 --- */
+  .input-card {
+    padding: 1.1rem;
+  }
+
+  .input-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .rage-meter-box {
+    width: 100%;
+  }
+
+  .rage-label,
+  .rage-score {
+    font-size: 0.85rem;
+  }
+
+  .rant-textarea {
+    min-height: 150px;
+    font-size: 16px; /* 防止 iOS 自動放大頁面 */
+  }
+
+  .input-footer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .char-counter {
+    order: 2;
+    flex: 1 1 100%;
+    text-align: right;
+    font-size: 0.85rem;
+  }
+
+  .btn-generate {
+    order: 1;
+    flex: 1 1 100%;
+    min-height: 52px;
+    font-size: 1.05rem;
+  }
+
+  /* --- 輸出卡片：縮小內距，把寬度還給文字 --- */
+  .output-grid {
+    gap: 1rem;
+  }
+
+  .roast-card,
+  .diplomat-card {
+    padding: 1.2rem;
+  }
+
+  .card-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+  }
+
+  .tag-badge {
+    font-size: 0.8125rem;
+  }
+
+  .roast-stars {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .roast-content,
+  .comfort-box {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    word-break: break-word;
+  }
+
+  /* --- 外交官卡片：戰術分頁 2+1 換行並自動填滿整行 --- */
+  .tactics-tabs {
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .tactic-btn {
+    flex: 1 1 auto;
+    min-width: calc(50% - 0.45rem);
+    min-height: 46px;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .message-box {
+    padding: 1rem;
+  }
+
+  .message-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    word-break: break-word;
+  }
+
+  .message-actions {
+    margin-top: 0.8rem;
+  }
+
+  .btn-copy {
+    width: 100%;
+    min-height: 46px;
+    font-size: 0.9rem;
+  }
+
+  .insight-box {
+    padding: 1rem;
+  }
+
+  #insightContent {
+    font-size: 0.93rem;
+    line-height: 1.75;
+    word-break: break-word;
+  }
+
+  /* --- 思維模型：加大內距與字級 --- */
+  .thinking-lens-container {
+    padding: 0.9rem;
+  }
+
+  .lens-title {
+    font-size: 0.95rem;
+  }
+
+  .lens-item {
+    padding: 0.75rem;
+  }
+
+  .lens-item-header {
+    font-size: 0.9rem;
+  }
+
+  .lens-subline {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    word-break: break-word;
+  }
+
+  /* --- 設定彈窗：滿版寬度、關閉鍵 40px --- */
+  .modal-card {
+    width: calc(100vw - 2rem);
+    max-width: none;
+    max-height: 88vh;
+    margin: 1rem auto;
+    overflow-y: auto;
+  }
+
+  .btn-close {
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-input {
+    font-size: 16px; /* 防止 iOS 自動放大頁面 */
+    min-height: 46px;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+  }
+
+  .form-help {
+    font-size: 0.8125rem;
+  }
+
+  /* --- 提示與頁尾 --- */
+  .toast {
+    max-width: calc(100% - 2rem);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .footer {
+    padding: 1.8rem 1rem 1.2rem;
+    font-size: 0.8125rem;
+  }
+}
