@@ -39,7 +39,8 @@ const UI_STRINGS = {
     footerSubText: "靜態網站 • 無需 API 金鑰 • 回覆由瀏覽器內建範本產生",
     toastCopied: "✅ 已複製高情商話術到剪貼簿！",
     toastEmpty: "⚠️ 請先輸入你的生氣真心話！",
-    toastDone: "✨ 範本回覆已整理完成！"
+    toastDone: "✨ 範本回覆已整理完成！",
+    unmatchedText: "抱歉，我目前找不到適合這個情境的範本。請換個方式描述，並盡量說明發生了什麼事或對方做了什麼。"
   },
   "en": {
     langBtn: "繁體中文",
@@ -77,7 +78,8 @@ const UI_STRINGS = {
     footerSubText: "Static website • No API key • Replies are assembled from built-in browser templates",
     toastCopied: "✅ Copied message to clipboard!",
     toastEmpty: "⚠️ Please enter your thoughts first!",
-    toastDone: "✨ Template replies are ready!"
+    toastDone: "✨ Template replies are ready!",
+    unmatchedText: "Sorry, I couldn’t find a suitable template for that situation. Please try describing it another way, including what happened or what the other person did."
   }
 };
 
@@ -285,6 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
   rantInput.addEventListener("input", (e) => {
     activePresetId = null;
     updateRageMeter(e.target.value);
+    if (placeholderState.style.display !== "none") {
+      document.getElementById("placeholderText").textContent = UI_STRINGS[currentLang].placeholderText;
+    }
   });
 
   function renderThinkingLens(lensData) {
@@ -1110,8 +1115,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "socializing_feels_annoying",
         keywords: {
-          en: ["socializing feels annoying", "socializing is annoying", "social interaction is annoying", "people are getting on my nerves", "dealing with people is exhausting and annoying", "I find socializing irritating"],
-          zh: ["我覺得社交很煩", "社交很煩", "社交讓我覺得很煩", "跟人相處很煩", "人際互動讓我很煩", "最近覺得跟人說話很煩"]
+          en: ["socializing feels annoying", "socializing is annoying", "socializing is such a hassle", "social plans are a hassle", "socializing feels like a chore", "social interaction is annoying", "people are getting on my nerves", "dealing with people is exhausting and annoying", "I find socializing irritating"],
+          zh: ["我覺得社交很煩", "社交很煩", "社交讓我覺得很煩", "社交好麻煩", "社交太麻煩", "社交很麻煩", "人際好麻煩", "跟人相處很煩", "人際互動讓我很煩", "最近覺得跟人說話很煩"]
         },
         zh: {
           tag: "人際通知太密集",
@@ -1229,9 +1234,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. 借錢與金錢糾紛 (Money, Borrowing, Splitting bills, Unpaid debts)
     const isMoneyConflict = [
-      "borrow", "borrowed", "borrowing", "pay back", "owe", "owes", "owed",
-      "split the bill", "lend", "lent", "debt", "unpaid", "pay me back",
-      "借錢", "還錢", "分帳", "欠錢", "催討", "不給錢", "討錢"
+      "borrowed money", "borrow money", "lent me money", "pay back", "pay me back",
+      "owe me money", "unpaid debt", "split the bill", "shared expenses", "debt",
+      "借錢", "還錢", "欠錢", "欠我錢", "借款不還", "催討", "不給錢", "討錢", "分帳"
     ].some(k => matchKeyword(lower, k));
 
     if (isMoneyConflict) {
@@ -1397,16 +1402,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let matchedItem = null;
     for (const item of currentPresets) {
-      if ((matchKeyword(lower, "遲到") || matchKeyword(lower, "always late") || matchKeyword(lower, "keeps arriving late") || matchKeyword(lower, "made me wait") || matchKeyword(lower, "kept me waiting")) && item.id === "friend_late") { matchedItem = item; break; }
+      if (["friend is always late", "friend keeps arriving late", "made me wait", "kept me waiting", "朋友每次遲到", "朋友常常遲到", "約好又遲到", "每次約都遲到"].some(k => matchKeyword(lower, k)) && item.id === "friend_late") { matchedItem = item; break; }
       if ((matchKeyword(lower, "隨便") || matchKeyword(lower, "吃什麼") || matchKeyword(lower, "where should we eat") || matchKeyword(lower, "where to eat") || matchKeyword(lower, "pick a restaurant")) && item.id === "friend_any") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "下班") || matchKeyword(lower, "急件") || matchKeyword(lower, "urgent") || matchKeyword(lower, "weekend work") || matchKeyword(lower, "work this weekend")) && item.id === "work_urgent") { matchedItem = item; break; }
+      if (["urgent task at work", "last-minute urgent task", "urgent work request", "weekend work", "work this weekend", "臨時急件", "下班前急件", "臨時交辦急件", "週末還要工作"].some(k => matchKeyword(lower, k)) && item.id === "work_urgent") { matchedItem = item; break; }
       if ((matchKeyword(lower, "甩鍋") || matchKeyword(lower, "推責") || matchKeyword(lower, "blame") || matchKeyword(lower, "pushed the responsibility")) && item.id === "work_blame") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "組員") || matchKeyword(lower, "組員擺爛") || matchKeyword(lower, "groupmate") || matchKeyword(lower, "teammate") || matchKeyword(lower, "freeload") || matchKeyword(lower, "slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "教授") || matchKeyword(lower, "加簽") || matchKeyword(lower, "professor") || matchKeyword(lower, "prereq")) && item.id === "campus_late_add") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "碗") || matchKeyword(lower, "水槽") || matchKeyword(lower, "dishes") || matchKeyword(lower, "sink")) && item.id === "living_dishes") { matchedItem = item; break; }
-      if (["mom", "mommy", "mother", "dad", "daddy", "father", "parents", "family", "sister", "brother", "siblings", "媽", "爸", "父母", "爸媽", "家人", "兄弟", "姐妹", "母親", "父親"].some(k => matchKeyword(lower, k)) && item.id === "daily_family") { matchedItem = item; break; }
-      if (["girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "romantic partner", "dating", "crush", "break up", "broke up", "breakup", "marriage", "married", "wedding", "divorce", "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
-      if (["sick", "fever", "headache", "headaches", "migraine", "flu", "nauseous", "vomit", "doctor", "hospital", "medicine", "unwell", "生病", "發燒", "頭痛", "想吐", "看醫生", "吃藥", "不舒服", "請病假"].some(k => matchKeyword(lower, k)) && item.id === "daily_health") { matchedItem = item; break; }
+      if (["groupmate isn't doing their part", "groupmate is freeloading", "teammate didn't do their part", "team member isn't contributing", "freeload", "slacker", "組員擺爛", "小組都我在做", "組員沒交他的部分", "組員沒有做分配工作"].some(k => matchKeyword(lower, k)) && item.id === "campus_freerider") { matchedItem = item; break; }
+      if (["ask professor to add me", "professor add code", "course add request", "late add request", "prerequisite permission", "加簽", "教授加簽", "請教授加簽", "問教授能不能加簽"].some(k => matchKeyword(lower, k)) && item.id === "campus_late_add") { matchedItem = item; break; }
+      if (["roommate leaves dishes in the sink", "roommate never washes dishes", "dishes keep piling up", "shared kitchen dishes", "室友不洗碗", "碗盤堆在水槽", "室友都不洗碗", "洗碗分工"].some(k => matchKeyword(lower, k)) && item.id === "living_dishes") { matchedItem = item; break; }
+      if (["parents keep deciding for me", "parents won't respect my decision", "family keeps controlling my choices", "family keeps pressuring me", "mom keeps pressuring me", "mother-in-law keeps criticizing me", "爸媽替我決定", "父母一直控制我", "不尊重我的決定", "長輩一直干涉", "家人一直逼我", "家人干涉我的選擇", "爸媽催婚", "父母催婚", "家人催婚"].some(k => matchKeyword(lower, k)) && item.id === "daily_family") { matchedItem = item; break; }
+      if (["unclear relationship", "don't know where we stand", "define the relationship", "won't talk about commitment", "曖昧不清", "不知道我們算什麼", "不願意確認關係", "一直逃避談關係", "不肯承諾", "交往關係不清楚"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
+      if (["boss expects me to work while sick", "pressure me to work while sick", "denied my sick leave", "can't take sick leave", "manager asked me to work with a fever", "主管不准我請病假", "老闆叫我帶病上班", "生病還要上班", "主管要我病假工作", "被逼著帶病工作"].some(k => matchKeyword(lower, k)) && item.id === "daily_health") { matchedItem = item; break; }
     }
 
     if (matchedItem) {
@@ -1418,9 +1423,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 5. 家人與父母壓力 (Family & Parents Pressure)
     const isFamilyConflict = [
-      "mom", "mommy", "mother", "dad", "daddy", "father", "parents", "family",
-      "sister", "brother", "siblings",
-      "媽", "爸", "父母", "爸媽", "家人", "兄弟", "姐妹", "母親", "父親"
+      "parents keep deciding for me", "parents won't respect my decision", "family keeps controlling my choices",
+      "family keeps pressuring me", "mom keeps pressuring me", "mother-in-law keeps criticizing me",
+      "爸媽替我決定", "父母一直控制我", "不尊重我的決定", "長輩一直干涉", "家人一直逼我",
+      "家人干涉我的選擇", "爸媽催婚", "父母催婚", "家人催婚"
     ].some(k => matchKeyword(lower, k));
 
     if (isFamilyConflict) {
@@ -1497,10 +1503,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 6. 感情、曖昧與分手 (Romance, Breakups & Relationship Ambiguity)
     const isRelationshipConflict = [
-      "girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "romantic partner",
-      "dating", "crush", "break up", "broke up", "breakup", "marriage", "married",
-      "wedding", "divorce",
-      "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"
+      "unclear relationship", "don't know where we stand", "do not know where we stand",
+      "define the relationship", "avoids talking about commitment", "won't talk about commitment",
+      "are we exclusive", "keeps avoiding the relationship talk", "曖昧不清", "不知道我們算什麼",
+      "不願意確認關係", "一直逃避談關係", "不肯承諾", "交往關係不清楚", "對方不願意討論未來"
     ].some(k => matchKeyword(lower, k));
 
     if (isRelationshipConflict) {
@@ -1577,9 +1583,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 7. 身體不適與健康 (Health & Body)
     const isHealthConflict = [
-      "sick", "fever", "headache", "headaches", "migraine", "flu", "nauseous",
-      "vomit", "doctor", "hospital", "medicine", "unwell",
-      "生病", "發燒", "頭痛", "想吐", "看醫生", "吃藥", "不舒服", "請病假"
+      "boss expects me to work while sick", "manager expects me to work while sick",
+      "pressure me to work while sick", "denied my sick leave", "can't take sick leave",
+      "cannot take sick leave", "manager asked me to work with a fever",
+      "主管不准我請病假", "老闆叫我帶病上班", "生病還要上班", "主管要我病假工作", "被逼著帶病工作"
     ].some(k => matchKeyword(lower, k));
 
     if (isHealthConflict) {
@@ -1654,68 +1661,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 8. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
-    // Keep the offline fallback quick: reflect the user's situation, roast the problem lightly,
-    // and provide a soft reply without turning the flow into a clarification chat.
+    // No confident scenario match: don't invent a reply. Ask for a clearer rephrase.
     activePresetId = null;
-    const normalizedIssue = text.replace(/\s+/g, " ").trim();
-    const userIssue = normalizedIssue.length > 90 ? `${normalizedIssue.slice(0, 90)}…` : normalizedIssue;
-    const universalResult = {
-      roast: {
-        tagTitle: isEn ? "Patience Under Review" : "耐性正在考驗",
-        stars: "★★★★☆",
-        comment: isEn 
-          ? `“${userIssue}” is the kind of situation that makes patience file a formal complaint. You’re allowed to be annoyed; let’s give it a reply that doesn’t make things worse.`
-          : `「${userIssue}」真的很考驗耐性，連耐性本人都想先請個假。你會覺得煩很正常，回覆時先把重點講清楚就好。`,
-        comfortTip: isEn
-          ? "Keep the tone soft and the boundary clear. You don't need a perfect speech."
-          : "語氣可以放軟，界線一樣說清楚；不用把回覆想得太複雜。"
-      },
-      diplomacy: {
-        tactics: [
-          {
-            type: isEn ? "Playful Deflection" : "幽默調侃型",
-            tag: isEn ? "Diffuses Tension・Maintains Face" : "軟性提醒・保留面子",
-            text: isEn
-              ? `Hey, about “${userIssue}”—that caught me a little off guard 😅 Could we handle it a bit differently next time?`
-              : `嗨，關於「${userIssue}」這件事，我剛剛有點措手不及😅 下次我們可以換個方式處理嗎？`
-          },
-          {
-            type: isEn ? "Honest Boundary" : "真誠表達型",
-            tag: isEn ? "Express Discomfort Directly" : "表達感受・建立界線",
-            text: isEn
-              ? `Hey, about “${userIssue}”—I know you may not have meant it that way, but it did bother me. Could you check with me first next time?`
-              : `嗨，關於「${userIssue}」，我知道你可能不是故意的，但這樣確實讓我有點困擾。下次可以先跟我確認一下嗎？`
-          },
-          {
-            type: isEn ? "Firm Standard" : "明確原則型",
-            tag: isEn ? "Mutual Respect Ground Rule" : "互相尊重・確立原則",
-            text: isEn
-              ? `About “${userIssue}”, I’d like us to agree on a clearer approach for next time. That would make things easier for both of us.`
-              : `關於「${userIssue}」，我希望下次能先把做法說好，這樣彼此都比較好安排，也比較不會再有誤會。`
-          }
-        ],
-        insight: isEn
-          ? "A short description is enough for a quick draft. You can personalize the wording before sending it."
-          : "簡短描述就能先產生一版快速回覆；傳送前再依照你們平常的相處方式微調即可。"
-      },
-    };
+    resultsContainer.style.display = "none";
+    document.getElementById("placeholderText").textContent = UI_STRINGS[currentLang].unmatchedText;
+    placeholderState.style.display = "block";
+    placeholderState.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return;
 
-    roastTag.textContent = universalResult.roast.tagTitle;
-    roastStars.textContent = universalResult.roast.stars;
-    roastContent.textContent = universalResult.roast.comment;
-    comfortContent.textContent = universalResult.roast.comfortTip;
-
-    currentTactics = universalResult.diplomacy.tactics;
-    insightContent.textContent = universalResult.diplomacy.insight;
-    currentTacticIndex = 0;
-    renderTacticsTabs();
-    renderThinkingLens(completeThinkingLens(null, text, isEn));
-
-    placeholderState.style.display = "none";
-    resultsContainer.style.display = "grid";
-    resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    showToast(UI_STRINGS[currentLang].toastDone);
   }
 
   btnLangToggle.addEventListener("click", () => {

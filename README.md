@@ -12,9 +12,9 @@
 
 ## How it works
 
-The site runs in the browser and uses its built-in bilingual scenario templates. It does not call an AI service, require an API key, send the situation to a server, or need a backend. Familiar situations are matched against curated phrases; other inputs receive a general draft that can be edited before sending.
+The site runs in the browser and uses its built-in bilingual scenario templates. It does not call an AI service, require an API key, send the situation to a server, or need a backend. Familiar situations are matched against curated phrases and common paraphrases; if no scenario matches, the app asks the user to rephrase instead of inventing a generic answer.
 
-Because this is a template tool rather than a language model, it cannot reliably understand every unusual or nuanced situation. For the closest match, choose a scenario chip or mention the concrete behavior and the relationship involved. The app also includes a rage meter, copyable reply styles, and a Cognitive Thinking Lens with second-order thinking, pre-mortem risks, and first-principles prompts.
+Because this is a template tool rather than a language model, it cannot reliably understand every unusual or nuanced situation. For the closest match, choose a scenario chip or mention the concrete behavior and the relationship involved. If no template fits, it will ask you to try another wording. The app also includes a rage meter, copyable reply styles, and a Cognitive Thinking Lens with second-order thinking, pre-mortem risks, and first-principles prompts.
 
 ## Scenario coverage
 
