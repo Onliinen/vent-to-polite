@@ -27,6 +27,15 @@ const UI_STRINGS = {
     diplomatBadgeText: "可直接傳送",
     btnCopyText: "一鍵複製訊息",
     insightHeaderText: "高情商心理學剖析：",
+    lensTitleText: "高階思維模型深度推演",
+    lensSecondOrderTitle: "二階思考 (Second-Order Thinking)",
+    lensPreMortemTitle: "事前驗屍風險預防 (Pre-Mortem)",
+    lensFirstPrinciplesTitle: "第一性原理 (First Principles)",
+    lensFirstOrderPrefix: "眼前反應：",
+    lensSecondOrderPrefix: "長遠效應：",
+    lensRiskPrefix: "潛在翻車點：",
+    lensPreventionPrefix: "避坑策略：",
+    lensCoreTruthPrefix: "核心本質：",
     modalTitleText: "⚙️ API 串接設定 (可選)",
     modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
     modalHelpText: "未填寫時，系統將自動啟動內建的「智慧案例智囊庫」，仍可離線流暢體驗！",
@@ -65,6 +74,15 @@ const UI_STRINGS = {
     diplomatBadgeText: "Ready to Send",
     btnCopyText: "Copy Message",
     insightHeaderText: "High-EQ Psychological Insight:",
+    lensTitleText: "Cognitive Thinking Lens (Deep Strategy)",
+    lensSecondOrderTitle: "Second-Order Thinking",
+    lensPreMortemTitle: "Pre-Mortem Risk Check",
+    lensFirstPrinciplesTitle: "First Principles",
+    lensFirstOrderPrefix: "Immediate reaction: ",
+    lensSecondOrderPrefix: "Ripple effect: ",
+    lensRiskPrefix: "Potential pitfall: ",
+    lensPreventionPrefix: "Safeguard: ",
+    lensCoreTruthPrefix: "Core Truth: ",
     modalTitleText: "⚙️ API Settings (Optional)",
     modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
     modalHelpText: "When empty, the built-in intelligent knowledge base is used for seamless offline demo!",
@@ -116,6 +134,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCopy = document.getElementById("btnCopy");
   const insightContent = document.getElementById("insightContent");
 
+  // 思維模型 (Thinking Lens)
+  const thinkingLensBox = document.getElementById("thinkingLensBox");
+  const btnToggleThinkingLens = document.getElementById("btnToggleThinkingLens");
+  const lensTitleText = document.getElementById("lensTitleText");
+  const lensSecondOrderTitle = document.getElementById("lensSecondOrderTitle");
+  const lensPreMortemTitle = document.getElementById("lensPreMortemTitle");
+  const lensFirstPrinciplesTitle = document.getElementById("lensFirstPrinciplesTitle");
+  const lensFirstOrderPrefix = document.getElementById("lensFirstOrderPrefix");
+  const lensSecondOrderPrefix = document.getElementById("lensSecondOrderPrefix");
+  const lensRiskPrefix = document.getElementById("lensRiskPrefix");
+  const lensPreventionPrefix = document.getElementById("lensPreventionPrefix");
+  const lensCoreTruthPrefix = document.getElementById("lensCoreTruthPrefix");
+
+  const lensSecondOrderImmediate = document.getElementById("lensSecondOrderImmediate");
+  const lensSecondOrderRipple = document.getElementById("lensSecondOrderRipple");
+  const lensPreMortemRisk = document.getElementById("lensPreMortemRisk");
+  const lensPreMortemPrevention = document.getElementById("lensPreMortemPrevention");
+  const lensFirstPrinciplesCore = document.getElementById("lensFirstPrinciplesCore");
+
+  if (btnToggleThinkingLens && thinkingLensBox) {
+    btnToggleThinkingLens.addEventListener("click", () => {
+      thinkingLensBox.classList.toggle("collapsed");
+    });
+  }
+
   // 彈窗
   const btnSettings = document.getElementById("btnSettings");
   const settingsModal = document.getElementById("settingsModal");
@@ -159,6 +202,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("diplomatBadgeText").textContent = strings.diplomatBadgeText;
     document.getElementById("btnCopyText").textContent = strings.btnCopyText;
     document.getElementById("insightHeaderText").textContent = strings.insightHeaderText;
+
+    // 思維模型標題切換
+    if (lensTitleText) lensTitleText.textContent = strings.lensTitleText;
+    if (lensSecondOrderTitle) lensSecondOrderTitle.textContent = strings.lensSecondOrderTitle;
+    if (lensPreMortemTitle) lensPreMortemTitle.textContent = strings.lensPreMortemTitle;
+    if (lensFirstPrinciplesTitle) lensFirstPrinciplesTitle.textContent = strings.lensFirstPrinciplesTitle;
+    if (lensFirstOrderPrefix) lensFirstOrderPrefix.textContent = strings.lensFirstOrderPrefix;
+    if (lensSecondOrderPrefix) lensSecondOrderPrefix.textContent = strings.lensSecondOrderPrefix;
+    if (lensRiskPrefix) lensRiskPrefix.textContent = strings.lensRiskPrefix;
+    if (lensPreventionPrefix) lensPreventionPrefix.textContent = strings.lensPreventionPrefix;
+    if (lensCoreTruthPrefix) lensCoreTruthPrefix.textContent = strings.lensCoreTruthPrefix;
+
     document.getElementById("modalTitleText").textContent = strings.modalTitleText;
     document.getElementById("modalApiKeyLabel").textContent = strings.modalApiKeyLabel;
     document.getElementById("modalHelpText").textContent = strings.modalHelpText;
@@ -269,6 +324,26 @@ document.addEventListener("DOMContentLoaded", () => {
     updateRageMeter(e.target.value);
   });
 
+  function renderThinkingLens(lensData) {
+    if (!thinkingLensBox) return;
+    if (!lensData) {
+      thinkingLensBox.style.display = "none";
+      return;
+    }
+    thinkingLensBox.style.display = "block";
+    if (lensData.secondOrder) {
+      if (lensSecondOrderImmediate) lensSecondOrderImmediate.textContent = lensData.secondOrder.firstOrder || "";
+      if (lensSecondOrderRipple) lensSecondOrderRipple.textContent = lensData.secondOrder.secondOrder || "";
+    }
+    if (lensData.preMortem) {
+      if (lensPreMortemRisk) lensPreMortemRisk.textContent = lensData.preMortem.risk || "";
+      if (lensPreMortemPrevention) lensPreMortemPrevention.textContent = lensData.preMortem.prevention || "";
+    }
+    if (lensData.firstPrinciples) {
+      if (lensFirstPrinciplesCore) lensFirstPrinciplesCore.textContent = lensData.firstPrinciples.coreTruth || "";
+    }
+  }
+
   function applyPresetResult(presetItem) {
     roastTag.textContent = presetItem.roast.tagTitle;
     roastStars.textContent = presetItem.roast.stars;
@@ -279,6 +354,12 @@ document.addEventListener("DOMContentLoaded", () => {
     insightContent.textContent = presetItem.diplomacy.insight;
     currentTacticIndex = 0;
     renderTacticsTabs();
+
+    if (presetItem.thinkingLens) {
+      renderThinkingLens(presetItem.thinkingLens);
+    } else {
+      renderThinkingLens(null);
+    }
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
@@ -427,6 +508,19 @@ document.addEventListener("DOMContentLoaded", () => {
           insight: isEn
             ? "Financial awkwardness grows exponentially with delay. Framing the reminder under 'routine weekly budgeting' or 'settling bills' depersonalizes the request, removing confrontation while making evasion impossible."
             : "討錢的尷尬會隨時間成倍增加。將催討包裝成『例行性對帳』或『今天要付其他帳單』，將焦點轉移到客觀事實上，對方就找不到藉口推託。"
+        },
+        thinkingLens: {
+          secondOrder: {
+            firstOrder: isEn ? "Immediate Reaction: They are reminded to transfer the amount with zero public shame." : "眼前反應：對方收到提醒，無尷尬地轉帳還款，化解拖欠。",
+            secondOrder: isEn ? "Ripple Effect: Sets a crystal-clear financial boundary that you don't overlook debts, preventing future entitlement." : "長遠效應：建立『你絕非任人佔便宜』的界線，杜絕未來再次借錢裝傻。"
+          },
+          preMortem: {
+            risk: isEn ? "Potential Pitfall: Accusing them of bad faith turns it into a character fight, delaying payment further." : "潛在翻車點：指責對方故意賴帳引發防禦反抗，反而讓還錢拖更久。",
+            prevention: isEn ? "Safeguard: Frame it as neutral routine expense checking ('organizing my weekly budget')." : "避坑策略：包裝成客觀常態（整理每週記帳、今天剛好要繳卡費），不涉及人品批判。"
+          },
+          firstPrinciples: {
+            coreTruth: isEn ? "Money lent must be repaid; your right to your property requires no hesitation or apology." : "借貸核心在於信任與契約；討回屬於自己的財產，從來不需要感到不好意思。"
+          }
         }
       };
 
@@ -438,6 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
       insightContent.textContent = moneyResult.diplomacy.insight;
       currentTacticIndex = 0;
       renderTacticsTabs();
+      renderThinkingLens(moneyResult.thinkingLens);
       placeholderState.style.display = "none";
       resultsContainer.style.display = "grid";
       resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -491,6 +586,19 @@ document.addEventListener("DOMContentLoaded", () => {
           insight: isEn
             ? "Calling out ghosting with anger makes people withdraw further. Providing a binary action with a soft deadline ('If I don't hear back by X, I'll proceed with Y') removes their delay advantage and forces a resolution."
             : "指責對方『為什麼已讀不回』只會讓他更想逃避。給出一個『如果不回我就直接往下做』的明確期限，能瞬間打破被動局面，拿回主控權。"
+        },
+        thinkingLens: {
+          secondOrder: {
+            firstOrder: isEn ? "Immediate Reaction: Breaks their silent delay cycle and forces them to prioritize a response." : "眼前反應：打破對方的被動拖延心理，迫使其做出明確回應。",
+            secondOrder: isEn ? "Ripple Effect: Establishes that your time and attention cannot be kept on hold indefinitely." : "長遠效應：確立『你的時間不接受無上限懸空等待』的底線，篩選健康互動對象。"
+          },
+          preMortem: {
+            risk: isEn ? "Potential Pitfall: Anxious spamming or passive-aggressive guilt trips make them pull away more." : "潛在翻車點：焦慮連環轟炸或陰陽怪氣，讓對方更加退縮逃避。",
+            prevention: isEn ? "Safeguard: Set a firm deadline ('If I don't hear by 5pm, I will proceed with Option B') to regain initiative." : "避坑策略：給出清晰時限與自保備案（『若未回覆我將先做替代安排』），優雅拿回主導權。"
+          },
+          firstPrinciples: {
+            coreTruth: isEn ? "Communication is a bidirectional loop; silence itself is an answer, and you always hold the agency to move forward." : "溝通是雙向確認；對方的沉默本身就是一種回答，而你永遠擁有繼續前進的選擇權。"
+          }
         }
       };
 
@@ -502,6 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
       insightContent.textContent = ghostResult.diplomacy.insight;
       currentTacticIndex = 0;
       renderTacticsTabs();
+      renderThinkingLens(ghostResult.thinkingLens);
       placeholderState.style.display = "none";
       resultsContainer.style.display = "grid";
       resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -576,6 +685,19 @@ document.addEventListener("DOMContentLoaded", () => {
         insight: isEn
           ? "When resolving awkward interpersonal conflicts, use 'I-statements' (how the situation made you feel) rather than 'You-statements' (accusing their character). Expressing your standard with calm composure leaves zero room for toxic drama while making your boundary respected."
           : "處理人際摩擦時，切記使用『我字開頭』（表達自己的真實感受），而不是『你字開頭』（指責對方的品格）。聚焦在感受與長遠關係，能最大程度降低對方的防衛心，同時讓界線清晰有效。"
+      },
+      thinkingLens: {
+        secondOrder: {
+          firstOrder: isEn ? "Immediate Reaction: The other party recognizes an uncomfortable boundary has been crossed without feeling attacked." : "眼前反應：對方清楚意識到自己踩到了界線，同時沒有被當面羞辱或防衛激化。",
+          secondOrder: isEn ? "Ripple Effect: Calibrates the long-term relationship dynamic to one based on mutual respect rather than silent resentment." : "長遠效應：將長期互動基調校正為彼此尊重，避免暗生芥蒂甚至最終關係破裂。"
+        },
+        preMortem: {
+          risk: isEn ? "Potential Pitfall: Using 'You' blame statements escalates the conversation into an ego battle." : "潛在翻車點：使用『你總是/你根本』指責語氣，引爆對方的自尊反擊戰。",
+          prevention: isEn ? "Safeguard: Use 'I-statements' focusing on feelings and desired mutual ground rather than character flaws." : "避坑策略：全面改採『我感到/為了雙方相處更順暢』的我字陳述法，聚焦行為與感受。"
+        },
+        firstPrinciples: {
+          coreTruth: isEn ? "Civil boundaries are not fences to push people away; they are the guardrails that make genuine relationships sustainable." : "清晰的界線不是為了推開彼此，而是為了讓健康的關係能夠長久維繫的防護欄。"
+        }
       }
     };
 
@@ -588,6 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
     insightContent.textContent = universalResult.diplomacy.insight;
     currentTacticIndex = 0;
     renderTacticsTabs();
+    renderThinkingLens(universalResult.thinkingLens);
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";
@@ -595,21 +718,26 @@ document.addEventListener("DOMContentLoaded", () => {
     showToast(UI_STRINGS[currentLang].toastDone);
   }
 
-  // 即時呼叫 LLM (針對問題 100% 精準對齊)
+  // 即時呼叫 LLM (針對問題 100% 精準對齊 + 思維模型深度推演)
   async function callLiveLLM(rantText, apiKey) {
     const endpoint = localStorage.getItem("vent_api_endpoint") || "https://api.openai.com/v1";
     const model = localStorage.getItem("vent_api_model") || "gpt-4o-mini";
     const isEn = currentLang === "en";
 
     const systemPrompt = isEn 
-      ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine).
+      ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine), powered by high-order cognitive models.
 CRITICAL RULE: The user input is their REAL interpersonal problem (e.g., friends swearing, unreturned money, slacking, annoying habits, broken boundaries). Your output MUST SPECIFICALLY and DIRECTLY address the exact situation they mentioned. DO NOT output generic workplace milestone or deadline templates unless they explicitly talked about work/deadlines!
 
 Return valid JSON with:
 1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity in this specific situation), comfortTip (1 practical de-escalation tip) }.
 2. diplomacy: { tactics: [ { type: "Playful Tease", tag: "string", text: "ready-to-send message specifically solving this problem" }, { type: "Gentle Boundary", tag: "string", text: "..." }, { type: "Firm Standard", tag: "string", text: "..." } ], insight: "psychological explanation of why this communication strategy works" }.
+3. thinkingLens: {
+  secondOrder: { firstOrder: "immediate reaction to this message", secondOrder: "long-term behavioral ripple effect" },
+  preMortem: { risk: "the #1 way this response could backfire", prevention: "practical rule to prevent that failure" },
+  firstPrinciples: { coreTruth: "the bedrock fundamental principle governing this interaction" }
+}.
 Language: ENGLISH.`
-      : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理。
+      : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理，並具備頂級高階思維推演能力。
 重要準則：使用者輸入的是他現實中遇到的具體人際困難（例如朋友常講髒話、借錢不還、被放鳥、討厭的習慣、被踩底線等）。
 你的輸出必須 100% 針對使用者所描述的具體事件進行精準回應，嚴禁給予無關的職場里程碑或工作截止日套話！
 
@@ -628,6 +756,19 @@ Language: ENGLISH.`
       { "type": "明確底線型", "tag": "情境說明", "text": "針對該問題、實際可發送的句子" }
     ],
     "insight": "針對該人際溝通問題的心理學與高情商眉角說明"
+  },
+  "thinkingLens": {
+    "secondOrder": {
+      "firstOrder": "傳送此訊息後的眼前直接反應",
+      "secondOrder": "兩到三個月後的長遠骨牌連鎖效應"
+    },
+    "preMortem": {
+      "risk": "這則訊息最可能踩雷的翻車點",
+      "prevention": "徹底避開此翻車點的關鍵策略"
+    },
+    "firstPrinciples": {
+      "coreTruth": "此人際摩擦背後不可動搖的第一性原理底層真相"
+    }
   }
 }`;
 
@@ -664,6 +805,10 @@ Language: ENGLISH.`
     insightContent.textContent = content.diplomacy.insight;
     currentTacticIndex = 0;
     renderTacticsTabs();
+
+    if (content.thinkingLens) {
+      renderThinkingLens(content.thinkingLens);
+    }
 
     placeholderState.style.display = "none";
     resultsContainer.style.display = "grid";

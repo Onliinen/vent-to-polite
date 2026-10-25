@@ -1,6 +1,6 @@
 /**
  * VentToPolite - 預設情境與智囊資料庫 (雙語版: 繁體中文 & English)
- * 涵蓋四大群體：朋友社交、職場工作、校園學術、生活室友
+ * 整合高階思維模型：第一性原理 (First Principles)、二階思考 (Second-Order Thinking)、事前驗屍 (Pre-Mortem)
  */
 
 const PRESET_CATEGORIES = {
@@ -42,39 +42,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "面對熟人朋友，直接指責『你很不守時』會激起對方的羞恥防禦心理；改用『開玩笑討飲料』或『替他著想約晚一點』，既幽默點出他遲到的事實，又給足了台階下。"
-          }
-        },
-        {
-          id: "friend_any",
-          title: "問吃什麼永遠回「隨便」",
-          tag: "選擇困難甩鍋",
-          rant: "每次問他吃什麼都回『隨便、都可以』，給了他三個選項又說這個不想吃那個太油，那你到底要吃什麼啦？！",
-          rageLevel: 75,
-          roast: {
-            tagTitle: "人體否決權機器人",
-            stars: "★★★☆☆",
-            comment: "他的『隨便』翻譯成白話文是：『我不知道我想吃什麼，但我肯定知道你挑的我都不想吃。』他不是沒有意見，他是把決策責任丟給你，同時保留隨時打槍你的特權。",
-            comfortTip: "對付這種人千萬別給開放式問答，直接玩『刪除法二選一』或直接帶路走進店裡。"
           },
-          diplomacy: {
-            tactics: [
-              {
-                type: "幽默調侃型",
-                tag: "打破僵局",
-                text: "警報！你的『隨便配額』今日已用盡！現在只剩『拉麵』或『咖哩』二選一，倒數五秒不選我就直接拖你進拉麵店囉～"
-              },
-              {
-                type: "體面主導型",
-                tag: "拿回主導權",
-                text: "我看你今天也沒特別想法，那我們今天就去吃上次那家義大利麵，走吧我訂位了！"
-              },
-              {
-                type: "溫柔設限型",
-                tag: "分工合作",
-                text: "今天我腦袋也放空，這次交給你挑兩家你想吃的，我來做最後決定，這樣最公平！"
-              }
-            ],
-            insight: "面對選擇障礙的朋友，詢問『你想吃什麼』只會加劇他的焦慮。直接將問題縮小為『封閉式二選一』或乾脆展現自信帶路，通常對方反而會鬆一口氣。"
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：對方知道你等了，但用笑聲化解尷尬，當場不會撕破臉。",
+              secondOrder: "長期連鎖效應：對方下次會自覺提前 10 分鐘準備，或主動發訊息告知真實進度；避免你默默忍耐到某天情緒大爆發導致友誼破碎。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：語氣太嚴肅像教官訓話，讓對方惱羞成怒反嗆『才等 10 分鐘計較什麼』。",
+              prevention: "關鍵避坑策略：鎖定在『幽默索賠（討杯飲料）』或『替他著想約晚點』，嚴禁上升到人格道德指責。"
+            },
+            firstPrinciples: {
+              coreTruth: "你真正要在乎的不是逼朋友達到軍事化準時，而是捍衛你寶貴的時間，同時維持輕鬆自在的友誼。"
+            }
           }
         },
         {
@@ -108,6 +88,65 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "習慣講粗口的人通常是無意識的語病，或自以為這樣顯得很率性。不要用道德制高點指責他（『你很沒教養』），而是用自己的主觀感受（『聽久了很消耗我的精力』）劃定界線，對方最不容易惱羞成怒。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：對方當下愣了一下，意識到平常無意識的說話習慣讓你感到刺耳。",
+              secondOrder: "長期連鎖效應：朋友圈聚會時的語言環境自然過濾，對方跟你相處時會自覺收斂粗話，大幅降低人際相處的能量消耗。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：被對方反將一軍說『幹嘛那麼敏感、開不起玩笑』。",
+              prevention: "關鍵避坑策略：強調『我個人聽久了很累很耗能』，聚焦生理與精力感受，不要評價對方的道德人品。"
+            },
+            firstPrinciples: {
+              coreTruth: "溝通的本質是傳遞訊息與情感連結，無休止的負面粗話是無意義的干擾雜訊，你有權利維護自己的耳根清淨。"
+            }
+          }
+        },
+        {
+          id: "friend_any",
+          title: "問吃什麼永遠回「隨便」",
+          tag: "選擇困難甩鍋",
+          rant: "每次問他吃什麼都回『隨便、都可以』，給了他三個選項又說這個不想吃那個太油，那你到底要吃什麼啦？！",
+          rageLevel: 75,
+          roast: {
+            tagTitle: "人體否決權機器人",
+            stars: "★★★☆☆",
+            comment: "他的『隨便』翻譯成白話文是：『我不知道我想吃什麼，但我肯定知道你挑的我都不想吃。』他不是沒有意見，他是把決策責任丟給你，同時保留隨時打槍你的特權。",
+            comfortTip: "對付這種人千萬別給開放式問答，直接玩『刪除法二選一』或直接帶路走進店裡。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "幽默調侃型",
+                tag: "打破僵局",
+                text: "警報！你的『隨便配額』今日已用盡！現在只剩『拉麵』或『咖哩』二選一，倒數五秒不選我就直接拖你進拉麵店囉～"
+              },
+              {
+                type: "體面主導型",
+                tag: "拿回主導權",
+                text: "我看你今天也沒特別想法，那我們今天就去吃上次那家義大利麵，走吧我訂位了！"
+              },
+              {
+                type: "溫柔設限型",
+                tag: "分工合作",
+                text: "今天我腦袋也放空，這次交給你挑兩家你想吃的，我來做最後決定，這樣最公平！"
+              }
+            ],
+            insight: "面對選擇障礙的朋友，詢問『你想吃什麼』只會加劇他的焦慮。直接將問題縮小為『封閉式二選一』或乾脆展現自信帶路，通常對方反而會鬆一口氣。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：5 秒內打破無意義的『吃什麼』拉鋸戰，迅速落腳餐廳點餐。",
+              secondOrder: "長期連鎖效應：建立起『一人挑兩家、一人選一家』或『直接帶路』的默契，節省未來每次聚會 30 分鐘的決策內耗。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：挑了一家對方身體不能吃（如海鮮過敏）的餐廳而引發抱怨。",
+              prevention: "關鍵避坑策略：給出封閉式二選一，保留對方最後的知情選擇權。"
+            },
+            firstPrinciples: {
+              coreTruth: "聚餐的核心利益是『享受陪伴與食物』，而不是陷入形式主義的偽民主表決。"
+            }
           }
         }
       ]
@@ -149,6 +188,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "職場高情商的核心是：『不要用情緒對抗，用流程與優先級對抗』。強調『為了確保品質』和『工作時段內優先處理』，在主管或同事眼裡既專業且無懈可擊。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：守住這週的週末休息時間，不用含淚加班。",
+              secondOrder: "長期連鎖效應：向全團隊樹立『週五壓線急件無效』的專業邊界；對方下次會被迫在週四或週五上午提前規劃，不再把你當成兜底工具人。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：被對方在主管面前告狀說『態度消極、不顧團隊急難』。",
+              prevention: "關鍵避坑策略：文字中絕口不提『我要放假』，而是以『為確保專業交付品質』與『週一晨間第一優先排程』進行包裝。"
+            },
+            firstPrinciples: {
+              coreTruth: "勞雇合約購買的是工作時間內的專注產出，而非 24 小時隨叫隨到的情緒待命。"
+            }
           }
         },
         {
@@ -182,6 +234,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "面對甩鍋，永遠不要自辯『不是我的錯』，而是主動提供『客觀時間線與下一步行動』。這會讓全場和主管立刻看清誰在做事、誰在找藉口。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：在主管面前瞬間釐清責任鏈條，化解信任危機。",
+              secondOrder: "長期連鎖效應：主管與同事認識到你有嚴密的進度追蹤與留痕習慣，未來甩鍋者在動歪腦筋前會自動避開你。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：當場發飆反駁，讓主管覺得『兩個人都在吵架、團隊溝通不成熟』。",
+              prevention: "關鍵避坑策略：絕不使用指責性字眼，只報出時間戳（週三已交付），並主動展現解決問題的格局。"
+            },
+            firstPrinciples: {
+              coreTruth: "職場評價的本質是『誰能可靠地解決問題與產出成果』，事實留痕永遠勝過無謂的辯白。"
+            }
           }
         }
       ]
@@ -223,6 +288,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "對付擺爛組員切忌情緒性辱罵，這反而會讓教授覺得是全組溝通不良。設立『客觀時間死線（如晚上 10 點）』並在結尾呈交『如實分工貢獻表』，是最具合法性也最有威力的自保手段。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：專案不再被擺爛者卡死，今晚順利封裝繳件。",
+              secondOrder: "長期連鎖效應：教授透過客觀分工表給予差別評分，搭便車者承擔自己的學業後果，認真付出的組員成績得到捍衛。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：私自刪除組員姓名，被對方告狀至系辦指責『霸凌或擅自除名』。",
+              prevention: "關鍵避坑策略：不私下除名，而是將名字完整保留在報告上，但後方附上嚴謹客觀的『分工章節與貢獻度百分比表』。"
+            },
+            firstPrinciples: {
+              coreTruth: "學分的獲得應當建立在真實的學術貢獻之上，保護自己的汗水成果不被免費掠奪是正當權利。"
+            }
           }
         },
         {
@@ -251,6 +329,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "寫給教授的求生信關鍵在於『打消疑慮』與『降低負擔』。主動承認先修課不足但提出補救方案（如預習教材、願接受旁聽考驗），遠比單純哭訴『會延畢』更具說服力。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：教授在幾十封加簽信中看見你的誠意與自學準備，批准機率大幅躍升。",
+              secondOrder: "長期連鎖效應：在教授心中樹立負責任、有韌性的優質學生印象，為後續專題指導或推薦信埋下伏筆。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：信中大談個人延畢慘況，被教授認為是缺乏規劃還想情勒選課機制。",
+              prevention: "關鍵避坑策略：絕口不寫『拜託救救我我會延畢』，聚焦於『我對該領域的學術熱情與已完成的先修自學成果』。"
+            },
+            firstPrinciples: {
+              coreTruth: "教授加簽的決策標準是『評估該生是否會成為教學負擔』，打消教學風險是獲得通融的唯一核心鑰匙。"
+            }
           }
         }
       ]
@@ -292,6 +383,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "生活瑣事的溝通忌諱人身攻擊（如『你很噁心』），改為指涉『公共環境的客觀影響（果蠅、佔用水槽）』，並以群組公共維護的角度切入，最能達到效果而不反目。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前直接反應：室友看到訊息不好意思再裝傻，今晚主動將碗盤洗淨。",
+              secondOrder: "長期連鎖效應：確立『公共區域當日清』的生活底線，防止懶散習慣蔓延成全棟宿舍的衛生地獄。"
+            },
+            preMortem: {
+              risk: "最可能踩雷的翻車點：好心順手幫洗，導致對方產生依賴心理，從此把碗盤視為理所當然由你處理。",
+              prevention: "關鍵避坑策略：絕對不要順手幫洗！採用『集中移盆』維護水槽淨空，讓責任物歸原主。"
+            },
+            firstPrinciples: {
+              coreTruth: "合住生活的核心基石是公共衛生的底線共識，守住邊界才能換來長久舒適的同住關係。"
+            }
           }
         }
       ]
@@ -335,6 +439,65 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Calling out a close friend with direct blame triggers defensive guilt. Using playful extortion (demanding a drink) or considerate rescheduling delivers the message without putting them on the defensive."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Friend acknowledges the wait with a laugh rather than defensive irritation.",
+              secondOrder: "Downstream: Friend starts budgeting travel time more mindfully; prevents quiet resentment from detonating the friendship months later."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Sounding like an angry parent scolding them, making them feel attacked.",
+              prevention: "Prevention: Anchor the boundary in playful humor (demanding a drink) or scheduling pragmatism."
+            },
+            firstPrinciples: {
+              coreTruth: "The objective is not enforcing strict punctuality; it is respecting your time while preserving a joyful friendship."
+            }
+          }
+        },
+        {
+          id: "friend_bad_words",
+          title: "Friends Constantly Swearing / Harsh Talk",
+          tag: "Verbal Friction",
+          rant: "My friends always said bad words, I felt annoying. Every conversation is full of vulgar language and I'm tired of hearing it!",
+          rageLevel: 80,
+          roast: {
+            tagTitle: "Uncensored Broadcast Malfunction",
+            stars: "★★★★☆",
+            comment: "Their mouth seems to be running on an R-rated cable channel with zero parental controls. It's as if they think profanity adds seasoning, when in reality it just sounds like verbal pollution and electrical static.",
+            comfortTip: "You're their friend, not their kindergarten teacher. You have every right to protect your mental peace from acoustic trash."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Playful Tease",
+                tag: "Lighthearted・No Hard Feelings",
+                text: "Bro, your vocabulary is sounding like an uncut mafia movie today! Tone down the R-rated filter before my ears start charging you an emotional distress fee haha."
+              },
+              {
+                type: "Gentle Boundary",
+                tag: "Focus on Personal Feeling",
+                text: "Hey, honestly it gets kind of draining when every conversation has harsh words in it. I really enjoy hanging out with you, but can we dial back the swearing? It'd make chatting way more fun for me!"
+              },
+              {
+                type: "Firm Standard",
+                tag: "Mutual Respect",
+                text: "I value our friendship, but I really dislike being around constant cursing and negative phrasing. Let's keep things respectful so we can both have a good time, deal?"
+              }
+            ],
+            insight: "Chronic swearing is usually an unconscious habit or an attempt to sound casual. Rather than a moral lecture ('You're rude'), stating personal sensory discomfort ('It drains my energy') shifts the boundary without putting them on the defensive."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Friend pauses and realizes their speech habit is causing real discomfort.",
+              secondOrder: "Downstream: Group conversations naturally detoxify, saving significant emotional energy during future hangouts."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Being dismissed as overly sensitive or a 'buzzkill'.",
+              prevention: "Prevention: State your personal fatigue ('it drains my energy') rather than judging their character."
+            },
+            firstPrinciples: {
+              coreTruth: "Communication exists to connect people; constant profanity is cognitive noise. You have full right to protect your mental sanctuary."
+            }
           }
         },
         {
@@ -368,39 +531,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Asking an indecisive friend 'What do you feel like?' increases their choice anxiety. Constraining the options into a forced binary choice or taking cheerful initiative relieves their mental load."
-          }
-        },
-        {
-          id: "friend_bad_words",
-          title: "Friends Constantly Swearing / Harsh Talk",
-          tag: "Verbal Friction",
-          rant: "My friends always said bad words, I felt annoying. Every conversation is full of vulgar language and I'm tired of hearing it!",
-          rageLevel: 80,
-          roast: {
-            tagTitle: "Uncensored Broadcast Malfunction",
-            stars: "★★★★☆",
-            comment: "Their mouth seems to be running on an R-rated cable channel with zero parental controls. It's as if they think sprinkling profanity into every sentence adds seasoning, when in reality it just sounds like verbal pollution and electrical static.",
-            comfortTip: "You're their friend, not their kindergarten teacher. You have every right to protect your mental peace from acoustic trash."
           },
-          diplomacy: {
-            tactics: [
-              {
-                type: "Playful Tease",
-                tag: "Lighthearted・No Hard Feelings",
-                text: "Bro, your vocabulary is sounding like an uncut mafia movie today! Tone down the R-rated filter before my ears start charging you an emotional distress fee haha."
-              },
-              {
-                type: "Gentle Boundary",
-                tag: "Focus on Personal Feeling",
-                text: "Hey, honestly it gets kind of draining when every conversation has harsh words in it. I really enjoy hanging out with you, but can we dial back the swearing? It'd make chatting way more fun for me!"
-              },
-              {
-                type: "Firm Standard",
-                tag: "Mutual Respect",
-                text: "I value our friendship, but I really dislike being around constant cursing and negative phrasing. Let's keep things respectful so we can both have a good time, deal?"
-              }
-            ],
-            insight: "Chronic swearing is usually an unconscious habit or an attempt to sound casual. Rather than a moral lecture ('You're rude'), stating personal sensory discomfort ('It drains my energy') shifts the boundary without putting them on the defensive."
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Eliminates 20 minutes of aimless walking and back-and-forth hesitation.",
+              secondOrder: "Downstream: Establishes a swift '2-option delegation' habit for all future dinner meetups."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Picking a spot that violates a dietary restriction they forgot to mention.",
+              prevention: "Prevention: Offer a binary choice (Option A or B) so they retain quick final consent."
+            },
+            firstPrinciples: {
+              coreTruth: "The fundamental purpose of dinner with a friend is shared presence, not democratic perfection."
+            }
           }
         }
       ]
@@ -442,6 +585,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "High-EQ workplace communication never fights emotion with emotion—it counters with process, priority, and quality standards. Framing your deferral as 'ensuring deliverable quality' makes your boundary bulletproof."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Reclaims your weekend without open confrontation.",
+              secondOrder: "Downstream: Teaches the sender that late dumps fail to produce free weekend work, training them to schedule requests earlier."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Being framed to leadership as 'uncooperative during an urgent project crisis'.",
+              prevention: "Prevention: State 'prioritizing Monday 09:00 to ensure quality'—this frames you as quality-conscious rather than unhelpful."
+            },
+            firstPrinciples: {
+              coreTruth: "Employment contracts buy professional output during working hours, not unpaid round-the-clock panic."
+            }
           }
         },
         {
@@ -475,6 +631,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Never respond to scapegoating by saying 'It's not my fault'. Instead, state objective timestamps and immediate next steps. Leadership will instantly see who is executing and who is making excuses."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Objective timeline displayed in front of management, dispelling blame.",
+              secondOrder: "Downstream: Builds a reputation for rigorous documentation and executive maturity; scapegoaters learn to avoid you."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Interrupting with high emotional intensity, making leadership view it as petty squabbling.",
+              prevention: "Prevention: State cold timestamps (delivered Wednesday) followed by a constructive next step."
+            },
+            firstPrinciples: {
+              coreTruth: "Organizational trust is earned through documented execution and constructive forward motion, not emotional debates."
+            }
           }
         }
       ]
@@ -516,6 +685,19 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Never yell at a free-rider in group chat—professors view emotional bickering as poor team coordination. Setting a hard timestamp deadline and submitting an objective contribution table provides legitimate, undeniable protection."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Project is finalized cleanly tonight without relying on missing pieces.",
+              secondOrder: "Downstream: Professor grades proportionally based on the contribution log; slackers bear their academic consequences while serious students are protected."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Erasing their name unilaterally, prompting them to complain to the department about 'group bullying'.",
+              prevention: "Prevention: Keep their name on the cover, but submit an explicit, documented chapter ownership matrix."
+            },
+            firstPrinciples: {
+              coreTruth: "Academic credit reflects intellectual contribution. Documenting reality is not betrayal; it is fair accounting."
+            }
           }
         },
         {
@@ -544,47 +726,73 @@ const PRESET_CATEGORIES = {
               }
             ],
             insight: "Asking professors for exceptions requires mitigating their risk. Acknowledging the prerequisite gap while providing evidence of self-prep (or offering to audit first) is far more persuasive than emotional pleas about graduation."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Professor notes your mature self-preparation above standard desperate emails.",
+              secondOrder: "Downstream: Establishes a strong rapport; even if full, you are positioned first in line for future overrides or mentorship."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Pleading desperation ('I will delay graduation'), signaling lack of academic planning.",
+              prevention: "Prevention: Never plead desperation; frame everything through demonstrated self-prep and willingness to audit."
+            },
+            firstPrinciples: {
+              coreTruth: "Professors grant overrides to students who minimize teaching risk, not those who maximize emotional liability."
+            }
           }
         }
       ]
     },
     living: {
       id: "living",
-      name: "Roommates & Home",
+      name: "生活室友",
       icon: "🏠",
-      description: "Dirty dishes in the sink for days, stolen fridge food, late-night noise.",
+      description: "碗不洗、冰箱食物偷吃、半夜吵鬧，如何化解生活地獄？",
       items: [
         {
           id: "living_dishes",
-          title: "Dirty Dishes in Sink for 3 Days",
-          tag: "Sink Civilization Creator",
-          rant: "Every time they eat, they dump instant noodle bowls in the sink until fruit flies start circling! We've discussed this multiple times. I am your roommate, not your unpaid maid!",
+          title: "吃完碗堆水槽三天不洗",
+          tag: "水槽古文明製造者",
+          rant: "每次吃完泡麵和外帶碗就往水槽一丟，都發酵出酸味引來果蠅了！明明講過好幾次了到底為什麼可以髒成這樣？我是室友不是你的免費保母耶！",
           rageLevel: 92,
           roast: {
-            tagTitle: "Ecosystem Cultivator",
+            tagTitle: "生態系培育家",
             stars: "★★★★☆",
-            comment: "Those aren't dirty dishes; that's an active microbiological evolutionary experiment. They are probably waiting for the bacteria on the plates to develop artificial intelligence and wash themselves.",
-            comfortTip: "Do NOT wash it for them. Wash it once, and you become their full-time housekeeper for life. Use humor to diffuse tension, but keep the boundary firm."
+            comment: "那個水槽裡的不是碗盤，是他在進行某種新型微生物培養實驗。他可能在等盤子裡的細菌進化出高度文明，然後自己走路去洗碗機洗澡呢。",
+            comfortTip: "別幫他洗，幫他洗一次你就得幫他洗一輩子。用幽默化解尷尬，但要把界線釘死。"
           },
           diplomacy: {
             tactics: [
               {
-                type: "Humorous Callout",
-                tag: "Group Chat Icebreaker",
-                text: "Attention flatmates: the dishes in the sink seem to be gaining sentience and preparing to greet us! Whoever cooked up that feast, give them a warm bath today before the fruit flies throw a full festival haha!"
+                type: "幽默提醒型",
+                tag: "群組破冰・好笑有用",
+                text: "各位室友注意～水槽裡的碗盤好像快要進化出自主意識跟我們打招呼了！今天哪位大廚的料理廚具記得回家給它們洗個熱水澡喔，果蠅們已經在旁邊開派對了哈哈！"
               },
               {
-                type: "Rule Reminder",
-                tag: "Rational Consensus",
-                text: "Hey everyone! Quick reminder on our clean kitchen rule: dishes washed on the same day. There are some plates developing an odor in the sink—could the owner kindly clear them before bed tonight so we all enjoy a fresh space?"
+                type: "清晰公約型",
+                tag: "理性建立共識",
+                text: "哈囉大家，為了維護廚房衛生，我們之前約定過當天碗盤當天洗～水槽裡有些餐具堆了幾天已有異味，麻煩主人今天睡前隨手清理一下，大家住起來也比較舒服！"
               },
               {
-                type: "Boundary Action",
-                tag: "Practical & Civil",
-                text: "Hey! Since the sink is currently full and folks can't wash food or hands, I've gathered your dishes into a separate basin on the side so you can tackle them when you get back tonight!"
+                type: "行動邊界型",
+                tag: "不撕破臉的實際作法",
+                text: "嗨！因為水槽目前滿了大家都沒辦法洗菜/洗手，我先把你的碗盤先集中放到旁邊的塑膠盆裡囉，等你今天回來再洗～"
               }
             ],
-            insight: "Roommate issues should never resort to character insults (e.g. 'You're disgusting'). Focusing on objective environmental impact (odor, blocked sink) and framing it through shared house rules resolves the issue cleanly."
+            insight: "生活瑣事的溝通忌諱人身攻擊（如『你很噁心』），改為指涉『公共環境的客觀影響（果蠅、佔用水槽）』，並以群組公共維護的角度切入，最能達到效果而不反目。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate: Flatmate washes the dishes tonight without feeling cornered into a fight.",
+              secondOrder: "Downstream: Re-solidifies the shared house rule permanently, preventing hygiene standards from deteriorating."
+            },
+            preMortem: {
+              risk: "Worst Failure Mode: Washing it yourself out of impatience, creating permanent servant expectations.",
+              prevention: "Prevention: Never wash their dishes; place them into a clean container basin to free up the sink."
+            },
+            firstPrinciples: {
+              coreTruth: "Shared living depends on enforced common area boundaries, not unilateral silent sacrifice."
+            }
           }
         }
       ]
