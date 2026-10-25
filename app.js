@@ -707,6 +707,306 @@ document.addEventListener("DOMContentLoaded", () => {
           firm: "“I need everyone to follow a shared cleaning schedule and keep the noise down after our agreed quiet time. That’s the fairest way to share the space.”",
           insight: "Turn chores or noise into observable rules and time slots so the discussion is about an agreement, not who complains more."
         }
+      },
+      {
+        id: "tone_miscommunication",
+        keywords: {
+          en: ["tone of voice", "snapped at me", "talks to me like", "misread my message", "misunderstood my text", "we keep misunderstanding each other", "every conversation turns into an argument"],
+          zh: ["語氣很差", "口氣很差", "講話口氣", "誤會我的訊息", "誤解我的意思", "一講就吵起來", "每次溝通都變吵架"]
+        },
+        zh: {
+          tag: "語氣翻譯故障",
+          roast: "明明在討論一件事，最後卻變成語氣鑑定大會，原本的問題還在旁邊排隊等處理。",
+          comfort: "你可以談事情本身，也可以要求彼此用能聽進去的方式說話。",
+          playful: "「我們好像又卡在語氣副本了😅 先回到原本那件事，我想把它好好說完。」",
+          soft: "「我想把事情談清楚，但剛剛的語氣讓我有點難接收。我們可以慢一點說，先聚焦在這件事嗎？」",
+          firm: "「如果我們開始互相提高音量，我會先暫停，等冷靜後再把事情談完。」",
+          insight: "把語氣和原本議題分開處理，並約定暫停條件，可以避免一次誤會擴大成整場爭吵。"
+        },
+        en: {
+          tag: "Tone Translation Glitch",
+          roast: "You started discussing one issue and somehow ended up in a full tone-of-voice trial, while the original problem is still waiting outside.",
+          comfort: "You can address the issue and ask for a way of speaking you can actually hear.",
+          playful: "“I think we’ve unlocked the tone-of-voice side quest again 😅 Can we return to the original issue and finish that first?”",
+          soft: "“I want to work this out, but the tone is making it hard for me to listen. Could we slow down and focus on the issue?”",
+          firm: "“If we start raising our voices, I’m going to pause this conversation and come back to it when we’re calmer.”",
+          insight: "Separating tone from the original issue and agreeing on a pause point can stop one misunderstanding from taking over the whole conversation."
+        }
+      },
+      {
+        id: "quality_time_phone",
+        keywords: {
+          en: ["always on their phone when we", "on their phone during dinner", "never spends time with me", "too busy to see me", "not making time for me", "keeps canceling our time together", "keeps cancelling our time together"],
+          zh: ["約會都在滑手機", "吃飯一直滑手機", "一直滑手機不理我", "都不花時間陪我", "沒時間陪我", "都不陪我", "相處時一直看手機"]
+        },
+        zh: {
+          tag: "手機搶走主場",
+          roast: "你們是一起吃飯，手機卻像買了雙人座，還順便把對話也包場了。",
+          comfort: "想要相處時被好好陪伴很合理，直接提出一段專心相處的時間就好。",
+          playful: "「我們今天可以讓手機先休息一下嗎？它最近陪你的時間比我還多耶😅」",
+          soft: "「我很珍惜我們一起吃飯／相處的時間。你一直看手機時我會覺得有點被晾著，可以留一段時間專心陪彼此嗎？」",
+          firm: "「如果我們約好一起相處，我希望這段時間先少看手機；如果你現在有事，我們也可以改天再約。」",
+          insight: "把需求說成具體的相處安排，比只說對方不在乎你更容易得到可執行的改變。"
+        },
+        en: {
+          tag: "Phone Takes the Date",
+          roast: "You went out together, but the phone seems to have booked the two-seat table and reserved the conversation too.",
+          comfort: "It’s reasonable to want someone’s attention during time you set aside together.",
+          playful: "“Can we let our phones take a little break? Yours has had more quality time with you than I have lately 😅”",
+          soft: "“I really value our time together. When you’re on your phone through dinner, I feel a little sidelined. Could we set aside some phone-free time?”",
+          firm: "“When we make plans to spend time together, I’d like us to put our phones away for a while. If now isn’t a good time, we can reschedule.”",
+          insight: "Turn the need for attention into a specific shared-time request instead of framing it as proof that the other person does not care."
+        }
+      },
+      {
+        id: "shared_expenses",
+        keywords: {
+          en: ["split rent", "split the utilities", "split household bills", "unfair bill split", "doesn't pay their share of rent", "does not pay their share of rent", "shared grocery costs", "who pays for shared supplies"],
+          zh: ["分攤房租", "房租分攤", "分攤水電費", "水電費怎麼分", "共同帳單", "生活費分攤", "採買費用怎麼分", "共用物品費用"]
+        },
+        zh: {
+          tag: "帳單分攤迷霧",
+          roast: "帳單自己不會分身，大家的記憶卻很會各自長出一套算法。再不寫清楚，月底就要開數學辯論賽。",
+          comfort: "把項目、金額和分攤方式列出來，是求公平，不是計較。",
+          playful: "「我們來幫房租／水電費找個固定算法吧，不然每個月都像在玩猜帳單😅」",
+          soft: "「我想把房租和共用支出的分攤方式整理清楚，這樣大家都知道各自要付多少，也比較不會誤會。」",
+          firm: "「從下個月開始，我希望依照這份明細和約好的比例分攤房租／帳單，付款日期也一起固定下來。」",
+          insight: "用共同明細和事先約定的比例處理共享支出，比月底臨時追問更透明、也更少傷感情。"
+        },
+        en: {
+          tag: "Bill-Splitting Fog",
+          roast: "Bills don’t split themselves, but everyone’s memory seems to invent a different formula. Leave it vague and month-end becomes math debate night.",
+          comfort: "Listing the costs and agreeing on a split is about fairness, not being petty.",
+          playful: "“Can we pick one clear way to split rent and utilities? I’d love to retire from monthly bill-guessing 😅”",
+          soft: "“I’d like us to write down how we split rent and shared expenses so everyone knows their amount and we avoid misunderstandings.”",
+          firm: "“Starting next month, I’d like us to use this expense list and agreed split, with a fixed payment date for each bill.”",
+          insight: "A shared expense list and agreed formula make recurring costs more transparent than sorting them out from memory at month-end."
+        }
+      },
+      {
+        id: "unexpected_guests",
+        keywords: {
+          en: ["brings guests over without asking", "brings people over without telling me", "overnight guests", "partner stays over every night", "has people over late", "keeps inviting friends over", "unexpected guests"],
+          zh: ["不問就帶朋友回家", "沒先說就帶人來", "常常帶人回來過夜", "另一半常住", "朋友常來過夜", "半夜帶朋友回家", "室友帶人回來"]
+        },
+        zh: {
+          tag: "客人突然登場",
+          roast: "家裡不是隨機開放的快閃活動，室友也不該每次都靠門鈴才知道今天有訪客。",
+          comfort: "共享空間裡的訪客會影響每個人，先通知和同意很合理。",
+          playful: "「下次開派對支線前先發個預告吧😅 我也想知道家裡什麼時候會多一位嘉賓。」",
+          soft: "「我不介意你邀朋友來，但臨時看到訪客會有點不自在。下次可以先告訴我，也確認一下時間嗎？」",
+          firm: "「帶訪客或過夜前，請先和住在這裡的人確認；沒有說好的話，我不接受臨時留宿。」",
+          insight: "把訪客的通知時間、過夜規則和共同同意說清楚，能同時尊重邀客者與其他住戶。"
+        },
+        en: {
+          tag: "Surprise Guest Arrival",
+          roast: "The home isn’t a random pop-up event, and housemates shouldn’t have to learn about tonight’s guest from the doorbell.",
+          comfort: "Guests affect everyone who shares the space, so asking first is reasonable.",
+          playful: "“Can I get a preview before the surprise-guest side quest next time? 😅 I’d like to know when we have company.”",
+          soft: "“I’m okay with you having friends over, but surprise guests make me uncomfortable. Could you let me know and check the timing first?”",
+          firm: "“Please check with the people who live here before inviting guests or having someone stay overnight. I’m not okay with unplanned overnight stays.”",
+          insight: "Agreeing on notice, overnight stays, and shared consent respects both the person hosting and everyone living in the space."
+        }
+      },
+      {
+        id: "shared_food_belongings",
+        keywords: {
+          en: ["eats my food", "ate my food", "takes my things without asking", "uses my stuff without asking", "borrows my clothes without asking", "uses my toiletries", "never replaces shared supplies"],
+          zh: ["偷吃我的食物", "吃掉我的食物", "沒問就拿我的東西", "沒問就用我的", "拿我的衣服穿", "用我的盥洗用品", "共用物品不補"]
+        },
+        zh: {
+          tag: "共用不等於公用",
+          roast: "對方把「住一起」自動翻譯成「東西都能拿」，這套字典可能需要更新一下。冰箱不是無限補給箱。",
+          comfort: "清楚區分共用品和個人物品，可以省掉很多小摩擦。",
+          playful: "「冰箱不是自動補貨系統喔😅 拿我的食物或用品前先問一下，吃完也記得補上～」",
+          soft: "「我發現我的食物／用品有時會被拿走。下次使用前可以先問我嗎？如果是共用的，我們也可以約好怎麼補貨。」",
+          firm: "「請不要未經同意拿用我的個人物品。共用品請依照約定分攤並補回。」",
+          insight: "先界定哪些物品共用、哪些要先詢問，再約定補貨方式，能讓界線可操作。"
+        },
+        en: {
+          tag: "Shared Doesn’t Mean Public",
+          roast: "They translated “we live together” into “everything is up for grabs.” That dictionary needs an update; the fridge is not an infinite supply crate.",
+          comfort: "Separating shared supplies from personal belongings prevents a lot of small resentments.",
+          playful: "“The fridge isn’t an automatic restock system 😅 Please ask before taking my food or things, and replace what you finish.”",
+          soft: "“I’ve noticed some of my food/stuff has been used. Could you ask first next time? We can also agree on how to replace shared supplies.”",
+          firm: "“Please don’t use my personal belongings without permission. Shared supplies should be split and replaced as we agreed.”",
+          insight: "Define what is shared, what needs permission, and how replacements work so the boundary is easy to follow."
+        }
+      },
+      {
+        id: "missed_deadlines_contribution",
+        keywords: {
+          en: ["misses every deadline", "keeps missing deadlines", "doesn't do their part", "does not do their part", "not pulling their weight at work", "coworker doesn't finish their work", "group member never submits their part"],
+          zh: ["一直錯過期限", "一直拖延交件", "沒有完成分內工作", "同事都不做事", "同事沒完成工作", "組員沒交他的部分", "小組都我在做"]
+        },
+        zh: {
+          tag: "期限消失術",
+          roast: "期限每次都準時出現，該交的內容卻像加入了隱形斗篷。最後收尾的人通常還不是消失的那位。",
+          comfort: "你不必默默替別人補洞；先把任務、期限和影響留下紀錄。",
+          playful: "「提醒一下，這部分的期限快到了～可以回報目前進度和預計完成時間嗎？我好安排後續。」",
+          soft: "「目前還缺你的部分，會影響整體進度。你可以在[時間]前完成，或現在告訴我需要調整哪個安排嗎？」",
+          firm: "「為了避免影響交付，我會把目前分工、已完成項目和缺漏記錄下來，並依流程同步給負責人。」",
+          insight: "指出缺少的交付物、具體期限和後續影響，能將抱怨轉成可追蹤的責任與安排。"
+        },
+        en: {
+          tag: "Deadline Disappearing Act",
+          roast: "The deadline always shows up on time; the work due keeps putting on an invisibility cloak. Somehow the cleanup usually lands on someone else.",
+          comfort: "You don’t have to silently fill every gap; document the task, deadline, and impact.",
+          playful: "“Quick check-in: this part is due soon. Could you share the progress and expected finish time so I can plan the next step?”",
+          soft: "“Your part is still missing, and it affects the overall timeline. Can you finish by [time], or let me know what needs to change?”",
+          firm: "“To protect the delivery, I’m documenting the assignments, completed work, and outstanding items, then I’ll update the project lead through the usual process.”",
+          insight: "Naming the missing deliverable, a real deadline, and the impact turns frustration into trackable responsibilities and next steps."
+        }
+      },
+      {
+        id: "work_recognition",
+        keywords: {
+          en: ["my work goes unnoticed", "not recognized for my work", "boss takes me for granted", "passed over for promotion", "not included in decisions at work", "no one acknowledges my contribution"],
+          zh: ["工作沒被肯定", "沒人看見我的付出", "主管不重視我的工作", "升遷不公平", "不讓我參與決策", "貢獻都被忽略", "努力都沒人看到"]
+        },
+        zh: {
+          tag: "隱形貢獻者",
+          roast: "成果明明有上線，功勞卻像開了隱形模式。公司不是看不見，只是你的付出需要從背景音變成清楚紀錄。",
+          comfort: "提出具體成果和你想要的回饋，是爭取公平，不是在邀功。",
+          playful: "「我把這段時間完成的成果整理成清單了，讓我的貢獻不要再玩躲貓貓😅 可以一起看一下嗎？」",
+          soft: "「我想和你回顧一下最近完成的工作，以及我接下來的發展機會。這些成果希望能在評估時被納入考量。」",
+          firm: "「我希望在下一次績效／升遷討論中，依照這些具體成果和責任範圍評估我的貢獻與發展。」",
+          insight: "整理可驗證的成果、責任和影響，再提出明確的評估或回饋需求，比只表達不被重視更容易促成討論。"
+        },
+        en: {
+          tag: "Invisible Contributor",
+          roast: "The work shipped, but the credit seems to have switched on invisibility mode. Your contribution needs to move from background music to a clear record.",
+          comfort: "Sharing concrete results and asking for feedback is about fairness, not bragging.",
+          playful: "“I put together a list of what I’ve delivered so my contributions can stop playing hide-and-seek 😅 Could we review it?”",
+          soft: "“I’d like to review the work I’ve completed and discuss my next growth opportunities. I hope these results can be included in the evaluation.”",
+          firm: "“At the next performance/promotion discussion, I’d like my contribution and growth path assessed against these specific results and responsibilities.”",
+          insight: "Document measurable results and responsibilities, then make a clear request for evaluation or feedback instead of only saying you feel overlooked."
+        }
+      },
+      {
+        id: "future_decisions",
+        keywords: {
+          en: ["can't agree where to live", "cannot agree where to live", "arguing about our future", "different plans for the future", "can't agree on moving", "cannot agree on moving", "arguing about holiday plans"],
+          zh: ["對未來沒有共識", "住哪裡談不攏", "未來規劃不同", "要不要搬家談不攏", "為搬家一直吵", "假日安排一直吵", "過年去哪裡談不攏"]
+        },
+        zh: {
+          tag: "未來規劃卡關中",
+          roast: "一個在討論目的地，一個在守著原地，最後連行李都還沒打包，情緒先打包好了。",
+          comfort: "重大決定可以先拆成偏好、限制和時間，不必一次逼出唯一答案。",
+          playful: "「我們先別急著決定人生結局，先把各自最在意的兩件事列出來，看看有沒有交集吧😅」",
+          soft: "「我知道我們對未來安排的想法不太一樣。我想先聽聽你最在意的是什麼，再一起找一個兼顧彼此需求的選項。」",
+          firm: "「這件事對我很重要，我不想在還沒談清楚前就答應。讓我們訂個時間把選項和期限一起確認。」",
+          insight: "先分清楚彼此的底線、偏好和現實限制，再比較選項，比把分歧解讀成誰不在乎誰更有效。"
+        },
+        en: {
+          tag: "Future Plans Buffering",
+          roast: "One person is discussing the destination while the other is guarding the starting point. The bags aren’t packed, but the emotions already are.",
+          comfort: "Big decisions can be broken into preferences, constraints, and timing instead of forcing one answer immediately.",
+          playful: "“Let’s not decide the whole life finale yet 😅 Can we each list the two things that matter most and see where they overlap?”",
+          soft: "“I know we picture the future differently. I’d like to understand what matters most to you, then look for an option that respects both of our needs.”",
+          firm: "“This matters a lot to me, and I don’t want to agree before we’ve talked it through. Let’s set a time to review the options and timeline.”",
+          insight: "Separate each person’s non-negotiables, preferences, and practical constraints before treating a disagreement as proof that someone does not care."
+        }
+      },
+      {
+        id: "one_sided_friendship",
+        keywords: {
+          en: ["always reach out first", "only calls when they need something", "friend never checks in", "one-sided friendship", "always the one making plans", "friend only contacts me for favors"],
+          zh: ["都是我主動聯絡", "只有有事才找我", "朋友都不關心我", "單方面付出", "每次都是我約", "只會找我幫忙"]
+        },
+        zh: {
+          tag: "友情單向充電器",
+          roast: "你像是友情裡的客服專線：平常沒人問候，一有需求就立刻被轉接。關係不該只有你在維護。",
+          comfort: "你可以重視這段友情，也可以期待主動和關心是雙向的。",
+          playful: "「友情客服今天輪到你值班囉😄 這次換你約我／主動敲我一下吧！」",
+          soft: "「我發現最近大多是我主動聯絡和安排，久了會有點失落。我也希望你偶爾主動找我。」",
+          firm: "「我不想再單方面維持聯絡了。接下來我會少主動一些，也看看我們能不能一起經營這段友情。」",
+          insight: "清楚說出你希望對方做的主動行為，再觀察是否有持續回應，比猜測對方是否在乎更有依據。"
+        },
+        en: {
+          tag: "One-Way Friendship Charger",
+          roast: "You’re the friendship help desk: nobody checks in until they need something. A relationship shouldn’t be maintained by one person alone.",
+          comfort: "You can value the friendship and still expect care and initiative to go both ways.",
+          playful: "“Friendship help-desk shifts rotate 😄 Your turn to make the plan or check in with me next time!”",
+          soft: "“I’ve noticed I’m usually the one reaching out and making plans, and I feel a little disappointed. I’d appreciate it if you checked in sometimes too.”",
+          firm: "“I don’t want to be the only one keeping us in touch. I’m going to step back a bit and see if we can both put effort into this friendship.”",
+          insight: "Ask for a specific reciprocal action, then look at the pattern of follow-through instead of trying to guess how much the other person cares."
+        }
+      },
+      {
+        id: "social_exclusion",
+        keywords: {
+          en: ["left me out", "wasn't invited", "was not invited", "everyone went without me", "excluded me from the plans", "not included in the group chat", "they made plans without me"],
+          zh: ["沒邀我", "沒有邀我", "沒揪我", "大家都去了沒找我", "把我排除在外", "沒有加我進群組", "背著我約"]
+        },
+        zh: {
+          tag: "聚會名單漏接員",
+          roast: "大家的行程都排好了，你卻像收到一張不存在的邀請函。被漏掉的感覺，真的不是一句「想太多」就能消失。",
+          comfort: "先確認是刻意排除還是單純漏掉，再決定要怎麼看待這段關係。",
+          playful: "「我看到你們有約，下次也把我算進名單吧～我也想一起去。」",
+          soft: "「我知道你們最近有一起出去，發現沒被邀請時我有點失落。下次如果方便，也想一起參加。」",
+          firm: "「如果這次是刻意不邀我，我希望你直接告訴我；我不想一直靠猜測理解我們的關係。」",
+          insight: "先用平靜的方式確認情況，能避免把一次漏邀直接當成長期排斥，也讓對方有機會說清楚。"
+        },
+        en: {
+          tag: "Invitation List Glitch",
+          roast: "Everyone’s plans are set and you got the invitation that apparently doesn’t exist. Being left out doesn’t disappear just because someone says “you’re overthinking.”",
+          comfort: "Check whether it was intentional or an oversight before deciding what it means for the friendship.",
+          playful: "“I saw you all went out—count me in next time! I’d love to come along.”",
+          soft: "“I heard you got together recently, and I felt a little left out when I wasn’t invited. I’d like to join next time if there’s room.”",
+          firm: "“If I was intentionally left out, I’d rather you tell me directly. I don’t want to keep guessing where we stand.”",
+          insight: "A calm check-in keeps one missed invitation from becoming an assumed pattern while giving the other person a chance to explain."
+        }
+      },
+      {
+        id: "family_overcontrol",
+        keywords: {
+          en: ["parents keep deciding for me", "family keeps controlling my choices", "parents won't respect my decision", "in-laws keep interfering", "mother-in-law keeps criticizing", "family keeps pressuring me to"],
+          zh: ["爸媽替我決定", "父母一直控制我", "不尊重我的決定", "長輩一直干涉", "婆婆一直批評", "家人一直逼我", "家人干涉我的選擇"]
+        },
+        zh: {
+          tag: "人生代辦越權中",
+          roast: "家人把關心一路升級成代替你按下確認鍵，彷彿你的人生設定忘了交還本人管理。",
+          comfort: "你可以感謝家人的關心，同時保留自己做決定的權利。",
+          playful: "「謝謝人生顧問團的提案😅 這題我先自己決定，有進度再跟你們更新。」",
+          soft: "「我知道你是關心我，也有聽到你的建議。不過這個決定我想自己做，之後會跟你分享結果。」",
+          firm: "「我已經做出決定，請不要再替我安排或施壓。若話題持續被逼迫，我會先結束這次討論。」",
+          insight: "把感謝、決定權和停止施壓的界線分開說，能保留關係又不交出自主權。"
+        },
+        en: {
+          tag: "Life Admin Overreach",
+          roast: "Your family upgraded concern into clicking “confirm” on your behalf, as if your life settings forgot to return admin access to you.",
+          comfort: "You can appreciate their concern and still keep the right to make your own decisions.",
+          playful: "“Thanks to the life-advisor panel for the proposal 😅 I’ll make this call myself and share an update later.”",
+          soft: "“I know you care, and I’ve heard your advice. I want to make this decision myself, and I’ll share how it goes.”",
+          firm: "“I’ve made my decision. Please stop arranging this for me or pressuring me about it. If it continues, I’m going to end this conversation for now.”",
+          insight: "Separate appreciation, decision ownership, and the limit on continued pressure to protect both the relationship and your autonomy."
+        }
+      },
+      {
+        id: "parent_teen_tech_chores",
+        keywords: {
+          en: ["teen is always on their phone", "child won't put the phone down", "arguing about screen time", "teen won't do chores", "child ignores every instruction", "fighting about bedtime"],
+          zh: ["小孩一直玩手機", "孩子一直滑手機", "一直為手機吵架", "孩子不做家事", "小孩不聽指令", "每天為睡覺時間吵架", "作業拖到很晚"]
+        },
+        zh: {
+          tag: "家庭規則拉鋸賽",
+          roast: "手機、家事和睡覺時間輪流登場，家裡每天都像在重播同一集。看來光靠提醒，已經無法讓規則自己落地。",
+          comfort: "先挑一條最重要的規則談清楚，比一次把所有問題都拿出來吵更有效。",
+          playful: "「我們今天先不要重播『手機／家事大戰』，一起訂一個大家都做得到的規則好嗎？」",
+          soft: "「我知道你想自己安排時間，我也需要家裡的事情有人一起負責。我們一起訂好手機／家事的時間和分工吧。」",
+          firm: "「我們約定的手機／家事時間需要照做；如果有例外，先說好，不要等到最後才爭執。」",
+          insight: "把抽象的『聽話一點』換成一條清楚、可協商又能執行的家庭規則，能降低每天重複爭吵。"
+        },
+        en: {
+          tag: "Family Rule Replay",
+          roast: "Phones, chores, and bedtime keep taking turns on stage; the household is replaying the same episode daily. Reminders alone clearly aren’t making the rules stick.",
+          comfort: "Pick the most important rule to discuss first instead of bringing every frustration into one argument.",
+          playful: "“Can we skip today’s rerun of the phone/chores debate and agree on one rule everyone can actually follow?”",
+          soft: "“I know you want to manage your own time, and I need everyone to share the household responsibilities. Can we agree on a phone/chores schedule together?”",
+          firm: "“We need to follow the phone/chores time we agreed on. If something needs to change, let’s discuss it before the deadline, not during another argument.”",
+          insight: "Replace a vague demand to “listen” with one specific, negotiable rule that everyone can follow and revisit."
+        }
       }
     ];
 
