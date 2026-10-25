@@ -399,6 +399,152 @@ const PRESET_CATEGORIES = {
           }
         }
       ]
+    },
+    daily: {
+      id: "daily",
+      name: "人生課題",
+      icon: "🌱",
+      description: "爸媽碎念催婚、曖昧卡關、身體亮紅燈，日常三大難題一次拆解！",
+      items: [
+        {
+          id: "daily_family",
+          title: "爸媽施壓催婚又愛管東管西",
+          tag: "人生代駕司機",
+          rant: "選科系要管、工作要管，現在連結婚都要催！每次講沒兩句就說『我都是為你好』，我是你小孩不是你的人生代辦專案吧？壓力真的好大，到底要怎麼溝通才不會吵起來？",
+          rageLevel: 85,
+          roast: {
+            tagTitle: "人生代駕司機",
+            stars: "★★★★☆",
+            comment: "他們自聘為你人生的代駕——猛踩那台寫著『為你好』的油門，完全無視導航上寫的『當事人選擇』。愛是真的，車開太猛也是真的。",
+            comfortTip: "爸媽的壓力通常是愛，只是用他們唯一會的語言講。你不需要照單全收才叫孝順——翻譯它，不要整顆吞下去。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "翻譯安心型",
+                tag: "給方案・消擔心",
+                text: "我知道你會這樣講是因為擔心我——這點我先謝謝你。我目前的規劃是這樣：[方案]。過程我會跟你更新進度，好不好？"
+              },
+              {
+                type: "角色界線型",
+                tag: "成年人決策・報告不請示",
+                text: "我很重視跟你討論，但這件事我得自己扛——畢竟日子是我自己在過。我已經做了決定，希望你當我的支持者，不是路線審查員。"
+              },
+              {
+                type: "平靜重申型",
+                tag: "答案不變・不再辯論",
+                text: "我知道我們在這件事上看法不同，這沒關係——我的答案沒有變。我更想好好吃飯、聽你聊聊你最近的興趣，而不是再吵一次。成交？"
+              }
+            ],
+            insight: "家人的界線要當『門』不要當『牆』：牆會引發攻城心態、吵個沒完。把關係通道開大，把決策通道設成單向——你分享結果，不開放否決權。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前反應：你用計畫而不是防禦來回應，這個話題就抓不住餐桌了。",
+              secondOrder: "長遠效應：他們不再把你當需要管理的小孩，而是會主動匯報的大人。"
+            },
+            preMortem: {
+              risk: "潛在翻車點：把理由講得太詳細，等於邀請他們逐條辯論。",
+              prevention: "避坑策略：先講決定、再講方案——細節是『更新進度』，不是『送審』。"
+            },
+            firstPrinciples: {
+              coreTruth: "你可以尊重父母的聲音，卻不必交出否決權——愛與自主不是零和遊戲。"
+            }
+          }
+        },
+        {
+          id: "daily_relationship",
+          title: "曖昧卡關搞不清楚關係",
+          tag: "戀愛觀光客",
+          rant: "到底在一起了沒啊？每次問『我們算什麼』他就顧左右而言他，這週還已讀不回兩次！喜歡一個人還要靠猜真的很累，我只想要一個清楚的答案有這麼難嗎？",
+          rageLevel: 78,
+          roast: {
+            tagTitle: "戀愛觀光客",
+            stars: "★★★★☆",
+            comment: "他把戀愛當成觀光行程——收集體驗、狂拍美照，就是從不簽長期租約。你卻在那邊狂刷新聊天視窗，像它欠你利息一樣。感情值得有個目的地，不是無限轉機。",
+            comfortTip: "你談判不了化學反應，但你談判得了清楚。問一個誠實的問題；無論答案是什麼，至少你不用繼續在腦袋裡付房租。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "輕踩試探型",
+                tag: "零壓力・留面子",
+                text: "所以～我已經在浴室裡把這段話排練得像奧斯卡得獎感言了哈哈😅——認真的，我們現在到底算什麼？不用搞得很盛大，氣氛確認一下就好！"
+              },
+              {
+                type: "真誠溫柔型",
+                tag: "分享感受・邀請回應",
+                text: "嗨，我很享受跟你相處的過程，也喜歡我們現在的狀態。想聽聽你對我們的感覺是什麼——完全沒壓力，我單純很好奇你心裡的模樣。"
+              },
+              {
+                type: "清晰底線型",
+                tag: "寧要清楚・不要舒服",
+                text: "我現在要清楚勝過要舒服。如果你沒有同樣的想法那也沒關係——但我寧可現在就知道，也不想繼續猜然後抱著期待過日子。"
+              }
+            ],
+            insight: "曖昧不是浪漫，是欠債，每個沒問出口的問題都在累積利息。一句冷靜、無壓力的提問，就能把情緒欠款換成一段真關係或一個乾淨的答案——兩者都比無限期待便宜。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前反應：曖昧被打破——你得到真實答案，而不是半夜兩點還在腦海重播舊對話。",
+              secondOrder: "長遠效應：你停止試鏡一個可能不存在的角色，把情緒頻寬拿回來。"
+            },
+            preMortem: {
+              risk: "潛在翻車點：帶著情緒下最後通牒，會把誠實提問變成威脅。",
+              prevention: "避坑策略：挑冷靜的時候、能見面就見面問——說『沒壓力』的時候要真的沒壓力。"
+            },
+            firstPrinciples: {
+              coreTruth: "關係存在於兩人共同確認的地方——清楚，比漫長的希望更仁慈。"
+            }
+          }
+        },
+        {
+          id: "daily_health",
+          title: "身體亮紅燈老闆還不准請假",
+          tag: "人體電池剩 3%",
+          rant: "連續忙了好幾個禮拜根本沒休息，今天起來頭痛又發燒超不舒服，結果老闆還說案子趕不能請假！我又不是機器人，身體都在發警報了，是一定要我垮給他看嗎？",
+          rageLevel: 88,
+          roast: {
+            tagTitle: "人體電池剩 3%",
+            stars: "★★★★☆",
+            comment: "你的身體已經跳出『電量不足』通知好幾個月了，你每次都像關彈窗一樣滑掉。劇透：這台硬體沒有『以後再處理』模式，只有關機模式。",
+            comfortTip: "休息不是昏倒之後才領得到的獎勵，是避免昏倒的保養。今天就先掛號——未來的你已經先謝過了。"
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "事實同步型",
+                tag: "狀況＋備援＋歸隊",
+                text: "哈囉，先跟你同步一下：我今天醒來 [發燒/偏頭痛]，需要休息一天。[工作] 我已經交給 [同事] 並會在家遠端關注——我明天回到崗位，一早先補進度。"
+              },
+              {
+                type: "補償方案型",
+                tag: "替期限拆風險",
+                text: "我今天狀況沒辦法給這件事該有的專注。與其交半成品，[期限] 能不能改到 [日期]？補回來的計畫我先排好了——追進度的責任我扛。"
+              },
+              {
+                type: "健康底線型",
+                tag: "先修復・再歸隊",
+                text: "我硬撐了一段時間，身體開始收利息了。我先請 [今天/明天] 把狀態養回來，才能以 100% 回歸——一上線我立刻回報進度。"
+              }
+            ],
+            insight: "健康請假要用『風險管理』包裝才容易准：講客觀狀況、給備援方案、給歸隊日期。主管可以拒絕幫忙，但拒絕不了傳染風險，也拒絕不了一個已經拆完風險的排程。"
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "眼前反應：你不再假裝活得很好，身體終於拿到它喊了很久的修復窗口。",
+              secondOrder: "長遠效應：如實回報狀態變成常態而不是冒險——預防勝過你一直延期的急診。"
+            },
+            preMortem: {
+              risk: "潛在翻車點：只說『我生病了』卻沒有交接，會被當藉口，還會被拿來談判。",
+              prevention: "避坑策略：壞消息旁邊永遠附上備援方案與歸隊日期。"
+            },
+            firstPrinciples: {
+              coreTruth: "身體是你唯一不可替換的硬體——保養不是選配。"
+            }
+          }
+        }
+      ]
     }
   },
   "en": {
@@ -792,6 +938,152 @@ const PRESET_CATEGORIES = {
             },
             firstPrinciples: {
               coreTruth: "Shared living depends on enforced common area boundaries, not unilateral silent sacrifice."
+            }
+          }
+        }
+      ]
+    },
+    daily: {
+      id: "daily",
+      name: "Life & Wellbeing",
+      icon: "🌱",
+      description: "Parent pressure, situationship limbo, body at 3% battery — life's three toughest everyday dilemmas, decoded.",
+      items: [
+        {
+          id: "daily_family",
+          title: "Parents Meddling & Pushing for Marriage",
+          tag: "Backseat Life Driver",
+          rant: "They controlled my major, my job, and now they're pressuring me to get married! Every conversation ends with 'it's for your own good.' I'm their kid, not their life project! How do I even talk to them without starting a fight?",
+          rageLevel: 85,
+          roast: {
+            tagTitle: "Backseat Life Driver",
+            stars: "★★★★☆",
+            comment: "They've appointed themselves chauffeurs of your life — flooring the accelerator labeled 'it's for your own good' while ignoring the GPS that says 'their choice'. The love is real. So is the reckless driving.",
+            comfortTip: "Their pressure is usually love delivered in the only language they ever learned. You don't have to obey the message to respect the messenger — translate it, don't swallow it whole."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Reframe & Reassure",
+                tag: "Show Plan・Defuse Worry",
+                text: "I know this comes from you caring about me — thank you for that. Here's exactly how I'm planning to handle it: [plan]. I'll keep you posted on how it goes, okay?"
+              },
+              {
+                type: "Role Boundary",
+                tag: "Report, Don't Ask",
+                text: "I really value talking things through with you, but this one I have to own — I'm the one who'll live with the decision. I've made my call, and I'd love your support on the ride, not a veto on the route."
+              },
+              {
+                type: "Steady Repetition",
+                tag: "Same Answer・No Debate",
+                text: "I know we see this differently, and that's okay — my answer hasn't changed. I'd much rather enjoy dinner hearing about [their hobby] than relitigate this one. Deal?"
+              }
+            ],
+            insight: "Family boundaries work best as doors, not walls: walls trigger siege mentality and endless escalation. Keep the relationship channel wide open while making the decision channel one-way — you share outcomes, not vetoes."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate Reaction: You respond with a plan instead of defense, so the topic loses its grip on dinner.",
+              secondOrder: "Ripple Effect: They stop seeing you as the kid who needs managing and start seeing an adult who reports rather than asks."
+            },
+            preMortem: {
+              risk: "Potential Pitfall: Explaining your reasoning in exhaustive detail invites them to debate every detail.",
+              prevention: "Safeguard: Lead with the decision and the plan — details are shared as updates, not submitted for approval."
+            },
+            firstPrinciples: {
+              coreTruth: "You can honor your parents' voice without handing them the veto — love and autonomy are not zero-sum."
+            }
+          }
+        },
+        {
+          id: "daily_relationship",
+          title: "Situationship Stuck in Ambiguity",
+          tag: "Relationship Tourist",
+          rant: "Are we together or not? Every time I ask 'so what are we?', he dodges the question — and he left me on read twice this week! Guessing someone's feelings is exhausting. I just want one clear answer, is that too much?",
+          rageLevel: 78,
+          roast: {
+            tagTitle: "Relationship Tourist",
+            stars: "★★★★☆",
+            comment: "They treat love like a sightseeing tour — collecting experiences, taking selfies, never signing the lease. Meanwhile you're refreshing a chat window like it owes you interest. Feelings deserve a destination, not an endless layover.",
+            comfortTip: "You can't negotiate chemistry, but you can negotiate clarity. Ask one honest question; whatever the answer, at least you stop paying rent in your own head."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Playful Probe",
+                tag: "Low Pressure・Saves Face",
+                text: "Sooo I've been rehearsing this in the shower like it's an Oscar speech 😅 — but seriously, where are we at? No big dramatic talk needed, just a vibe check!"
+              },
+              {
+                type: "Honest & Gentle",
+                tag: "Share Feelings・Invite Reply",
+                text: "Hey, I've really enjoyed getting to know you, and I like where this is heading. I'd love to hear how you're feeling about us — no pressure at all, I'm just genuinely curious where your head's at."
+              },
+              {
+                type: "Clear Bottom Line",
+                tag: "Clarity Over Comfort",
+                text: "I'm at a point where clarity matters more to me than comfort. If you're not on the same page, that's completely fine — but I'd rather know now than keep guessing and hoping for the best."
+              }
+            ],
+            insight: "Ambiguity isn't romance — it's debt, and every unspoken question compounds interest. One calm, low-pressure question converts emotional debt into either a real relationship or a clean answer; both are cheaper than endless hope."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate Reaction: The ambiguity breaks — you get a real answer instead of replaying old chats in your head at 2am.",
+              secondOrder: "Ripple Effect: You stop auditioning for a role that may not exist and reclaim your emotional bandwidth."
+            },
+            preMortem: {
+              risk: "Potential Pitfall: Delivering an ultimatum while emotional turns an honest question into a threat.",
+              prevention: "Safeguard: Ask when calm, face-to-face if possible — and mean it when you say 'no pressure'."
+            },
+            firstPrinciples: {
+              coreTruth: "A relationship only exists where two people agree it exists — clarity is kinder than prolonged hope."
+            }
+          }
+        },
+        {
+          id: "daily_health",
+          title: "Body Failing, Boss Won't Grant Leave",
+          tag: "Human Battery at 3%",
+          rant: "I've been going non-stop for weeks with zero rest, and today I woke up with a headache and fever. My boss still says the deadline is too tight for me to take leave! I'm not a robot — my body is sounding alarms and he wants me to collapse first?",
+          rageLevel: 88,
+          roast: {
+            tagTitle: "Human Battery at 3%",
+            stars: "★★★★☆",
+            comment: "Your body has been pushing 'low battery' notifications for months and you keep swiping them away like annoying pop-ups. Spoiler: the hardware has no 'deal with it later' mode — only a shutdown.",
+            comfortTip: "Rest isn't a reward you earn after collapsing — it's the maintenance that prevents the collapse. Book the appointment today; future-you is already thanking you."
+          },
+          diplomacy: {
+            tactics: [
+              {
+                type: "Factual Sync",
+                tag: "Condition + Coverage + Return",
+                text: "Hi, quick heads-up: I woke up with [fever/migraine] and should rest today. I've handed [task] to [name] and will monitor from home — I'll be back online tomorrow and catch up first thing."
+              },
+              {
+                type: "Coverage Plan",
+                tag: "De-risk The Deadline",
+                text: "I'm not well enough to give this my usual focus today. Rather than send something half-done, could we move [deadline] to [date]? Here's my plan to make up the time — I'll own the catch-up."
+              },
+              {
+                type: "Health Boundary",
+                tag: "Recover To Return At 100%",
+                text: "I've been pushing through and it's catching up with me. I'm taking [today/tomorrow] to recover so I can come back at full capacity — I'll send an update the moment I'm back online."
+              }
+            ],
+            insight: "Health requests land when framed as risk management, not weakness: state the objective condition, show the coverage plan, give a return date. A superior can decline a favor, but not a contagion risk or a deadline that's already been de-risked."
+          },
+          thinkingLens: {
+            secondOrder: {
+              firstOrder: "Immediate Reaction: You stop performing wellness you don't feel, and the body gets the recovery window it's been demanding.",
+              secondOrder: "Ripple Effect: Honest status updates become normal instead of risky — prevention beats the ER visit you keep postponing."
+            },
+            preMortem: {
+              risk: "Potential Pitfall: 'I'm sick' with zero handover reads as an excuse and invites negotiation.",
+              prevention: "Safeguard: Always pair the bad news with a coverage plan and a return date."
+            },
+            firstPrinciples: {
+              coreTruth: "Your body runs the only irreplaceable hardware you own — maintenance is not optional."
             }
           }
         }

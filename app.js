@@ -637,6 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ...PRESET_CATEGORIES[currentLang].workplace.items,
       ...PRESET_CATEGORIES[currentLang].campus.items,
       ...PRESET_CATEGORIES[currentLang].living.items,
+      ...PRESET_CATEGORIES[currentLang].daily.items,
     ];
 
     let matchedItem = null;
@@ -648,6 +649,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if ((matchKeyword(lower, "組員") || matchKeyword(lower, "報告") || matchKeyword(lower, "teammate") || matchKeyword(lower, "slacker")) && item.id === "campus_freerider") { matchedItem = item; break; }
       if ((matchKeyword(lower, "教授") || matchKeyword(lower, "加簽") || matchKeyword(lower, "professor") || matchKeyword(lower, "prereq")) && item.id === "campus_late_add") { matchedItem = item; break; }
       if ((matchKeyword(lower, "碗") || matchKeyword(lower, "水槽") || matchKeyword(lower, "dishes") || matchKeyword(lower, "sink")) && item.id === "living_dishes") { matchedItem = item; break; }
+      if (["mom", "mommy", "mother", "dad", "daddy", "father", "parents", "family", "sister", "brother", "siblings", "媽", "爸", "父母", "爸媽", "家人", "兄弟", "姐妹", "母親", "父親"].some(k => matchKeyword(lower, k)) && item.id === "daily_family") { matchedItem = item; break; }
+      if (["girlfriend", "boyfriend", "fiance", "fiancé", "husband", "wife", "partner", "dating", "crush", "break up", "broke up", "breakup", "marriage", "married", "wedding", "divorce", "曖昧", "分手", "告白", "女朋友", "男朋友", "結婚", "離婚", "喜歡的人"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
+      if (["sick", "fever", "headache", "headaches", "migraine", "flu", "nauseous", "vomit", "doctor", "hospital", "medicine", "unwell", "生病", "發燒", "頭痛", "想吐", "看醫生", "吃藥", "不舒服", "請病假"].some(k => matchKeyword(lower, k)) && item.id === "daily_health") { matchedItem = item; break; }
     }
 
     if (matchedItem) {
