@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VentToPolite｜發洩解憂所 ✕ 高情商溝通翻譯機</title>
+  <meta name="description" content="用 AI 同時解決情緒發洩與現實人際溝通：內心大實話吐槽 ✕ 外在體面求生信件產生器">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 頂部導航列 -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-icon">🔥💬</span>
+        <span>VentToPolite</span>
+        <span class="brand-badge">AI 雙引擎</span>
+      </a>
+
+      <div class="nav-actions">
+        <button id="btnSettings" class="btn-icon" title="設定 API Key (可選)">
+          <span>⚙️</span>
+          <span>API 設定</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容區 -->
+  <main class="main-wrapper">
+
+    <!-- Hero Header -->
+    <section class="hero-header">
+      <div class="hero-pill">
+        <span>🚀 2026 AI 創新專案</span>
+        <span>•</span>
+        <span>一個能分享給全世界的溝通神器</span>
+      </div>
+      <h1 class="hero-title">
+        內心<span class="gradient-fire">暴躁發洩</span> ✕ 外在<span class="gradient-diplomat">體面求生</span>
+      </h1>
+      <p class="hero-subtitle">
+        面對朋友遲到、組員擺爛、主管甩鍋很抓狂？<br>
+        倒出你的生氣大實話，AI 幫你<b>毒舌吐槽舒壓</b>，同時產出<b>高情商不傷感情的溝通話術</b>！
+      </p>
+    </section>
+
+    <!-- 族群情境切換 (Categories) -->
+    <nav class="category-tabs" aria-label="情境分類">
+      <button class="cat-tab active" data-cat="friends">
+        <span>👥</span>
+        <span>朋友社交</span>
+      </button>
+      <button class="cat-tab" data-cat="workplace">
+        <span>💼</span>
+        <span>職場工作</span>
+      </button>
+      <button class="cat-tab" data-cat="campus">
+        <span>🎓</span>
+        <span>校園學術</span>
+      </button>
+      <button class="cat-tab" data-cat="living">
+        <span>🏠</span>
+        <span>生活室友</span>
+      </button>
+    </nav>
+
+    <!-- 快捷經典範例 -->
+    <div class="presets-section">
+      <span class="preset-label">🔥 經典案例點選：</span>
+      <div id="presetChips" style="display: inline-flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+    </div>
+
+    <!-- 輸入主卡片 -->
+    <section class="input-card">
+      <div class="input-header">
+        <div class="input-label">
+          <span>✍️</span>
+          <span>傾倒你的原始真心話（毫無保留、自由開火）</span>
+        </div>
+        <!-- 怒氣能量條 -->
+        <div class="rage-meter-box">
+          <span class="rage-label">抓狂指數:</span>
+          <div class="rage-bar-track">
+            <div id="rageBar" class="rage-bar-fill"></div>
+          </div>
+          <span id="rageScore" class="rage-score">0%</span>
+        </div>
+      </div>
+
+      <textarea 
+        id="rantInput" 
+        class="rant-textarea" 
+        placeholder="例如：每次約都遲到 10 分鐘，每次都跟我說『快到了』，我到底要站在路邊吹風吹多久？真的很煩，時間不是時間喔！"
+      ></textarea>
+
+      <div class="input-footer">
+        <span id="charCount" class="char-counter">0 字</span>
+        <button id="btnGenerate" class="btn-generate">
+          <span class="brand-icon">⚡</span>
+          <span>啟動雙引擎翻譯</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 空白引導狀態 -->
+    <div id="placeholderState" class="placeholder-state">
+      <div class="placeholder-icon">🔮</div>
+      <p>點選上方的經典案例，或直接在框框輸入真心話，點擊「啟動雙引擎翻譯」！</p>
+    </div>
+
+    <!-- 雙面產出結果網格 -->
+    <section id="resultsContainer" class="output-grid" style="display: none;">
+
+      <!-- 左側：毒舌嘴砲解憂閣 -->
+      <article class="roast-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🔥</span>
+            <span>毒舌解憂閣</span>
+            <span id="roastTag" class="tag-badge tag-fire">時空扭曲慣犯</span>
+          </div>
+          <div id="roastStars" class="roast-stars">★★★★☆</div>
+        </div>
+
+        <p id="roastContent" class="roast-content">
+          他的「快到了」大概是指他剛從床上坐起來、準備尋找另一隻襪子。他的手錶不是慢 10 分鐘，是他的人生時鐘走得比樹懶還悠哉。
+        </p>
+
+        <div class="comfort-box">
+          <div style="font-weight: 700; margin-bottom: 0.3rem;">💡 心靈降溫小秘方：</div>
+          <div id="comfortContent">生氣浪費卡路里，待會碰面先凹他請一杯微糖微冰壓壓驚。</div>
+        </div>
+      </article>
+
+      <!-- 右側：高情商外交官 -->
+      <article class="diplomat-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>💡</span>
+            <span>高情商外交官</span>
+            <span class="tag-badge tag-diplomat">可直接傳送</span>
+          </div>
+        </div>
+
+        <!-- 策略切換 -->
+        <div id="tacticsTabs" class="tactics-tabs"></div>
+
+        <!-- 訊息展示框 -->
+        <div class="message-box">
+          <div id="messageText" class="message-text"></div>
+          <div class="message-actions">
+            <button id="btnCopy" class="btn-copy">
+              <span>📋</span>
+              <span>一鍵複製訊息</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 策略眉角剖析 -->
+        <div class="insight-box">
+          <div class="insight-header">
+            <span>🧠</span>
+            <span>高情商心理學剖析：</span>
+          </div>
+          <div id="insightContent"></div>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- API 設定 Modal 彈窗 -->
+  <div id="settingsModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ API 串接設定 (可選)</h3>
+        <button id="btnCloseModal" class="btn-close">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="apiKeyInput">API Key (OpenAI / DeepSeek / Gemini)</label>
+        <input type="password" id="apiKeyInput" class="form-input" placeholder="sk-...">
+        <p class="form-help">未填寫時，系統將自動啟動內建的「智慧案例智囊庫」，仍可離線流暢體驗！</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="apiEndpointInput">API Endpoint</label>
+        <input type="text" id="apiEndpointInput" class="form-input" value="https://api.openai.com/v1">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="apiModelInput">Model Name</label>
+        <input type="text" id="apiModelInput" class="form-input" value="gpt-4o-mini">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem;">
+        <button id="btnSaveSettings" class="btn-generate" style="padding: 0.6rem 1.4rem; font-size: 0.9rem;">
+          儲存設定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast 訊息 -->
+  <div id="toast" class="toast">已複製到剪貼簿！</div>
+
+  <!-- 頁尾 -->
+  <footer class="footer">
+    <p>VentToPolite 專案｜人機協同創新（Human-AI Collaboration Showcase）</p>
+    <p style="margin-top: 0.3rem; opacity: 0.7;">依據開源原則構建 • 專題展示請遵守社群禮儀</p>
+  </footer>
+
+  <script src="presets.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
