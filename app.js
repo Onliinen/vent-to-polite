@@ -1445,9 +1445,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
 
-    const quickScenario = quickScenarios.find(scenario =>
-      [...scenario.keywords.en, ...scenario.keywords.zh].some(keyword => matchKeyword(lower, keyword))
-    );
+    const quickScenario = quickScenarios
+      .map(scenario => ({
+        scenario,
+        matchedLength: [...scenario.keywords.en, ...scenario.keywords.zh]
+          .filter(keyword => matchKeyword(lower, keyword))
+          .reduce((longest, keyword) => Math.max(longest, keyword.length), 0)
+      }))
+      .filter(match => match.matchedLength > 0)
+      .sort((a, b) => b.matchedLength - a.matchedLength)[0]?.scenario;
     if (quickScenario) {
       activePresetId = null;
       const copy = quickScenario[isEn ? "en" : "zh"];
