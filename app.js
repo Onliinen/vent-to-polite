@@ -38,7 +38,7 @@ const UI_STRINGS = {
     lensCoreTruthPrefix: "核心本質：",
     modalTitleText: "⚙️ API 串接設定 (可選)",
     modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
-    modalHelpText: "未填寫時，系統將自動啟動內建的「智慧案例智囊庫」，仍可離線流暢體驗！",
+    modalHelpText: "未填寫時可使用常見情境範本與快速離線回覆；設定 API Key 可依你的描述產生更貼切的吐槽與回覆。",
     modalEndpointLabel: "API Endpoint",
     modalModelLabel: "Model Name",
     modalSaveText: "儲存設定",
@@ -48,8 +48,8 @@ const UI_STRINGS = {
     toastEmpty: "⚠️ 請先輸入你的生氣真心話！",
     toastDone: "✨ 雙面翻譯完成！",
     toastLiveDone: "🚀 即時 AI 雙引擎生成成功！",
-    toastOffline: "ℹ️ 離線示範：這是常見情境範本；要分析自訂問題，請設定可用的 AI API Key。",
-    toastApiFailed: "⚠️ AI API 無法使用，已改用離線範本；請檢查 API 設定以取得針對此問題的回答。",
+    toastOffline: "ℹ️ 離線快速回覆：可直接使用或稍作修改；設定 AI API Key 可取得更貼近情境的版本。",
+    toastApiFailed: "⚠️ AI API 無法使用，已改用快速離線回覆；檢查 API 設定可取得更貼近情境的版本。",
     toastSaved: "💾 設定已儲存！"
   },
   "en": {
@@ -87,7 +87,7 @@ const UI_STRINGS = {
     lensCoreTruthPrefix: "Core Truth: ",
     modalTitleText: "⚙️ API Settings (Optional)",
     modalApiKeyLabel: "API Key (OpenAI / DeepSeek / Gemini)",
-    modalHelpText: "When empty, the built-in intelligent knowledge base is used for seamless offline demo!",
+    modalHelpText: "Without a key, use common-scenario templates and quick offline replies. An API key gives you a more tailored roast and response.",
     modalEndpointLabel: "API Endpoint",
     modalModelLabel: "Model Name",
     modalSaveText: "Save Settings",
@@ -97,8 +97,8 @@ const UI_STRINGS = {
     toastEmpty: "⚠️ Please enter your thoughts first!",
     toastDone: "✨ Dual translation completed!",
     toastLiveDone: "🚀 Live AI generation succeeded!",
-    toastOffline: "ℹ️ Offline demo: this is a common-scenario template. Set a working AI API key to analyze custom situations.",
-    toastApiFailed: "⚠️ The AI API is unavailable, so an offline template was used. Check your API settings for a response tailored to this issue.",
+    toastOffline: "ℹ️ Quick offline reply: use or tweak this draft. Add an AI API key for a more tailored version.",
+    toastApiFailed: "⚠️ The AI API is unavailable, so a quick offline reply was used. Check your API settings for a more tailored version.",
     toastSaved: "💾 Settings saved!"
   }
 };
@@ -907,20 +907,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 8. 通用人際摩擦與界線自保 (Universal Interpersonal Conflict & Personal Boundary Fallback)
-    // The offline engine cannot infer an unrecognized situation. Keep the input visible
-    // in the drafts and ask for clarification instead of pretending a generic answer is specific.
+    // Keep the offline fallback quick: reflect the user's situation, roast the problem lightly,
+    // and provide a soft reply without turning the flow into a clarification chat.
     activePresetId = null;
-    const userIssue = text.replace(/\s+/g, " ").trim().slice(0, 180);
+    const normalizedIssue = text.replace(/\s+/g, " ").trim();
+    const userIssue = normalizedIssue.length > 90 ? `${normalizedIssue.slice(0, 90)}…` : normalizedIssue;
     const universalResult = {
       roast: {
-        tagTitle: isEn ? "Needs More Context" : "需要更多情境",
-        stars: "★★★☆☆",
+        tagTitle: isEn ? "Patience Under Review" : "耐性正在考驗",
+        stars: "★★★★☆",
         comment: isEn 
-          ? `I don't want to guess what happened from “${userIssue}”. Add who was involved and what outcome you want, and I can help you shape a response.`
-          : `我不想只憑「${userIssue}」就猜測事情經過。補充對方是誰、發生什麼事，以及你希望達到什麼結果，我才能幫你整理出貼切的回應。`,
+          ? `“${userIssue}” is the kind of situation that makes patience file a formal complaint. You’re allowed to be annoyed; let’s give it a reply that doesn’t make things worse.`
+          : `「${userIssue}」真的很考驗耐性，連耐性本人都想先請個假。你會覺得煩很正常，回覆時先把重點講清楚就好。`,
         comfortTip: isEn
-          ? "This offline demo only has templates for common scenarios; it can't reliably interpret a new situation."
-          : "目前是離線示範模式，只能處理少數常見情境，無法可靠理解這個新問題。"
+          ? "Keep the tone soft and the boundary clear. You don't need a perfect speech."
+          : "語氣可以放軟，界線一樣說清楚；不用把回覆想得太複雜。"
       },
       diplomacy: {
         tactics: [
@@ -928,27 +929,27 @@ document.addEventListener("DOMContentLoaded", () => {
             type: isEn ? "Playful Deflection" : "幽默調侃型",
             tag: isEn ? "Diffuses Tension・Maintains Face" : "軟性提醒・保留面子",
             text: isEn
-              ? `Hey, about “${userIssue}”—I may be missing some context. Can we talk through what happened and find a way that works for both of us?`
-              : `嗨，關於「${userIssue}」這件事，我可能還缺一些背景。方便聊聊當時的情況嗎？我們一起找個雙方都能接受的做法。`
+              ? `Hey, about “${userIssue}”—that caught me a little off guard 😅 Could we handle it a bit differently next time?`
+              : `嗨，關於「${userIssue}」這件事，我剛剛有點措手不及😅 下次我們可以換個方式處理嗎？`
           },
           {
             type: isEn ? "Honest Boundary" : "真誠表達型",
             tag: isEn ? "Express Discomfort Directly" : "表達感受・建立界線",
             text: isEn
-              ? `I want to talk about “${userIssue}”. It affected me, and I'd like to explain what bothered me and hear your view before deciding what to do next.`
-              : `我想談談「${userIssue}」這件事。這對我造成了一些影響，我想先說明在意的地方，也聽聽你的想法，再一起決定接下來怎麼處理。`
+              ? `Hey, about “${userIssue}”—I know you may not have meant it that way, but it did bother me. Could you check with me first next time?`
+              : `嗨，關於「${userIssue}」，我知道你可能不是故意的，但這樣確實讓我有點困擾。下次可以先跟我確認一下嗎？`
           },
           {
             type: isEn ? "Firm Standard" : "明確原則型",
             tag: isEn ? "Mutual Respect Ground Rule" : "互相尊重・確立原則",
             text: isEn
-              ? `Regarding “${userIssue}”, I need us to agree on a clear next step. What I need is [specific request]; can we confirm whether that works?`
-              : `關於「${userIssue}」，我希望我們能確認一個明確的下一步。我需要的是[具體需求]，我們可以確認這樣是否可行嗎？`
+              ? `About “${userIssue}”, I’d like us to agree on a clearer approach for next time. That would make things easier for both of us.`
+              : `關於「${userIssue}」，我希望下次能先把做法說好，這樣彼此都比較好安排，也比較不會再有誤會。`
           }
         ],
         insight: isEn
-          ? "This is a general offline template, not an interpretation of your situation. Add context or configure an AI API key for a tailored analysis."
-          : "這是通用離線範本，並非對你情境的判讀。補充事件背景，或設定 AI API Key，才能取得針對問題的分析。"
+          ? "A short description is enough for a quick draft. You can personalize the wording before sending it."
+          : "簡短描述就能先產生一版快速回覆；傳送前再依照你們平常的相處方式微調即可。"
       },
     };
 
@@ -977,7 +978,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const systemPrompt = isEn 
       ? `You are an AI assistant combining a cynical witty roaster (Catharsis Engine) and a senior diplomat (Diplomacy Engine), powered by high-order cognitive models.
-CRITICAL RULES: The user input is their current interpersonal problem. Treat it as the only request; this API call has no prior-question context. Do not reuse a prior answer. Use at least one concrete detail from this exact input in each ready-to-send tactic. Do not assume facts the user did not provide. If the input is too vague, ask a concise clarifying question in the tactics instead of inventing details. Never force the problem into a workplace scenario unless it is about work.
+CRITICAL RULES: The user input is their current interpersonal problem. Treat it as the only request; this API call has no prior-question context. Do not reuse a prior answer. Use a concrete detail from this input in the roast and replies. Keep the output quick, concise, and immediately useful. Do not ask follow-up questions or demand more detail; when the input is brief, make a reasonable low-risk assumption and give adaptable wording without inventing specific facts. Never force the problem into a workplace scenario unless it is about work.
 
 Return valid JSON with:
 1. roast: { tagTitle (3-5 words), stars ("★★★★☆"), comment (witty, hilarious, sharp roast of the other party's absurdity in this specific situation), comfortTip (1 practical de-escalation tip) }.
@@ -989,7 +990,7 @@ Return valid JSON with:
 }.
 Language: ENGLISH.`
       : `你是一個結合了「毒舌心理諮商師」與「頂級外交官」的雙面 AI 助理，並具備頂級高階思維推演能力。
-重要準則：這次使用者輸入就是目前唯一要處理的人際問題；API 不會收到上一題的內容。不得沿用上一題答案。每則可直接傳送的話術都必須提到這次輸入中的至少一個具體細節，不可自行假設使用者沒提供的事實。若資訊不足，請在話術中先提出簡短釐清問題，不要編造情節。除非使用者提到工作，否則不可硬套職場情境。
+重要準則：這次使用者輸入就是目前唯一要處理的人際問題；API 不會收到上一題的內容，不得沿用上一題答案。吐槽與回覆都要帶到這次輸入的具體細節。回答要簡短、快速、可直接使用，不要追問或要求補充情境；輸入很短時，採取低風險的合理理解，給出可自行微調的話術，不可編造具體事實。除非使用者提到工作，否則不可硬套職場情境。
 
 請嚴格返回 JSON 格式：
 {
