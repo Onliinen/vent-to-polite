@@ -148,6 +148,27 @@ const PRESET_CATEGORIES = {
               coreTruth: "聚餐的核心利益是『享受陪伴與食物』，而不是陷入形式主義的偽民主表決。"
             }
           }
+        },
+        {
+          id: "last_minute_cancel",
+          title: "朋友老是臨時取消",
+          rant: "每次都說好又臨時取消，這已經是第三次了！",
+          rageLevel: 75,
+          quickScenario: true
+        },
+        {
+          id: "gossip_secret",
+          title: "把我的秘密當八卦講出去",
+          rant: "他把我的秘密說出去，現在整個群組都知道了！",
+          rageLevel: 85,
+          quickScenario: true
+        },
+        {
+          id: "one_sided_friendship",
+          title: "永遠都是我先主動聯絡",
+          rant: "每次都是我主動聯絡，朋友都不關心我",
+          rageLevel: 70,
+          quickScenario: true
         }
       ]
     },
@@ -248,6 +269,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "職場評價的本質是『誰能可靠地解決問題與產出成果』，事實留痕永遠勝過無謂的辯白。"
             }
           }
+        },
+        {
+          id: "unfair_requests",
+          title: "工作全都丟給我",
+          rant: "同事把工作都丟給我，自己準時下班",
+          rageLevel: 80,
+          quickScenario: true
+        },
+        {
+          id: "after_hours_work_messages",
+          title: "下班還傳工作訊息",
+          rant: "主管下班還傳工作訊息，還期待我下班回覆",
+          rageLevel: 75,
+          quickScenario: true
+        },
+        {
+          id: "work_recognition",
+          title: "做再多都沒人看見",
+          rant: "我做了那麼多，工作沒被肯定，努力都沒人看到",
+          rageLevel: 70,
+          quickScenario: true
+        },
+        {
+          id: "credit_taken",
+          title: "搶走我的功勞",
+          rant: "開會時他把我的點子說成他的，還搶我的功勞",
+          rageLevel: 90,
+          quickScenario: true
         }
       ]
     },
@@ -255,7 +304,7 @@ const PRESET_CATEGORIES = {
       id: "campus",
       name: "校園學術",
       icon: "🎓",
-      description: "組員擺爛、求教授加簽、助教分數有疑義，大學生求生必備！",
+      description: "組員擺爛、室友摩擦、求教授加簽、助教分數有疑義，大學生求生必備！",
       items: [
         {
           id: "campus_freerider",
@@ -348,6 +397,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "教授加簽的決策標準是『評估該生是否會成為教學負擔』，打消教學風險是獲得通融的唯一核心鑰匙。"
             }
           }
+        },
+        {
+          id: "roommate_food_taken",
+          title: "室友沒問就吃我的食物",
+          rant: "室友一直偷吃我的食物",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_guests",
+          title: "室友常常沒問就帶朋友回家",
+          rant: "室友常常沒問就帶朋友回家",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bathroom_schedule",
+          title: "室友太久都佔著浴室",
+          rant: "室友洗澡洗很久",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_temperature",
+          title: "室友一直亂調冷氣溫度",
+          rant: "室友一直亂調冷氣溫度",
+          rageLevel: 60,
+          quickScenario: true
         }
       ]
     },
@@ -444,7 +521,7 @@ const PRESET_CATEGORIES = {
       id: "living",
       name: "居家與鄰里",
       icon: "🏠",
-      description: "處理室友、住家、噪音、停車、寵物與公共空間的摩擦。",
+      description: "處理住家、噪音、停車、寵物與公共空間的摩擦。",
       items: [
         {
           id: "neighbor_noise",
@@ -478,62 +555,6 @@ const PRESET_CATEGORIES = {
           id: "neighbor_shared_space",
           title: "鄰居把東西堆在公共區域",
           rant: "鄰居把東西堆在公共區域",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_food_taken",
-          title: "室友沒問就吃我的食物",
-          rant: "室友一直偷吃我的食物",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_bills",
-          title: "室友一直拖欠水電費",
-          rant: "室友一直不付水電費",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_shared_supplies",
-          title: "公共用品用完都不補",
-          rant: "室友用完衛生紙都不補",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_guests",
-          title: "室友常常沒問就帶朋友回家",
-          rant: "室友常常沒問就帶朋友回家",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_borrowing_privacy",
-          title: "室友沒問就拿我的東西",
-          rant: "室友沒問就拿我的東西",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_bathroom_schedule",
-          title: "室友太久都佔著浴室",
-          rant: "室友洗澡洗很久",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_temperature",
-          title: "室友一直亂調冷氣溫度",
-          rant: "室友一直亂調冷氣溫度",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_locked_door",
-          title: "室友出門常忘記鎖門",
-          rant: "室友出門不鎖門",
           rageLevel: 60,
           quickScenario: true
         },
@@ -682,6 +703,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "身體是你唯一不可替換的硬體——保養不是選配。"
             }
           }
+        },
+        {
+          id: "roommate_bills",
+          title: "室友一直拖欠水電費",
+          rant: "室友一直不付水電費",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "need_social_break",
+          title: "今天只想自己待著",
+          rant: "今天不想參加聚會，只想自己待著",
+          rageLevel: 40,
+          quickScenario: true
+        },
+        {
+          id: "socializing_feels_annoying",
+          title: "覺得社交很煩",
+          rant: "最近覺得跟人說話很煩，社交好麻煩",
+          rageLevel: 50,
+          quickScenario: true
+        },
+        {
+          id: "shared_expenses",
+          title: "分帳總算不清楚",
+          rant: "每次分攤水電費都算不清楚，共同帳單好麻煩",
+          rageLevel: 60,
+          quickScenario: true
         }
       ]
     }
@@ -830,6 +879,27 @@ const PRESET_CATEGORIES = {
               coreTruth: "The fundamental purpose of dinner with a friend is shared presence, not democratic perfection."
             }
           }
+        },
+        {
+          id: "last_minute_cancel",
+          title: "Friend Cancels at the Last Minute",
+          rant: "They always cancel on me last minute — third time now!",
+          rageLevel: 75,
+          quickScenario: true
+        },
+        {
+          id: "gossip_secret",
+          title: "Shares My Secret as Gossip",
+          rant: "They shared my secret with everyone — now the whole group knows!",
+          rageLevel: 85,
+          quickScenario: true
+        },
+        {
+          id: "one_sided_friendship",
+          title: "One-Sided Friendship",
+          rant: "Friend never checks in — it's always me who reaches out first",
+          rageLevel: 70,
+          quickScenario: true
         }
       ]
     },
@@ -930,6 +1000,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "Organizational trust is earned through documented execution and constructive forward motion, not emotional debates."
             }
           }
+        },
+        {
+          id: "unfair_requests",
+          title: "Dumps All the Work on Me",
+          rant: "My coworker keeps dumping work on me and leaves on time",
+          rageLevel: 80,
+          quickScenario: true
+        },
+        {
+          id: "after_hours_work_messages",
+          title: "After-Hours Work Messages",
+          rant: "My manager texts me late at night about work",
+          rageLevel: 75,
+          quickScenario: true
+        },
+        {
+          id: "work_recognition",
+          title: "My Work Never Gets Recognized",
+          rant: "My work goes unnoticed and no one acknowledges my contribution",
+          rageLevel: 70,
+          quickScenario: true
+        },
+        {
+          id: "credit_taken",
+          title: "Takes Credit for My Work",
+          rant: "My coworker took credit for my work in the meeting again",
+          rageLevel: 90,
+          quickScenario: true
         }
       ]
     },
@@ -937,7 +1035,7 @@ const PRESET_CATEGORIES = {
       id: "campus",
       name: "Campus & Academic",
       icon: "🎓",
-      description: "Slacking teammates, begging professors for overrides, grade review requests.",
+      description: "Slacking teammates, roommate conflicts, begging professors for overrides, grade review requests.",
       items: [
         {
           id: "campus_freerider",
@@ -1030,6 +1128,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "Professors grant overrides to students who minimize teaching risk, not those who maximize emotional liability."
             }
           }
+        },
+        {
+          id: "roommate_food_taken",
+          title: "Roommate Eats My Food Without Asking",
+          rant: "roommate keeps eating my food without asking",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_guests",
+          title: "Roommate Brings Guests Over Without Asking",
+          rant: "roommate keeps bringing guests over without asking",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_bathroom_schedule",
+          title: "Roommate Takes Too Long in the Bathroom",
+          rant: "roommate takes too long in the bathroom",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "roommate_temperature",
+          title: "Roommate Keeps Changing the Thermostat",
+          rant: "roommate keeps changing the thermostat",
+          rageLevel: 60,
+          quickScenario: true
         }
       ]
     },
@@ -1126,7 +1252,7 @@ const PRESET_CATEGORIES = {
       id: "living",
       name: "Home & Neighbors",
       icon: "🏠",
-      description: "Handle roommate and neighborhood issues such as noise, parking, pets, and shared spaces.",
+      description: "Handle home and neighborhood issues such as noise, parking, pets, and shared spaces.",
       items: [
         {
           id: "neighbor_noise",
@@ -1160,62 +1286,6 @@ const PRESET_CATEGORIES = {
           id: "neighbor_shared_space",
           title: "Neighbor Leaves Items in Shared Spaces",
           rant: "neighbor stores things in the common area",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_food_taken",
-          title: "Roommate Eats My Food Without Asking",
-          rant: "roommate keeps eating my food without asking",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_bills",
-          title: "Roommate Hasn’t Paid Their Share of Bills",
-          rant: "roommate hasn't paid their share of utilities",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_shared_supplies",
-          title: "Roommate Never Replaces Shared Supplies",
-          rant: "roommate never replaces toilet paper",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_guests",
-          title: "Roommate Brings Guests Over Without Asking",
-          rant: "roommate keeps bringing guests over without asking",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_borrowing_privacy",
-          title: "Roommate Borrows My Things Without Asking",
-          rant: "roommate borrows my things without asking",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_bathroom_schedule",
-          title: "Roommate Takes Too Long in the Bathroom",
-          rant: "roommate takes too long in the bathroom",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_temperature",
-          title: "Roommate Keeps Changing the Thermostat",
-          rant: "roommate keeps changing the thermostat",
-          rageLevel: 60,
-          quickScenario: true
-        },
-        {
-          id: "roommate_locked_door",
-          title: "Roommate Leaves the Front Door Unlocked",
-          rant: "roommate keeps leaving the front door unlocked",
           rageLevel: 60,
           quickScenario: true
         },
@@ -1364,6 +1434,34 @@ const PRESET_CATEGORIES = {
               coreTruth: "Your body runs the only irreplaceable hardware you own — maintenance is not optional."
             }
           }
+        },
+        {
+          id: "roommate_bills",
+          title: "Roommate Hasn’t Paid Their Share of Bills",
+          rant: "roommate hasn't paid their share of utilities",
+          rageLevel: 60,
+          quickScenario: true
+        },
+        {
+          id: "need_social_break",
+          title: "Need Time Alone Today",
+          rant: "I don't want to socialize tonight; I need to be alone tonight",
+          rageLevel: 40,
+          quickScenario: true
+        },
+        {
+          id: "socializing_feels_annoying",
+          title: "Socializing Feels Annoying",
+          rant: "Socializing feels annoying lately — being around people is such a hassle",
+          rageLevel: 50,
+          quickScenario: true
+        },
+        {
+          id: "shared_expenses",
+          title: "Splitting Bills Gets Messy",
+          rant: "We can't agree how to split the utilities and shared grocery costs",
+          rageLevel: 60,
+          quickScenario: true
         }
       ]
     }
