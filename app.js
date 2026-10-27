@@ -458,6 +458,40 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /**
+   * Tier-2 模糊比對工具：把關鍵詞切成詞幹（英文）或二元組（中文），
+   * 用「詞彙重疊計分」找出最接近的情境，處理自然說法與範本關鍵詞不同字的情況。
+   * 門檻刻意偏嚴格：寧可維持「找不到範本」，也不隨便誤答。
+   */
+  const FUZZY_STOP = new Set([
+    "the", "and", "for", "you", "your", "with", "this", "that", "from", "they", "them",
+    "their", "was", "were", "are", "but", "not", "any", "all", "one", "its", "his", "her",
+    "our", "too", "also", "just", "still", "than", "then", "who", "how", "why", "what",
+    "when", "been", "being", "these", "those", "into", "she", "him", "had", "has", "have",
+    "keep", "keeps", "keeping", "always", "never", "really", "very", "much", "some",
+    "more", "most", "other", "another", "will", "would", "can", "could", "should",
+    "about", "there", "here", "get", "gets", "got", "let", "puts", "put"
+  ]);
+
+  const fuzzyEnTokens = (kw) => kw.toLowerCase().replace(/'/g, "").split(/[^a-z0-9]+/)
+    .filter(w => w.length >= 3 && !FUZZY_STOP.has(w));
+
+  const fuzzyEnStem = (w) => {
+    if (w.length > 4 && w.endsWith("ing")) return w.slice(0, -3);
+    if (w.length > 4 && /(ed|es)$/.test(w)) return w.slice(0, -2);
+    if (w.length > 3 && w.endsWith("s")) return w.slice(0, -1);
+    return w;
+  };
+
+  const fuzzyZhBigrams = (str) => {
+    const segs = str.match(/[\u3400-\u9fff]+/g) || [];
+    const out = new Set();
+    for (const seg of segs) {
+      for (let i = 0; i < seg.length - 1; i++) out.add(seg.slice(i, i + 2));
+    }
+    return out;
+  };
+
+  /**
    * Key-free quick replies: route familiar phrases to bilingual scenario templates;
    * unknown situations receive a short general draft rather than a false exact match.
    */
@@ -1296,8 +1330,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "neighbor_noise",
         keywords: {
-          en: ["neighbor plays loud music late at night", "upstairs neighbor stomps after midnight", "neighbor's party is too loud", "neighbor does renovation early in the morning", "noise from my neighbor keeps waking me", "neighbor keeps making noise at night"],
-          zh: ["鄰居半夜放音樂很大聲", "樓上鄰居半夜一直跺腳", "鄰居派對太吵", "鄰居一大早裝修很吵", "鄰居的噪音一直吵醒我", "鄰居晚上一直製造噪音"]
+          en: ["neighbor plays loud music late at night", "upstairs neighbor stomps after midnight", "neighbor's party is too loud", "neighbor does renovation early in the morning", "noise from my neighbor keeps waking me", "neighbor keeps making noise at night", "noisy neighbor", "neighbor is too loud", "loud music at night", "keeps me up at night"],
+          zh: ["鄰居半夜放音樂很大聲", "樓上鄰居半夜一直跺腳", "鄰居派對太吵", "鄰居一大早裝修很吵", "鄰居的噪音一直吵醒我", "鄰居晚上一直製造噪音", "鄰居很吵", "唱歌很吵", "晚上很吵", "吵到睡不著"]
         },
         zh: {
           tag: "隔壁音響自帶環繞",
@@ -1321,8 +1355,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "neighbor_parking",
         keywords: {
-          en: ["neighbor keeps blocking my driveway", "neighbor parks in my assigned parking spot", "neighbor blocks the garage entrance", "neighbor's guest blocks our driveway", "neighbor keeps taking my parking space"],
-          zh: ["鄰居一直擋我家車道", "鄰居停在我的固定車位", "鄰居擋住車庫出入口", "鄰居的客人擋住車道", "鄰居一直佔我的停車位"]
+          en: ["neighbor keeps blocking my driveway", "neighbor parks in my assigned parking spot", "neighbor blocks the garage entrance", "neighbor's guest blocks our driveway", "neighbor keeps taking my parking space", "parked in my spot", "took my spot", "in my parking spot"],
+          zh: ["鄰居一直擋我家車道", "鄰居停在我的固定車位", "鄰居擋住車庫出入口", "鄰居的客人擋住車道", "鄰居一直佔我的停車位", "停我的車位", "佔我的車位", "停到我的位子"]
         },
         zh: {
           tag: "車位界線請勿跨線",
@@ -1449,8 +1483,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "roommate_food_taken",
         keywords: {
-          en: ["roommate keeps eating my food without asking", "roommate eats my groceries", "roommate takes my food from the fridge", "roommate keeps taking my snacks"],
-          zh: ["室友一直偷吃我的食物", "室友沒問就吃我的東西", "室友一直拿冰箱裡的食物", "室友偷吃我的零食"]
+          en: ["roommate keeps eating my food without asking", "roommate eats my groceries", "roommate takes my food from the fridge", "roommate keeps taking my snacks", "eating my food", "finished my food", "took my food"],
+          zh: ["室友一直偷吃我的食物", "室友沒問就吃我的東西", "室友一直拿冰箱裡的食物", "室友偷吃我的零食", "室友偷吃我的食物", "吃掉我的零食", "又吃我的東西"]
         },
         zh: {
           tag: "冰箱不是共享自助餐",
@@ -1524,8 +1558,8 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "roommate_guests",
         keywords: {
-          en: ["roommate keeps bringing guests over without asking", "roommate's partner is here all the time", "roommate has overnight guests every week", "roommate's boyfriend practically lives here", "roommate's girlfriend is always in our shared space"],
-          zh: ["室友常常沒問就帶朋友回家", "室友的伴侶幾乎天天住這裡", "室友每週都帶人過夜", "室友男友一直待在公共空間", "室友女友常常來住"]
+          en: ["roommate keeps bringing guests over without asking", "roommate's partner is here all the time", "roommate has overnight guests every week", "roommate's boyfriend practically lives here", "roommate's girlfriend is always in our shared space", "friends are always over", "brings friends over", "has friends over"],
+          zh: ["室友常常沒問就帶朋友回家", "室友的伴侶幾乎天天住這裡", "室友每週都帶人過夜", "室友男友一直待在公共空間", "室友女友常常來住", "室友帶朋友回來", "半夜開趴", "帶朋友回來開趴"]
         },
         zh: {
           tag: "室友的客人快變固定住戶",
@@ -1657,9 +1691,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }))
       .filter(match => match.matchedLength > 0)
       .sort((a, b) => b.matchedLength - a.matchedLength)[0]?.scenario;
-    if (quickScenario) {
-      activePresetId = null;
-      const copy = quickScenario[isEn ? "en" : "zh"];
+    // 共用的情境渲染：第一層（精確）與第二層（模糊計分）命中後都用這段輸出。
+    const renderScenarioCopy = (scenario) => {
+      const copy = scenario[isEn ? "en" : "zh"];
       roastTag.textContent = copy.tag;
       roastStars.textContent = "★★★★☆";
       roastContent.textContent = copy.roast;
@@ -1677,6 +1711,11 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsContainer.style.display = "grid";
       resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
       showToast(UI_STRINGS[currentLang].toastDone);
+    };
+
+    if (quickScenario) {
+      activePresetId = null;
+      renderScenarioCopy(quickScenario);
       return;
     }
 
@@ -1857,26 +1896,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 4. 比對其他預設案例 (遲到、隨便、急件、甩鍋、組員、加簽、洗碗)
-    const currentPresets = [
-      ...PRESET_CATEGORIES[currentLang].friends.items,
-      ...PRESET_CATEGORIES[currentLang].workplace.items,
-      ...PRESET_CATEGORIES[currentLang].campus.items,
-      ...PRESET_CATEGORIES[currentLang].living.items,
-      ...PRESET_CATEGORIES[currentLang].daily.items,
+    // 匯整所有分類的預設案例（分類可能隨版本增減，動態攤平最穩）。
+    const currentPresets = Object.values(PRESET_CATEGORIES[currentLang])
+      .flatMap(category => category.items || []);
+
+    // 預設案例觸發詞集中管理：第一層精確比對與第二層模糊評分共用同一份資料。
+    const presetKeywordRules = [
+      { id: "friend_late", en: ["friend is always late", "friend keeps arriving late", "made me wait", "kept me waiting", "is always late", "keeps being late", "waits for me every time"], zh: ["朋友每次遲到", "朋友常常遲到", "每次都遲到", "遲到半小時", "又遲到", "等他很久", "約好又遲到", "每次約都遲到"] },
+      { id: "friend_any", en: ["where should we eat", "where to eat", "pick a restaurant"], zh: ["隨便", "吃什麼"] },
+      { id: "work_urgent", en: ["urgent task at work", "last-minute urgent task", "urgent work request", "weekend work", "work this weekend"], zh: ["臨時急件", "下班前急件", "臨時交辦急件", "週末還要工作"] },
+      { id: "work_blame", en: ["blame", "blamed me", "blames me", "pushed the responsibility", "threw me under the bus"], zh: ["甩鍋", "推責"] },
+      { id: "campus_freerider", en: ["groupmate isn't doing their part", "groupmate is freeloading", "teammate didn't do their part", "team member isn't contributing", "freeload", "slacker", "nobody does any work", "doing everything myself"], zh: ["組員擺爛", "小組都我在做", "組員沒交他的部分", "組員沒有做分配工作", "組員都不做事", "都我在做", "擺爛"] },
+      { id: "campus_late_add", en: ["ask professor to add me", "professor add code", "course add request", "late add request", "prerequisite permission"], zh: ["加簽", "教授加簽", "請教授加簽", "問教授能不能加簽"] },
+      { id: "living_dishes", en: ["roommate leaves dishes in the sink", "roommate never washes dishes", "dishes keep piling up", "shared kitchen dishes"], zh: ["室友不洗碗", "碗盤堆在水槽", "室友都不洗碗", "洗碗分工"] },
+      { id: "daily_family", en: ["parents keep deciding for me", "parents won't respect my decision", "family keeps controlling my choices", "family keeps pressuring me", "mom keeps pressuring me", "mother-in-law keeps criticizing me", "controlling what i do", "controlling my life", "keeps pressuring me to marry"], zh: ["爸媽替我決定", "父母一直控制我", "不尊重我的決定", "長輩一直干涉", "家人一直逼我", "家人干涉我的選擇", "爸媽催婚", "父母催婚", "家人催婚", "催我結婚", "一直催婚", "逼我結婚"] },
+      { id: "daily_relationship", en: ["unclear relationship", "don't know where we stand", "define the relationship", "won't talk about commitment"], zh: ["曖昧不清", "不知道我們算什麼", "不願意確認關係", "一直逃避談關係", "不肯承諾", "交往關係不清楚"] },
+      { id: "daily_health", en: ["boss expects me to work while sick", "pressure me to work while sick", "denied my sick leave", "can't take sick leave", "manager asked me to work with a fever", "work even when sick", "come to work sick", "wants me to work sick"], zh: ["主管不准我請病假", "老闆叫我帶病上班", "生病還要上班", "主管要我病假工作", "被逼著帶病工作"] }
     ];
 
     let matchedItem = null;
-    for (const item of currentPresets) {
-      if (["friend is always late", "friend keeps arriving late", "made me wait", "kept me waiting", "朋友每次遲到", "朋友常常遲到", "約好又遲到", "每次約都遲到"].some(k => matchKeyword(lower, k)) && item.id === "friend_late") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "隨便") || matchKeyword(lower, "吃什麼") || matchKeyword(lower, "where should we eat") || matchKeyword(lower, "where to eat") || matchKeyword(lower, "pick a restaurant")) && item.id === "friend_any") { matchedItem = item; break; }
-      if (["urgent task at work", "last-minute urgent task", "urgent work request", "weekend work", "work this weekend", "臨時急件", "下班前急件", "臨時交辦急件", "週末還要工作"].some(k => matchKeyword(lower, k)) && item.id === "work_urgent") { matchedItem = item; break; }
-      if ((matchKeyword(lower, "甩鍋") || matchKeyword(lower, "推責") || matchKeyword(lower, "blame") || matchKeyword(lower, "pushed the responsibility")) && item.id === "work_blame") { matchedItem = item; break; }
-      if (["groupmate isn't doing their part", "groupmate is freeloading", "teammate didn't do their part", "team member isn't contributing", "freeload", "slacker", "組員擺爛", "小組都我在做", "組員沒交他的部分", "組員沒有做分配工作"].some(k => matchKeyword(lower, k)) && item.id === "campus_freerider") { matchedItem = item; break; }
-      if (["ask professor to add me", "professor add code", "course add request", "late add request", "prerequisite permission", "加簽", "教授加簽", "請教授加簽", "問教授能不能加簽"].some(k => matchKeyword(lower, k)) && item.id === "campus_late_add") { matchedItem = item; break; }
-      if (["roommate leaves dishes in the sink", "roommate never washes dishes", "dishes keep piling up", "shared kitchen dishes", "室友不洗碗", "碗盤堆在水槽", "室友都不洗碗", "洗碗分工"].some(k => matchKeyword(lower, k)) && item.id === "living_dishes") { matchedItem = item; break; }
-      if (["parents keep deciding for me", "parents won't respect my decision", "family keeps controlling my choices", "family keeps pressuring me", "mom keeps pressuring me", "mother-in-law keeps criticizing me", "爸媽替我決定", "父母一直控制我", "不尊重我的決定", "長輩一直干涉", "家人一直逼我", "家人干涉我的選擇", "爸媽催婚", "父母催婚", "家人催婚"].some(k => matchKeyword(lower, k)) && item.id === "daily_family") { matchedItem = item; break; }
-      if (["unclear relationship", "don't know where we stand", "define the relationship", "won't talk about commitment", "曖昧不清", "不知道我們算什麼", "不願意確認關係", "一直逃避談關係", "不肯承諾", "交往關係不清楚"].some(k => matchKeyword(lower, k)) && item.id === "daily_relationship") { matchedItem = item; break; }
-      if (["boss expects me to work while sick", "pressure me to work while sick", "denied my sick leave", "can't take sick leave", "manager asked me to work with a fever", "主管不准我請病假", "老闆叫我帶病上班", "生病還要上班", "主管要我病假工作", "被逼著帶病工作"].some(k => matchKeyword(lower, k)) && item.id === "daily_health") { matchedItem = item; break; }
+    for (const rule of presetKeywordRules) {
+      if ([...rule.en, ...rule.zh].some(k => matchKeyword(lower, k))) {
+        matchedItem = currentPresets.find(item => item.id === rule.id) || null;
+        if (matchedItem) break;
+      }
     }
 
     if (matchedItem) {
@@ -2124,6 +2167,56 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsContainer.scrollIntoView({ behavior: "smooth", block: "nearest" });
       showToast(UI_STRINGS[currentLang].toastDone);
       return;
+    }
+
+    // Tier 2: 沒有任何精確 phrase 命中時，用詞彙重疊計分找「最接近」的情境。
+    // 採用門檻：單一關鍵詞至少重疊 2 個詞（最強證據）+ 總分至少 3 + 領先第二名 2 分以上；
+    // 不達標就維持下方「找不到範本」提示，寧可不答也不誤答。
+    const inputEnTokens = lower.split(/[^a-z0-9]+/).filter(t => t.length > 0);
+    const inputEnSet = new Set(inputEnTokens);
+    const inputBigrams = fuzzyZhBigrams(lower);
+    const scoreCandidate = (rule) => {
+      let total = 0;
+      let best = 0;
+      for (const kw of [...rule.en, ...rule.zh]) {
+        let hits = 0;
+        if (/[^\u0000-\u007F]/.test(kw)) {
+          for (const b of fuzzyZhBigrams(kw)) if (inputBigrams.has(b)) hits++;
+        } else {
+          for (const token of fuzzyEnTokens(kw)) {
+            const stem = fuzzyEnStem(token);
+            if (inputEnSet.has(token) || inputEnSet.has(stem) ||
+                (stem.length >= 4 && inputEnTokens.some(t => t.startsWith(stem)))) hits++;
+          }
+        }
+        total += hits;
+        if (hits > best) best = hits;
+      }
+      return { total, best };
+    };
+    const fuzzyCandidates = [
+      ...quickScenarios.map(sc => ({ kind: "scenario", data: sc, rule: sc.keywords })),
+      ...presetKeywordRules.map(pr => ({ kind: "preset", data: pr, rule: pr }))
+    ];
+    const fuzzyScored = fuzzyCandidates
+      .map(c => Object.assign(c, scoreCandidate(c.rule)))
+      .filter(c => c.best >= 2)
+      .sort((a, b) => b.total - a.total);
+    const fuzzyWinner = fuzzyScored[0];
+    const fuzzyRunnerUp = fuzzyScored[1];
+    if (fuzzyWinner && fuzzyWinner.total >= 3 && fuzzyWinner.total >= (fuzzyRunnerUp ? fuzzyRunnerUp.total : 0) + 2) {
+      if (fuzzyWinner.kind === "scenario") {
+        activePresetId = null;
+        renderScenarioCopy(fuzzyWinner.data);
+        return;
+      }
+      const fuzzyItem = currentPresets.find(item => item.id === fuzzyWinner.data.id);
+      if (fuzzyItem) {
+        activePresetId = fuzzyItem.id;
+        applyPresetResult(fuzzyItem);
+        showToast(UI_STRINGS[currentLang].toastDone);
+        return;
+      }
     }
 
     // No confident scenario match: don't invent a reply. Ask for a clearer rephrase.
